@@ -2,7 +2,7 @@ class PostPage {
   PostPage() {
     if (!cy.url().should("include", "/ghost/#/posts")) {
       throw new IllegalStateException(
-        "This is not _Post Page current page is: " + cy.url()
+        "This is not Post Page current page is: " + cy.url()
       );
     }
   }
