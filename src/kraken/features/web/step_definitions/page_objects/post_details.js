@@ -7,7 +7,7 @@ const assignTagToPost = async function (driver, tagname) {
     await driver.keys("Enter");
 }
 
-const checkIfPostUpdated = async function (driver) {
+const checkIfPostUpdated = async function (driver, slug) {
     await driver.url('http://localhost:2368/ghost/#/posts?tag=' + slug)
     let postTitle = await driver.$("a[class$='ember-view permalink gh-list-data gh-post-list-title']")
     expect(postTitle).to.exist;
