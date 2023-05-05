@@ -5,10 +5,10 @@ describe("Editar un post existente y actualizarlo", () => {
     // Given user is logged in
     let signinPage = new SignInPage();
     let homePage = signinPage.login();
-    // When user create a post
+    // When user edit a post
     let postPage = homePage.goToPost();
     postPage.editPost();
-    //Then post is created
+    // Then post is updated
     postPage.editPost().should("contain", "Updated");
   });
 });

@@ -1,9 +1,6 @@
 import { PostPage } from "./postPage.cy";
 
 class HomePage {
-
-  cons
-
   HomePage() {
     if (!cy.url().should("include", "/ghost/#/site")) {
       throw new IllegalStateException(
