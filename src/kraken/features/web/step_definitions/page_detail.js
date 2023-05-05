@@ -1,45 +1,45 @@
 const { Given, When, Then } = require('@cucumber/cucumber');
 const expect = require('chai').expect;
 
+const { clickOnSettingsButton, uploadAnImage, clickOnCloseSettings, publishItem } = require("./shared.js");
+
 When ('I fill out a new page contents with title {kraken-string}', async function (page_title) {
-    let titleSection = await this.driver.$("textarea[placeholder$='Page Title']")
-    await titleSection.setValue(page_title);
-    let bodySection = await this.driver.$("div[data-placeholder$='Begin writing your page...']")
-    await bodySection.setValue('This is a test page, tested with Kraken :)');
+    await fillNewPage(this.driver, page_title);
 })
 
 When ('I click on the page settings tab', async function () {
-    let settingsButton = await this.driver.$("button[title$='Settings']")
-    await settingsButton.click();
+    await clickOnSettingsButton(this.driver);
 })
 
 When ('I upload an image with path {kraken-string}', async function(image_path) {
-    let imageSelector = await this.driver.$("input[class$='x-file--input']")
-    await imageSelector.setValue(image_path);
+    await uploadAnImage(this.driver, image_path);
 })
 
 When ('I click on close settings', async function() {
-    let settingsButton = await this.driver.$("button[aria-label$='Close']")
-    await settingsButton.click();
+    await clickOnCloseSettings(this.driver);
 })
 
 
 When ('I click publish the page without scheduling', async function() {
-    let publishDropdownButton = await this.driver.$("div[role$='button'][class$='ember-view ember-basic-dropdown-trigger  gh-btn gh-btn-outline gh-publishmenu-trigger']")
-    await publishDropdownButton.click();
-    let publishButton = await this.driver.$("button[class$='gh-btn gh-btn-blue gh-publishmenu-button gh-btn-icon ember-view']")
-    await publishButton.click();
+    await publishItem(this.driver);
 })
 
 When ('I click update on the published page', async function() {
-    let publishDropdownButton = await this.driver.$("div[role$='button'][class$='ember-view ember-basic-dropdown-trigger  gh-btn gh-btn-outline gh-publishmenu-trigger']")
-    await publishDropdownButton.click();
-    let publishButton = await this.driver.$("button[class$='gh-btn gh-btn-blue gh-publishmenu-button gh-btn-icon ember-view']")
-    await publishButton.click();
+    await publishItem(this.driver);
 })
 
 Then ('The page should be updated', async function() {
-    let updatedMessage = await this.driver.$("span[class$='gh-notification-title']")
-    expect(await updatedMessage.getText()).to.equal('Updated')
+    await checkIfPageUpdated(this.driver);
 })
 
+async function fillNewPage(driver, page_title) {
+    let titleSection = await driver.$("textarea[placeholder$='Page Title']")
+    await titleSection.setValue(page_title);
+    let bodySection = await driver.$("div[data-placeholder$='Begin writing your page...']")
+    await bodySection.setValue('This is a test page, tested with Kraken :)');
+}
+
+async function checkIfPageUpdated(driver) {
+    let updatedMessage = await driver.$("span[class$='gh-notification-title']")
+    expect(await updatedMessage.getText()).to.equal('Updated')
+}

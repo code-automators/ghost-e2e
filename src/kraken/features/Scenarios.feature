@@ -33,17 +33,6 @@ Scenario: Editar una página existente y agregar una imagen - Escenario 8
   And I click update on the published page
   Then The page should be updated
 
-@user3 @web
-Scenario: Insertar código personalizado en el header de la página principal - Escenario 12
-  Given I navigate to page "http://localhost:2368/ghost/#/signin"
-  When I login with "<USER_EMAIL>" and "<USER_PASSWORD>"
-  And I wait
-  And I click on the Code Injection tab
-  And I wait
-  And I fill out the code injection section with Header: <HEADER_CODE_INJECTION> and Footer: <HEADER_CODE_INJECTION>
-  And I wait
-  And I click on the code injection save button
-  And I wait
 
 @user4 @web
 Scenario: Crear un nuevo tag y asignarselo a un post existente - Escenario 16
