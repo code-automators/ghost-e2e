@@ -1,3 +1,4 @@
+const { expect } = require('chai');
 
 const login = async function (driver, email, password) {
     let emailElement = await driver.$('#ember8');
@@ -9,6 +10,12 @@ const login = async function (driver, email, password) {
     await loginButton.click();
 }
 
+const checkIncorrectPassword = async function (driver) {
+    let incorrectPassword = await driver.$("p[class$='main-error']")
+    expect(incorrectPassword).to.exist;
+}
+
 module.exports = {
-    login
+    login,
+    checkIncorrectPassword
 }

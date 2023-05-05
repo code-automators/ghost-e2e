@@ -6,5 +6,8 @@
     "CODE_INJECTION": "<h1>Header Code Injection</h1>",
     "TAG_NAME": "Kraken Tag",
     "TAG_SLUG": "kraken-tag",
-    "TAG_IMAGE_PATH": "./assets/kraken.png"
+    "TAG_IMAGE_PATH": "./assets/kraken.png",
+    "NEW_SITE_NAME": "Kraken Site",
+    "NEW_EMAIL": "test@kraken.com",
+    "NEW_PASSWORD": "xv^Sy^cETQWkaBS53n#6hAN4s"
 }

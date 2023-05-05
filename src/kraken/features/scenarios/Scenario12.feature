@@ -1,4 +1,4 @@
-Feature: Ghost Testing
+Feature: Editar el perfil, cambiar credenciales e intentar acceder con antiguas y nuevas - Escenario 12
 
 @user1 @web
 Scenario: Editar el perfil, cambiar credenciales e intentar acceder con antiguas y nuevas - Escenario 12

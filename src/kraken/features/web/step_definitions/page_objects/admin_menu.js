@@ -1,14 +1,4 @@
-const { Given, When, Then } = require('@cucumber/cucumber');
-
-
-When('I click on the Code Injection tab', async function () {
-    await clickOnCodeInjectionTab(this.driver)
-})
-
-
-When('I click on the Posts tab', async function () {
-    await clickOnPostsTab(this.driver)
-})
+const { expect } = require('chai');
 
 const clickOnPagesTab = async function (driver) {
     let pagesButton = await driver.$("a[href$='#/pages/']")
@@ -30,9 +20,38 @@ const clickOnPostsTab = async function (driver) {
     await postsButton.click();
 }
 
+const clickOnGeneralSettingsTab = async function (driver) {
+    let generalSettingsButton = await driver.$("a[href$='#/settings/general/']")
+    await generalSettingsButton.click();
+}
+
+const clickOnProfileMenu = async function (driver) {
+    let profileMenu = await driver.$("span[class$='gh-user-name mb1']")
+    await profileMenu.click();
+
+    let profileButton = await driver.$("a[href*='#/staff/']")
+    await profileButton.click();
+}
+
+const clickOnLogout = async function (driver) {
+    let profileMenu = await driver.$("span[class$='gh-user-name mb1']")
+    await profileMenu.click();
+
+    let logoutButton = await driver.$("a[href*='#/signout/']")
+    await logoutButton.click();
+}
+
+const checkAdminMenu = async function (driver) {
+    expect(await driver.getUrl() === "http://localhost:2368/ghost/#/site")
+}
+
 module.exports = {
     clickOnPagesTab,
     clickOnCodeInjectionTab,
     clickOnTagsTab,
-    clickOnPostsTab
+    clickOnPostsTab,
+    clickOnGeneralSettingsTab,
+    clickOnProfileMenu,
+    clickOnLogout,
+    checkAdminMenu
 }

@@ -5,7 +5,7 @@ Scenario: Crear un nuevo tag y asignarselo a un post existente - Escenario 16
   Given I navigate to page "http://localhost:2368/ghost/#/signin"
   And I login with "<USER_EMAIL>" and "<USER_PASSWORD>" - Scenario sixteen
   And I wait
-  Then I click on the Tags tab - Scenario sixteen
+  When I click on the Tags tab - Scenario sixteen
   And I wait
   And I click on the New Tag button
   And I fill out details about a new tag called "<TAG_NAME>" with image "<TAG_IMAGE_PATH>" and slug "<TAG_SLUG>"
