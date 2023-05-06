@@ -1,6 +1,4 @@
-
 class PostDetails {
-
   PostDetails() {
     if (!cy.url().should("include", "/ghost/#/editor/post/")) {
       throw new IllegalStateException(
@@ -9,23 +7,22 @@ class PostDetails {
     }
   }
 
-
   editPost(postTitle) {
-    cy.contains("Posts").click();
-    cy.get("a.gh-list-data.gh-post-list-title").first().click();
+    //cy.get("a.gh-list-data.gh-post-list-title").first().click();
     cy.get("textarea.gh-editor-title").clear().type(postTitle);
     cy.get("div.gh-publishmenu-trigger").click();
     cy.get("button.gh-btn-blue.gh-publishmenu-button").click();
-    return cy.get(".gh-notification-content");
   }
 
   addTagToPost(tagName) {
     cy.get("button[title$='Settings']").click();
-    cy.get("#tag-input").find("input[class$='ember-power-select-trigger-multiple-input']").type(tagName + "{enter}");
-    cy.get("button[aria-label$='Close']").click()
+    cy.get("#tag-input")
+      .find("input[class$='ember-power-select-trigger-multiple-input']")
+      .type(tagName + "{enter}");
+    cy.get("button[aria-label$='Close']").click();
     cy.get("div.gh-publishmenu-trigger").click();
     cy.get("button.gh-btn-blue.gh-publishmenu-button").click();
   }
 }
 
-export { PostDetails }
+export { PostDetails };

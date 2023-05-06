@@ -24,6 +24,10 @@ class PostPageList {
     return new PostDetails();
   }
 
+  getListPosts(){
+    return cy.get("li[class$='gh-list-row gh-posts-list-item']");
+  }
+
 }
 
 export { PostPageList };
