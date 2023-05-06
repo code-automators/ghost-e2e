@@ -7,6 +7,22 @@ class PostDetails {
     }
   }
 
+  fillNewPost(postTitle, content, tag) {
+    cy.get("textarea.gh-editor-title").type(postTitle);
+    cy.get("article").type(content);
+
+    cy.get("button.post-settings").click();
+
+    cy.get("input.ember-power-select-trigger-multiple-input")
+      .first()
+      .type(`${tag}{enter}`);
+
+    cy.get("button.close.settings-menu-header-action").click();
+
+    cy.get("div.gh-publishmenu-trigger").click();
+    cy.get("button.gh-btn-blue.gh-publishmenu-button").click();
+  }
+
   editPost(postTitle) {
     //cy.get("a.gh-list-data.gh-post-list-title").first().click();
     cy.get("textarea.gh-editor-title").clear().type(postTitle);
