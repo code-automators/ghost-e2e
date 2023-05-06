@@ -14,7 +14,7 @@ describe("Crear un post y agregar una imagen", () => {
         let publishedPost = newPost.createPost(config.new_title, config.new_content);
         // and add the image
         let editedPost = publishedPost.addImage(config.image_path);
-        // Then the edited page should be updated
+        // Then the edited post should be updated
         editedPost.should("contain", "Updated");
     })
 })
