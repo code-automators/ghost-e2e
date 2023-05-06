@@ -1,6 +1,6 @@
 {
     "user": "juan.romero1201@gmail.com",
-    "password": "y@!kZ*Yw3pkCL3KpQ&%Z2XF8^",
+	"password": "y@!kZ*Yw3pkCL3KpQ&%Z2XF8^",
     "new_page_name": "Ghost Test",
     "image_path": "cypress/e2e/scenarios/assets/Kyra2.jpeg",
     "new_user" : "test@cypress.com",
@@ -9,5 +9,7 @@
     "new_tag_slug": "cypress-tag",
     "new_site_name": "Cypress Site",
     "new_title": "New Title Post",
-    "new_content": "Content Post"
+    "new_content": "Content Post",
+    "name_integration": "NewIntegration",
+    "description_integration": "Description new integration"
 }

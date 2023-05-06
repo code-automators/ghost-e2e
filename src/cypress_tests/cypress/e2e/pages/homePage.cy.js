@@ -5,6 +5,7 @@ import { SignInPage } from "./signinPage.cy";
 import { TagsListPage } from "./tagsListPage.cy";
 import { SettingsPage } from "./settingsPage.cy";
 import { MainPageSite } from "./mainPageSite.cy";
+import { IntegrationListPage } from "./integrationListPage.cy";
 
 class HomePage {
   HomePage() {
@@ -41,6 +42,12 @@ class HomePage {
     let host = window.location.origin
     cy.visit(host + "/ghost/#/tags")
     return new TagsListPage();
+  }
+
+  goToIntegrationsList() {
+    let host = window.location.origin
+    cy.visit(host + "/ghost/#/settings/integrations")
+    return new IntegrationListPage();
   }
 
   goToProfile() {
