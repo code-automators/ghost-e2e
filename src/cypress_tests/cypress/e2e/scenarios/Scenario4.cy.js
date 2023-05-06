@@ -13,7 +13,7 @@ describe("Publicar una nueva página", () => {
         let newPage = pageListPage.goToCreatePage();
         let publishedList = newPage.createNewPage(config.new_page_name);
         // Then the new page should be present in the "Published" section
-        publishedList.getList().should("contain", config.new_page_name)
+        publishedList.getList().should("contain", config.new_page_name);
     })
 
 })

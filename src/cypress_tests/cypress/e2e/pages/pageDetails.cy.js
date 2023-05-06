@@ -4,7 +4,7 @@ class PageDetails {
     PageDetails() {
         if (!cy.url().should("include", "/ghost/#/editor/page/")) {
             throw new IllegalStateException(
-                "This is not Post Page current page is: " + cy.url()
+                "This is not Page Details, the current page is: " + cy.url()
             );
         }
     }

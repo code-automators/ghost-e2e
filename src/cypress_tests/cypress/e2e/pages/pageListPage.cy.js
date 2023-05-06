@@ -4,7 +4,7 @@ class PageListPage {
     PageListPage() {
         if (!cy.url().should("include", "/ghost/#/pages")) {
             throw new IllegalStateException(
-                "This is not Post Page current page is: " + cy.url()
+                "This is not the Page List Page, current page is: " + cy.url()
             );
         }
     }
