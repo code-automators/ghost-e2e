@@ -8,7 +8,6 @@ class PostDetails {
   }
 
   editPost(postTitle) {
-    //cy.get("a.gh-list-data.gh-post-list-title").first().click();
     cy.get("textarea.gh-editor-title").clear().type(postTitle);
     cy.get("div.gh-publishmenu-trigger").click();
     cy.get("button.gh-btn-blue.gh-publishmenu-button").click();
@@ -22,6 +21,23 @@ class PostDetails {
     cy.get("button[aria-label$='Close']").click();
     cy.get("div.gh-publishmenu-trigger").click();
     cy.get("button.gh-btn-blue.gh-publishmenu-button").click();
+  }
+
+  createPost(postTitle, contentTitle) {
+    cy.get('textarea.gh-editor-title').type(postTitle);
+    cy.get('div.koenig-editor__editor').type(contentTitle);
+    cy.get('div.ember-view.ember-basic-dropdown-trigger.gh-btn.gh-btn-outline.gh-publishmenu-trigger').click();
+    cy.get('button.gh-btn-blue.gh-publishmenu-button').click();
+    return new PostDetails();
+  }
+ 
+  addImage(image_path) {
+    cy.get("button[title$='Settings']").click();
+    cy.get("input[class$='x-file--input']").selectFile(image_path, {force: true})
+    cy.get("button[aria-label$='Close']").click()
+    cy.get("div.gh-publishmenu-trigger").click();
+    cy.get("button.gh-btn-blue.gh-publishmenu-button").click();
+    return cy.get(".gh-notification-content");
   }
 }
 
