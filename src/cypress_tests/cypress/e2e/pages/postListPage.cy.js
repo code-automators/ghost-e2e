@@ -34,6 +34,11 @@ class PostPageList {
     return cy.get("li[class$='gh-list-row gh-posts-list-item']");
   }
 
+  goToCreatePost() {
+    cy.contains("New post").click();
+    return new PostDetails();
+}
+
 }
 
 export { PostPageList };
