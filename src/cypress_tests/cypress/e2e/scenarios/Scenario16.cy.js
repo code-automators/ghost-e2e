@@ -12,7 +12,7 @@ describe("Crear un nuevo tag y asignarselo a un post existente ", () => {
         // The user goes to create tag and fills out the details
         let newTag = tagsListPage.goToCreateTag();
         newTag.createNewTag(config.new_tag_name, config.new_tag_slug, config.image_path);
-        // Once it is created, the user goes to the post list and selects a post
+        // Once it is created, the user goes to the post list and selects a random post
         let postsPage = homePage.goToPostList();
         let postDetails = postsPage.selectRandomPost();
         // The user adds the new tag to the post
