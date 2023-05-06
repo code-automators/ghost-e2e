@@ -9,6 +9,12 @@ class PostPageList {
     }
   }
 
+  createPost() {
+    cy.contains("Posts").click();
+    cy.contains("New post").click();
+    return new PostDetails();
+  }
+
   selectPost() {
     return cy.get("li[class$='gh-list-row gh-posts-list-item']").first();
   }
