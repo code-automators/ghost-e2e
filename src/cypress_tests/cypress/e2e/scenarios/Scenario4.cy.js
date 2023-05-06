@@ -4,7 +4,7 @@ import  config  from "./assets/config.json";
 
 describe("Publicar una nueva página", () => {
 
-    it("Publicar una nueva página", () => {
+    it("Escenario 4", () => {
         // Given user is logged in
         let signinPage = new SignInPage();
         let homePage = signinPage.login(config.user, config.password);

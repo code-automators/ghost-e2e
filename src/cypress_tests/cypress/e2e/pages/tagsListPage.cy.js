@@ -1,0 +1,18 @@
+import { TagDetails } from "./tagDetails.cy";
+
+class TagsListPage {
+    TagsListPage() {
+        if (!cy.url().should("include", "/ghost/#/tags")) {
+            throw new IllegalStateException(
+                "This is not the Tags List Page, current page is: " + cy.url()
+            );
+        }
+    }
+
+    goToCreateTag() {
+        cy.contains("New tag").click();
+        return new TagDetails();
+    }
+}
+
+export { TagsListPage };
