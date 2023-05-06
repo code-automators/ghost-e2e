@@ -1,4 +1,5 @@
 import { PostPage } from "./postPage.cy";
+import { PageListPage } from "./pageListPage.cy";
 
 class HomePage {
   HomePage() {
@@ -15,6 +16,14 @@ class HomePage {
 
     return new PostPage();
   }
+
+  goToPageList() {
+    let host = window.location.origin
+    cy.visit(host + "/ghost/#/pages");
+    return new PageListPage();
+  }
+
+
 }
 
 export { HomePage };
