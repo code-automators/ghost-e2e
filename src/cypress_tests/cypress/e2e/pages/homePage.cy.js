@@ -3,6 +3,8 @@ import { PageListPage } from "./pageListPage.cy";
 import { ProfilePage } from "./profilePage.cy";
 import { SignInPage } from "./signinPage.cy";
 import { TagsListPage } from "./tagsListPage.cy";
+import { SettingsPage } from "./settingsPage.cy";
+import { MainPageSite } from "./mainPageSite.cy";
 
 class HomePage {
   HomePage() {
@@ -46,6 +48,18 @@ class HomePage {
     cy.contains("Staff").click()
     cy.contains("Owner").click()
     return new ProfilePage();
+  }
+
+  goToGeneralSettings() {
+    let host = window.location.origin
+    cy.visit(host + "/ghost/#/settings/general")
+    return new SettingsPage();
+  }
+
+  goToMainPageSite() {
+    let host = window.location.origin
+    cy.visit(host)
+    return new MainPageSite();
   }
 
   logout() {
