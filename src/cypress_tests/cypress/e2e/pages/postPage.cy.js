@@ -16,7 +16,7 @@ class PostPage {
     cy.get("button.post-settings").click();
 
     cy.get("input.ember-power-select-trigger-multiple-input")
-      .first().type("tag de prueba {enter}");
+      .first().type(`${tag}{enter}`);
 
     cy.get("button.close.settings-menu-header-action").click();
 
