@@ -7,7 +7,7 @@ describe("Editar una página existente y agregar una imagen", () => {
         // Given user is logged in
         let signinPage = new SignInPage();
         let homePage = signinPage.login(config.user, config.password);
-        // When the user wants to edit a new page and
+        // When the user wants to edit an existing page and upload an image
         let pageListPage = homePage.goToPageList();
         let pageToEdit = pageListPage.selectRandomPage();
         let editedPage = pageToEdit.uploadNewImage(config.image_path);

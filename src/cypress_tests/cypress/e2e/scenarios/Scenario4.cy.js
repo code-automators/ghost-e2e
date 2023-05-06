@@ -4,7 +4,7 @@ import  config  from "./assets/config.json";
 
 describe("Publicar una nueva página", () => {
 
-    it("Publicar una nueva página", () => {
+    it("Escenario 4", () => {
         // Given user is logged in
         let signinPage = new SignInPage();
         let homePage = signinPage.login(config.user, config.password);
@@ -13,7 +13,7 @@ describe("Publicar una nueva página", () => {
         let newPage = pageListPage.goToCreatePage();
         let publishedList = newPage.createNewPage(config.new_page_name);
         // Then the new page should be present in the "Published" section
-        publishedList.getList().should("contain", config.new_page_name)
+        publishedList.getList().should("contain", config.new_page_name);
     })
 
 })

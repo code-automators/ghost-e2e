@@ -1,5 +1,8 @@
-import { PostPage } from "./postPage.cy";
+import { PostPageList } from "./postListPage.cy";
 import { PageListPage } from "./pageListPage.cy";
+import { ProfilePage } from "./profilePage.cy";
+import { SignInPage } from "./signinPage.cy";
+import { TagsListPage } from "./tagsListPage.cy";
 
 class HomePage {
   HomePage() {
@@ -10,11 +13,20 @@ class HomePage {
     }
   }
 
-  goToPost() {
+  getUrl() {
+    return cy.url()
+  }
+
+  goToPostList() {
     let host = window.location.origin;
     cy.visit(host + "/ghost/#/posts");
+    return new PostPageList();
+  }
 
-    return new PostPage();
+  goToPostListFilteredByTag(slug) {
+    let host = window.location.origin;
+    cy.visit(host + "/ghost/#/posts?tag=" + slug);
+    return new PostPageList();
   }
 
   goToPageList() {
@@ -23,7 +35,24 @@ class HomePage {
     return new PageListPage();
   }
 
+  goToTagsList() {
+    let host = window.location.origin
+    cy.visit(host + "/ghost/#/tags")
+    return new TagsListPage();
+  }
 
+  goToProfile() {
+    cy.wait(500)
+    cy.contains("Staff").click()
+    cy.contains("Owner").click()
+    return new ProfilePage();
+  }
+
+  logout() {
+    let host = window.location.origin
+    cy.visit(host + "/ghost/#/signout")
+    return new SignInPage();
+  }
 }
 
 export { HomePage };
