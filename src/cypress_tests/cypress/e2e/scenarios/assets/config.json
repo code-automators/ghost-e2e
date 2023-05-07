@@ -13,5 +13,6 @@
     "new_navigation_bar_label": "New Navigation Option",
     "new_navigation_bar_uri": "tag/getting-started/",
     "name_integration": "NewIntegration",
-    "description_integration": "Description new integration"
+    "description_integration": "Description new integration",
+    "banner_path": "cypress/e2e/scenarios/assets/robots.jpg"
 }
