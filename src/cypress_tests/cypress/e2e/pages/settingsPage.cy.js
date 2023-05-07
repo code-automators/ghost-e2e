@@ -29,6 +29,21 @@ class SettingsPage {
         cy.wait(1000)
     }
 
+    deleteBanner() {
+        cy.get('button.gh-setting-action-largeimg-delete').click();
+        cy.contains("Save settings").click();
+    }
+
+    verifyBanner() {
+        return cy.get('div.outer.site-header-background');
+    }
+
+    uploadBanner(bannerPath) {
+        cy.get("input[class$='x-file--input']").last().selectFile(bannerPath, {force: true});
+        cy.wait(1000);
+        cy.contains("Save settings").click();
+    }
+
 }
 
 export { SettingsPage };
