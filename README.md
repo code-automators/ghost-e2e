@@ -41,7 +41,11 @@ Realizado por:
 1. Instalar kraken-node con `npm i kraken-node`.
 2. Ir a la carpeta de kraken con `cd src/kraken`.
 3. Copiar el escenario deseado para ejecutar en el archivo RunningScenario.feature (Los escenarios se encuentran en `src/kraken/features/scenarios`).
-4. Ejecutar el comando `node [RUTA LOCAL DE KRAKEN] run`. Nota: Para que funcione este comando, es necesario estar ubicado en `src/kraken`
+4. Ejecutar el comando `node [RUTA LOCAL DE KRAKEN] run`. 
+Notas: 
+- Para que funcione este comando, es necesario estar ubicado en `src/kraken`.
+- El ejecutable es el script binario de kraken-node ubicado en `node_modules`, el cual fue instalado con el comando de `npm i kraken-node`.   Un ejemplo de este comando para correr las pruebas es:  
+`node "C:\Users\ElRey\Documents\Scripts\JavaScript\ghost-e2e\node_modules\kraken-node\bin\kraken-node" run`
 
 ## Licencia
 
