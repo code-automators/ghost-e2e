@@ -2,8 +2,8 @@ import { SignInPage } from "../pages/signinPage.cy";
 import config from "./assets/config.json";
 
 
-describe("Create a new tag with an invalid description", () => {
-    it("Scenario 3", () => {
+describe("Scenario 3", () => {
+    it("Create a new tag with an invalid description", () => {
         // Given user is logged in
         let signinPage = new SignInPage();
         let homePage = signinPage.login(config.user, config.password);
