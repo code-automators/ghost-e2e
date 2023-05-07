@@ -1,21 +1,21 @@
 import { SignInPage } from "../pages/signinPage.cy";
 import  config  from "./assets/config.json";
 
-describe("Crear un nuevo tag y asignarselo a un post existente ", () => {
+describe("Scenario 16", () => {
 
-    it("Escenario 16", () => {
+    it("Creating a new tag and assigning it to an existing post", () => {
         // Given user is logged in
         let signinPage = new SignInPage();
         let homePage = signinPage.login(config.user, config.password);
-        // When the user wants to edit an existing page and upload an image
+        // When the user wants to create a new tag
         let tagsListPage = homePage.goToTagsList();
-        // The user goes to create tag and fills out the details
+        // And the user goes to create tag and fills out the details
         let newTag = tagsListPage.goToCreateTag();
         newTag.createNewTag(config.new_tag_name, config.new_tag_slug, config.image_path);
-        // Once it is created, the user goes to the post list and selects a random post
+        // And once it is created, the user goes to the post list and selects a random post
         let postsPage = homePage.goToPostList();
         let postDetails = postsPage.selectRandomPost();
-        // The user adds the new tag to the post
+        // And the user adds the new tag to the post
         postDetails.addTagToPost(config.new_tag_name);
         // Then the post with the new tag should be displayed in the post list
         let filteredPosts = homePage.goToPostListFilteredByTag(config.new_tag_slug);

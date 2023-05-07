@@ -1,15 +1,15 @@
 import { SignInPage } from "../pages/signinPage.cy";
 import  config  from "./assets/config.json";
 
-describe("Cambiar credenciales del usuario e intentar acceder con credenciales viejas y nuevas", () => {
+describe("Scenario 20", () => {
 
-    it("Escenario 12", () => {
+    it("Changing the website's general settings and making it private", () => {
         // Given user is logged in
         let signinPage = new SignInPage();
         let homePage = signinPage.login(config.user, config.password);
         // When the user wants to change the blog's settings
         let settingsPage = homePage.goToGeneralSettings();
-        // The user changes the settings and makes the blog private
+        // And the user changes the settings and makes the blog private
         settingsPage.changeSettingsAndMakePrivate(config.new_site_name);
         // Then when the user goes to the main page, it should be private
         let mainPage = homePage.goToMainPageSite();
