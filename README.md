@@ -27,6 +27,66 @@ Realizado por:
 ## Escenarios de Prueba tratados
 
 
+**Escenario de prueba 1: Crear un post con un tag y publicarlo**
+- En este escenario, el usuario crea un nuevo post en la plataforma, añade un tag específico para categorizar el contenido y luego lo publica. El resultado esperado es que el post se publique correctamente con el tag asignado, y los visitantes puedan ver el post y su tag en el sitio web.
+
+**Escenario de prueba 2: Editar un post existente y actualizar su título**
+- Aquí, el usuario selecciona un post existente, cambia su título y guarda los cambios realizados. El resultado esperado es que el título del post sea actualizado correctamente en la plataforma y en el sitio web.
+
+**Escenario de prueba 3: Crear un nuevo tag con una descripción inválida**
+- En este escenario, el usuario intenta crear un nuevo tag pero introduce una descripción inválida (por ejemplo, con caracteres no permitidos o excediendo el límite de caracteres). El resultado esperado es que la plataforma muestre un mensaje de error y no permita la creación del nuevo tag.
+
+**Escenario de Prueba 4: Publicar una nueva página**
+- El usuario crea una nueva página en la plataforma y la publica. El resultado esperado es que la nueva página esté disponible en el sitio web y pueda ser visitada por los usuarios.
+
+**Escenario de prueba 5: Cambiar la navegación del diseño**
+- En este escenario, el usuario modifica la estructura de navegación del sitio web (por ejemplo, cambiando el orden de las páginas o añadiendo enlaces a otras páginas). El resultado esperado es que la navegación se actualice correctamente en el sitio web y se muestre según los cambios realizados.
+
+**Escenario de prueba 6: Crear un post y agregar una imagen**
+- El usuario crea un nuevo post y añade una imagen en el contenido del mismo. El resultado esperado es que el post se publique con la imagen incluida, y los visitantes puedan verla en el sitio web.
+
+**Escenario de prueba 7: Crear un post con múltiples tags**
+- En este escenario, el usuario crea un nuevo post y asigna varios tags para categorizar el contenido. El resultado esperado es que el post se publique con todos los tags asignados y los visitantes puedan ver el post con sus respectivos tags en el sitio web.
+
+**Escenario de prueba 8: Editar un post existente y agregar una imagen**
+- El usuario selecciona un post existente, añade una imagen en el contenido y guarda los cambios. El resultado esperado es que la imagen se muestre correctamente en el post en el sitio web.
+
+**Escenario de prueba 9: Crear una nueva página, agregar una imagen y publicarla**
+- En este escenario, el usuario crea una nueva página, añade una imagen en el contenido y la publica. El resultado esperado es que la página se publique con la imagen incluida y esté disponible en el sitio web.
+
+**Escenario de prueba 10: Crear una integración personalizada**
+- El usuario crea una nueva integración personalizada en la plataforma (por ejemplo, conectando con una API externa o añadiendo un widget de terceros). El resultado esperado es que la integración funcione correctamente y se muestre en el sitio web según lo configurado.
+
+**Escenario de prueba 11: Editar un tag existente**
+- Aquí, el usuario selecciona un tag existente y modifica sus detalles (como el nombre o la descripción). El resultado esperado es que los cambios se apliquen correctamente al tag y se reflejen en el sitio web.
+
+**Escenario de prueba 12: Cambiar las credenciales del admin e intentar iniciar sesión con credenciales viejas y nuevas**
+- El usuario cambia las credenciales de administrador (por ejemplo, actualizando la contraseña), y luego intenta iniciar sesión con las credenciales antiguas y nuevas. El resultado esperado es que el inicio de sesión con las credenciales antiguas falle y el inicio de sesión con las nuevas credenciales sea exitoso.
+
+**Escenario de prueba 13: Crear un nuevo post y programar su publicación**
+- En este escenario, el usuario crea un nuevo post y lo programa para que se publique automáticamente en una fecha y hora específicas. El resultado esperado es que el post sea publicado automáticamente en el momento programado.
+
+**Escenario de prueba 14: Cambiar banner de la página de inicio**
+- El usuario cambia el banner de la página de inicio en la plataforma. El resultado esperado es que el nuevo banner se muestre correctamente en la página de inicio del sitio web.
+
+**Escenario de prueba 15: Realizar code injection en el header y footer del blog**
+- En este escenario, el usuario introduce código personalizado en el header y footer del blog utilizando la función de "code injection" de la plataforma. El resultado esperado es que el código personalizado se ejecute correctamente y se muestre en el sitio web según lo configurado.
+
+**Escenario de prueba 16: Crear un nuevo tag y asignarlo a una post existente**
+- El usuario crea un nuevo tag y lo asigna a un post existente. El resultado esperado es que el tag se asigne correctamente al post y se muestre en el sitio web junto con el post.
+
+**Escenario de prueba 17: Editar perfil cambiando el slug y los detalles de redes sociales, luego confirmar en la página correspondiente dada por el slug**
+- En este escenario, el usuario edita su perfil, cambiando el slug (URL personalizada) y los detalles de las redes sociales. El resultado esperado es que los cambios se apliquen correctamente al perfil y se reflejen en la página correspondiente en el sitio web.
+
+**Escenario de prueba 18: Eliminar un post**
+- El usuario selecciona un post existente y lo elimina. El resultado esperado es que el post sea eliminado de la plataforma y ya no esté disponible en el sitio web.
+
+**Escenario de prueba 19: Eliminar un tag**
+- En este escenario, el usuario selecciona un tag existente y lo elimina. El resultado esperado es que el tag sea eliminado de la plataforma y ya no aparezca en el sitio web.
+
+**Escenario de prueba 20: Entrar a configuración, cambiar los detalles de Ghost y hacer privado el sitio**
+- El usuario accede a la configuración, modifica los detalles de Ghost (como el nombre del sitio, la descripción o el logotipo) y establece el sitio como privado. El resultado esperado es que los cambios se apliquen correctamente y el sitio web se vuelva privado, requiriendo una contraseña para acceder a su contenido.
+
 ## Ejecución de Pruebas
 
 ### Cypress
