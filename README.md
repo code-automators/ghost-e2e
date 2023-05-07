@@ -2,6 +2,11 @@
 
 Pruebas de extremo a extremo durante la automatización de pruebas en Ghost CMS v3.41.1
 
+Realizado por:
+- Juan Andrés Romero Colmenares - j.romero11@uniandes.edu.co
+- Juan Sebastián Alegría - j.alegria@uniandes.edu.co
+- Luisa Johanna Torres - lj.torresm1@uniandes.edu.co
+- Juan Pablo Correa - jp.correap@uniandes.edu.co
 
 ## Funcionalidades bajo pruebas
 1. Manejo de posts: Esta funcionalidad permite al administrador de Ghost crear, editar y eliminar publicaciones de blog en su sitio web. Desde el panel de administración, se pueden redactar nuevos posts, agregar imágenes y otros medios, programar su publicación y actualizar o eliminar publicaciones existentes.
@@ -18,6 +23,9 @@ Pruebas de extremo a extremo durante la automatización de pruebas en Ghost CMS 
 7. Editar perfil de administrador: Ghost permite al administrador actualizar su información de perfil, incluyendo su nombre, correo electrónico y contraseña.
 
 8. Code Injection: Ghost ofrece una funcionalidad avanzada de inyección de código, lo que permite al administrador personalizar el código HTML, CSS y JavaScript de su sitio web. Esto puede ser utilizado para realizar cambios en la apariencia y funcionalidad del sitio, pero debe ser utilizado con precaución ya que los cambios pueden afectar la seguridad y estabilidad del sitio.
+
+## Escenarios de Prueba tratados
+
 
 ## Ejecución de Pruebas
 
