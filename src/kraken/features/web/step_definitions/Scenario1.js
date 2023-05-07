@@ -18,9 +18,11 @@ When("I click on 'New Post' Button", async function () {
     await clickOnNewPost(this.driver);
 });
 
-When("I create a new post with {kraken-string} and {kraken-string}", async function(title, content) {
-    await createPost(this.driver, title, content);
-});
+When("I create a new post with {kraken-string}, {kraken-string} and tag {kraken-string}",
+    async function(title, content, tagname) {
+        await createPost(this.driver, title, content, tagname);
+    }
+);
 
 Then("I should see the new post created called {kraken-string}", async function (page_title) {
     await checkNewPostEdited(this.driver, page_title);
