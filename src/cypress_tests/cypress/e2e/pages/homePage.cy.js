@@ -6,6 +6,7 @@ import { TagsListPage } from "./tagsListPage.cy";
 import { SettingsPage } from "./settingsPage.cy";
 import { MainPageSite } from "./mainPageSite.cy";
 import { IntegrationListPage } from "./integrationListPage.cy";
+import { DesignPage } from "./designPage.cy";
 
 class HomePage {
   HomePage() {
@@ -50,6 +51,12 @@ class HomePage {
     return new IntegrationListPage();
   }
 
+  goToDesignPage() {
+    let host = window.location.origin
+    cy.visit(host + "/ghost/#/settings/design")
+    return new DesignPage();
+  }
+
   goToProfile() {
     cy.wait(500)
     cy.contains("Staff").click()
@@ -67,6 +74,10 @@ class HomePage {
     let host = window.location.origin
     cy.visit(host)
     return new MainPageSite();
+  }
+
+  getNavbarMenu() {
+    return cy.get("nav.site-nav");
   }
 
   logout() {
