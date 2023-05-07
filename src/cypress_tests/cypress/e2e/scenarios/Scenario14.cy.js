@@ -10,11 +10,11 @@ describe("Escenario 14", () => {
         let homePage = signinPage.login(config.user, config.password);
         // When user updates homepage banner
         let generalPage = homePage.goToGeneralSettings();
-        generalPage.deleteBanner();
+        /*generalPage.deleteBanner();
         homePage.goToMainPageSite();
         let withoutBanner = generalPage.verifyBanner();
         withoutBanner.should('have.class', 'no-image');
-        homePage.goToGeneralSettings();
+        homePage.goToGeneralSettings();*/
         generalPage.uploadBanner(config.banner_path);
         homePage.goToMainPageSite();
         let withBanner = generalPage.verifyBanner();

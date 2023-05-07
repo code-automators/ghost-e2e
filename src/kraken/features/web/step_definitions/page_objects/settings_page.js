@@ -40,9 +40,21 @@ const checkPrivateSite = async (driver) => {
     assert(await title.getText() === 'This site is private', 'The site is not private')
 }
 
+const uploadBanner = async (driver, image_path) =>  {
+    let imageSelector = await driver.$$("input[class$='x-file--input']");
+    let lastElement = imageSelector[imageSelector - 1];
+    await lastElement.setValue(image_path);
+}
+
+const checkBanner = async (driver) => {
+    let classBanner = await driver.$('div.outer.site-header-background');
+    assert(classBanner.includes('responsive-header-img'));
+}
 
 module.exports = {
     changeWebsiteSettings,
     makeSitePrivate,
-    checkPrivateSite
+    checkPrivateSite,
+    uploadBanner,
+    checkBanner,
 }
