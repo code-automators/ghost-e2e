@@ -8,16 +8,16 @@ class TagDetails {
         }
     }
 
-    createNewTag(tag_name, slug, image_path) {
-        cy.get("#tag-name").clear().type(tag_name, {force: true});
+    createNewTag(tag_name, slug, image_path, description = "This is a test tag, tested with Cypress :)") {
+        cy.get("#tag-name").clear().type(tag_name, { force: true });
         cy.wait(500);
-        cy.get("#tag-slug").clear().type(slug, {force: true})
+        cy.get("#tag-slug").clear().type(slug, { force: true })
         cy.wait(500);
-        cy.get("#tag-description").clear().type("This is a test tag, tested with Cypress :)", {force: true});
+        cy.get("#tag-description").clear().type(description, { force: true });
         cy.wait(500);
-        cy.get("input[name$='accent-color']").clear().type('000000', {force: true});
+        cy.get("input[name$='accent-color']").clear().type('000000', { force: true });
         cy.wait(500);
-        cy.get("input[class$='x-file--input']").selectFile(image_path, {force: true})
+        cy.get("input[class$='x-file--input']").selectFile(image_path, { force: true })
         cy.wait(500);
         cy.contains("Save").click();
         cy.wait(5000);
@@ -25,11 +25,19 @@ class TagDetails {
 
     uploadNewImage(image_path) {
         cy.get("button[title$='Settings']").click();
-        cy.get("input[class$='x-file--input']").selectFile(image_path, {force: true})
+        cy.get("input[class$='x-file--input']").selectFile(image_path, { force: true })
         cy.get("button[aria-label$='Close']").click()
         cy.get("div.gh-publishmenu-trigger").click();
         cy.get("button.gh-btn-blue.gh-publishmenu-button").click();
         return cy.get(".gh-notification-content");
+    }
+
+    verifySaveBtn() {
+        return cy.get("button.gh-btn")
+    }
+
+    getCreationResponse() {
+        return cy.get(".response")
     }
 }
 
