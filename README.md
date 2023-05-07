@@ -47,6 +47,16 @@ Notas:
 - El ejecutable es el script binario de kraken-node ubicado en `node_modules`, el cual fue instalado con el comando de `npm i kraken-node`.   Un ejemplo de este comando para correr las pruebas es:  
 `node "C:\Users\ElRey\Documents\Scripts\JavaScript\ghost-e2e\node_modules\kraken-node\bin\kraken-node" run`
 
+#### Notas de la ejecución
+Para el caso de kraken hay unos escenarios que alteran el estado de la aplicación de manera que otros escenarios no puedan ser ejecutados.
+Es necesario restablecer ghost o arreglar manualmente estos cambios realizados por el escenario y seguir probando.
+
+Los escenarios que causan cambios de este estilo son:
+- Escenario 12 (Cambio de credenciales del admin)
+  - Se arregla ingresando con las credenciales nuevas y cambiándolas por las viejas
+- Escenario 20 (Cambio de ajustes generales y visibilidad del sitio web)
+  - Se arregla llendo a la sección de ajustes y desactivando el modo privado del sitio web
+
 ## Licencia
 
 [![Licencia](http://img.shields.io/:license-mit-blue.svg?style=flat-square)](http://badges.mit-license.org)
