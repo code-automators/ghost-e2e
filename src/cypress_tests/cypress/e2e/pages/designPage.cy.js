@@ -2,7 +2,7 @@ class DesignPage {
     DesignPage() {
         if (!cy.url().should("include", "/ghost/#/settings/design")) {
             throw new IllegalStateException(
-                "This is not the Integration List Page, current page is: " + cy.url()
+                "This is not the Design Page, current page is: " + cy.url()
             );
         }
     }
