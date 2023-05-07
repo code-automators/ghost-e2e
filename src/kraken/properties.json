@@ -9,5 +9,6 @@
     "TAG_IMAGE_PATH": "./assets/kraken.png",
     "NEW_SITE_NAME": "Kraken Site",
     "NEW_EMAIL": "test@kraken.com",
-    "NEW_PASSWORD": "xv^Sy^cETQWkaBS53n#6hAN4s"
+    "NEW_PASSWORD": "xv^Sy^cETQWkaBS53n#6hAN4s",
+    "POST_TITLE": "New Title"
 }
