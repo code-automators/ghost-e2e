@@ -2,9 +2,9 @@ import { SignInPage } from "../pages/signinPage.cy";
 import  config  from "./assets/config.json";
 
 
-describe("Crear un post y agregar una imagen", () => {
+describe("Escenario 6", () => {
 
-    it("Escenario 6", () => {
+    it("Crear un post y agregar una imagen", () => {
         // Given user is logged in
         let signinPage = new SignInPage();
         let homePage = signinPage.login(config.user, config.password);

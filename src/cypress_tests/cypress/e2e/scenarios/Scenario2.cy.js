@@ -2,9 +2,9 @@ import { SignInPage } from "../pages/signinPage.cy";
 import  config  from "./assets/config.json";
 
 
-describe("Editar un post existente actualizando su título", () => {
+describe("Escenario 2", () => {
 
-    it("Escenario 2", () => {
+    it("Editar un post existente actualizando su título", () => {
         // Given user is logged in
         let signinPage = new SignInPage();
         let homePage = signinPage.login(config.user, config.password);

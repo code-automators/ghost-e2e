@@ -2,9 +2,9 @@ import { SignInPage } from "../pages/signinPage.cy";
 import  config  from "./assets/config.json";
 
 
-describe("Cambiar banner de la página de inicio", () => {
+describe("Escenario 14", () => {
 
-    it("Escenario 14", () => {
+    it("Cambiar banner de la página de inicio", () => {
         // Given user is logged in
         let signinPage = new SignInPage();
         let homePage = signinPage.login(config.user, config.password);

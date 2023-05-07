@@ -24,12 +24,38 @@ const fillEditPost = async function (driver, title) {
 
 const checkNewPostEdited = async function (driver, title) {
     let editedPost = await driver.$("li[class$='gh-list-row gh-posts-list-item']");
-    expect(await editedPost.getText() == title)
+    expect(await editedPost.getText() == title);
+}
+
+const createPost = async function (driver, title, content) {
+    let titlePost = await driver.$("textarea.gh-editor-title");
+    await titlePost.setValue(title);
+    let contentPost = await driver.$('div.koenig-editor__editor');
+    await contentPost.setValue(content);
+    let publishTrigger = await driver.$('div.ember-view.ember-basic-dropdown-trigger.gh-btn.gh-btn-outline.gh-publishmenu-trigger');
+    await publishTrigger.click();
+    let publishButton = await driver.$('button.gh-btn-blue.gh-publishmenu-button');
+    await publishButton.click();
+}
+
+const addImage = async function (driver, image_path) {
+    let settingsButton = await driver.$("button[title$='Settings']");
+    await settingsButton.click();
+    let imageSelector = await driver.$("input[class$='x-file--input']");
+    await imageSelector.setValue(image_path);
+}
+
+const checkPostUpdated = async function (driver) {
+    let updatedMessage = await driver.$("span[class$='gh-notification-title']");
+    expect(await updatedMessage.getText() == "Updated");
 }
 
 module.exports = {
     assignTagToPost,
     checkIfPostUpdated,
     fillEditPost,
-    checkNewPostEdited
+    checkNewPostEdited,
+    createPost,
+    addImage,
+    checkPostUpdated
 }

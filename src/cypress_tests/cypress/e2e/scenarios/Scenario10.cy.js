@@ -2,9 +2,9 @@ import { SignInPage } from "../pages/signinPage.cy";
 import  config  from "./assets/config.json";
 
 
-describe("Crear una integración personalizada", () => {
+describe("Escenario 10", () => {
 
-    it("Escenario 10", () => {
+    it("Crear una integración personalizada", () => {
         // Given user is logged in
         let signinPage = new SignInPage();
         let homePage = signinPage.login(config.user, config.password);
