@@ -20,7 +20,25 @@ class TagDetails {
         cy.get("input[class$='x-file--input']").selectFile(image_path, { force: true })
         cy.wait(500);
         cy.contains("Save").click();
-        cy.wait(5000);
+        cy.wait(2000);
+    }
+
+    setRandomTagName() {
+        let new_tag_name = this.generateRandomTagName(10);
+        cy.get("#tag-name").clear().type(new_tag_name, { force: true });
+        cy.wait(500);
+        cy.contains("Save").click();
+        cy.wait(1000);
+        return new_tag_name
+    }
+
+    generateRandomTagName(length) {
+        let result = '';
+        const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+        for (let i = 0; i < length; i++) {
+            result += characters.charAt(Math.floor(Math.random() * characters.length));
+        }
+        return `Tag ${result}...`;
     }
 
     uploadNewImage(image_path) {

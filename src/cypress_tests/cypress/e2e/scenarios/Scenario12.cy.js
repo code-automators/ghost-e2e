@@ -1,3 +1,4 @@
+import { HomePage } from "../pages/homePage.cy";
 import { SignInPage } from "../pages/signinPage.cy";
 import  config  from "./assets/config.json";
 
@@ -21,6 +22,12 @@ describe("Scenario 12", () => {
         homePage = signinPage.login(config.new_user, config.new_password);
         // Then the user should log in successfully
         homePage.getUrl().should('eq', 'http://localhost:2368/ghost/#/site')
+    })
+
+    after(() =>{
+        let homePage = new HomePage();
+        let profilePage = homePage.goToProfile();
+        profilePage.changeCredentials(config.user, config.password, config.new_password)
     })
 
 })

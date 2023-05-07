@@ -1,3 +1,4 @@
+import { HomePage } from "../pages/homePage.cy";
 import { SignInPage } from "../pages/signinPage.cy";
 import  config  from "./assets/config.json";
 
@@ -14,7 +15,12 @@ describe("Scenario 20", () => {
         // Then when the user goes to the main page, it should be private
         let mainPage = homePage.goToMainPageSite();
         mainPage.checkIfSiteIsPrivate().should('contain', 'This site is private');
+    })
 
+    after(()=> {
+        let homePage = new HomePage();
+        let settingsPage = homePage.goToGeneralSettings();
+        settingsPage.togglePrivate();
     })
 
 })
