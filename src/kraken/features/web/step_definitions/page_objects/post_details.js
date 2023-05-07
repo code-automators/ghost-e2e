@@ -37,7 +37,6 @@ const createPost = async function (driver, title, content) {
     let publishButton = await driver.$('button.gh-btn-blue.gh-publishmenu-button');
     await publishButton.click();
 }
-
 const addImage = async function (driver, image_path) {
     let settingsButton = await driver.$("button[title$='Settings']");
     await settingsButton.click();
@@ -50,6 +49,17 @@ const checkPostUpdated = async function (driver) {
     expect(await updatedMessage.getText() == "Updated");
 }
 
+const deletePost = async function (driver, title) {
+    let postToDelete = await driver.$('h3.gh-content-entry-title').contains(title);
+    await postToDelete.click();
+    let settingsButton = await driver.$("button[title$='Settings']");
+    await settingsButton.click();
+    let deleteButton = await driver.$('button.settings-menu-delete-button');
+    await deleteButton.click();
+    let redButton = await driver.$('button.gh-btn-red');
+    await redButton.click();
+}
+
 module.exports = {
     assignTagToPost,
     checkIfPostUpdated,
@@ -57,5 +67,6 @@ module.exports = {
     checkNewPostEdited,
     createPost,
     addImage,
-    checkPostUpdated
+    checkPostUpdated,
+    deletePost
 }
