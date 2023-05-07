@@ -13,7 +13,23 @@ const checkIfPostUpdated = async function (driver, slug) {
     expect(postTitle).to.exist;
 }
 
+const fillEditPost = async function (driver, title) {
+    let titlePost = await driver.$("textarea.gh-editor-title");
+    await titlePost.setValue(title);
+    let publishTrigger = await driver.$("div.gh-publishmenu-trigger");
+    await publishTrigger.click();
+    let publishButton = await driver.$("button.gh-btn-blue.gh-publishmenu-button");
+    await publishButton.click();
+}
+
+const checkNewPostEdited = async function (driver, title) {
+    let editedPost = await driver.$("li[class$='gh-list-row gh-posts-list-item']");
+    expect(await editedPost.getText() == title)
+}
+
 module.exports = {
     assignTagToPost,
-    checkIfPostUpdated
+    checkIfPostUpdated,
+    fillEditPost,
+    checkNewPostEdited
 }
