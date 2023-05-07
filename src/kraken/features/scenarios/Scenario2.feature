@@ -7,8 +7,6 @@ Scenario: Editar un post existente actualizando su título - Escenario 2
   And I wait
   When I click on the Posts tab - Scenario two
   And I wait
-  And I click on the New Post button
-  And I wait
   And I select a random post
   And I wait
   And I edit the selected post with title "<POST_TITLE>"

@@ -3,9 +3,9 @@ import { SignInPage } from "../pages/signinPage.cy";
 import  config  from "./assets/config.json";
 
 
-describe("Eliminar un post", () => {
+describe("Escenario 18", () => {
 
-    it("Escenario 18", () => {
+    it("Eliminar un post", () => {
         // Given user is logged in
         let signinPage = new SignInPage();
         let homePage = signinPage.login(config.user, config.password);
