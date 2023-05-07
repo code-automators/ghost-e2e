@@ -33,10 +33,16 @@ class PostDetails {
     cy.get("button[title$='Settings']").click();
     cy.get("#tag-input")
       .find("input[class$='ember-power-select-trigger-multiple-input']")
-      .type(tagName + "{enter}");
+      .type(tagName + "{enter}", { force: true });
     cy.get("button[aria-label$='Close']").click();
     cy.get("div.gh-publishmenu-trigger").click();
     cy.get("button.gh-btn-blue.gh-publishmenu-button").click();
+  }
+
+  addMultipleTagsToPost(tags) {
+    for (let tag of tags) {
+      this.addTagToPost(tag);
+    }
   }
 
   createPost(postTitle, contentTitle) {
@@ -46,10 +52,10 @@ class PostDetails {
     cy.get('button.gh-btn-blue.gh-publishmenu-button').click();
     return new PostDetails();
   }
- 
+
   addImage(image_path) {
     cy.get("button[title$='Settings']").click();
-    cy.get("input[class$='x-file--input']").selectFile(image_path, {force: true})
+    cy.get("input[class$='x-file--input']").selectFile(image_path, { force: true })
     cy.get("button[aria-label$='Close']").click()
     cy.get("div.gh-publishmenu-trigger").click();
     cy.get("button.gh-btn-blue.gh-publishmenu-button").click();

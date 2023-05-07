@@ -19,6 +19,12 @@ class PostPageList {
     return cy.get("li[class$='gh-list-row gh-posts-list-item']").first();
   }
 
+  selectPostByName(name) {
+    cy.contains("li[class$='gh-list-row gh-posts-list-item']", name)
+      .click();
+    return new PostDetails();
+  }
+
   selectRandomPost() {
     cy.get("li[class$='gh-list-row gh-posts-list-item']")
       .its('length')
@@ -30,14 +36,14 @@ class PostPageList {
     return new PostDetails();
   }
 
-  getListPosts(){
+  getListPosts() {
     return cy.get("li[class$='gh-list-row gh-posts-list-item']");
   }
 
   goToCreatePost() {
     cy.contains("New post").click();
     return new PostDetails();
-}
+  }
 
 }
 
