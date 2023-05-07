@@ -7,6 +7,7 @@ import { SettingsPage } from "./settingsPage.cy";
 import { MainPageSite } from "./mainPageSite.cy";
 import { IntegrationListPage } from "./integrationListPage.cy";
 import { DesignPage } from "./designPage.cy";
+import { CodeInjectionPage } from "./codeInjectionPage.cy";
 
 class HomePage {
   HomePage() {
@@ -68,6 +69,12 @@ class HomePage {
     let host = window.location.origin
     cy.visit(host + "/ghost/#/settings/general")
     return new SettingsPage();
+  }
+
+  goToCodeInjection() {
+    let host = window.location.origin
+    cy.visit(host + "/ghost/#/settings/code-injection")
+    return new CodeInjectionPage();
   }
 
   goToMainPageSite() {

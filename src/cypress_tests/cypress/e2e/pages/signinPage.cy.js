@@ -14,16 +14,16 @@ class SignInPage {
     let host = "http://localhost:2368";
     cy.visit(host + "/ghost/#/signin");
     cy.wait(1000);
-    cy.get('input[name="identification"]').clear().type(email);
+    cy.get('input[name="identification"]').clear({ force: true }).type(email, { force: true });
     cy.wait(500);
-    cy.get('input[name="password"]').clear().type(password);
+    cy.get('input[name="password"]').clear({ force: true }).type(password, { force: true });
     cy.wait(500);
-    cy.get("#ember12").click();
+    cy.get("#ember12").click(({force: true}));
     cy.wait(1000);
     return new HomePage();
   }
 
-  checkForErrors(){
+  checkForErrors() {
     return cy.contains("Your password is incorrect.")
   }
 }
