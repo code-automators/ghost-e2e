@@ -1,5 +1,4 @@
 class MainPageSite {
-
     MainPageSite() {
         if (!cy.url().should("eq", "http://localhost:2368/")) {
             throw new IllegalStateException(
@@ -10,6 +9,10 @@ class MainPageSite {
 
     checkIfSiteIsPrivate() {
         return cy.contains("This site is private")
+    }
+
+    getParagraphsByText(text) {
+        return cy.contains(text)
     }
 }
 
