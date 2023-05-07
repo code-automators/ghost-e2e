@@ -12,6 +12,8 @@
     "NEW_PASSWORD": "xv^Sy^cETQWkaBS53n#6hAN4s",
     "POST_TITLE": "New Title",
     "POST_CONTENT": "New Content",
+    "POST_DATE": "2033-01-01",
+    "POST_HOUR": "00:00",
     "NEW_NAVBAR_OPTION_LABEL": "Reddit",
     "NEW_NAVBAR_OPTION_URL": "https://www.reddit.com"
 }
