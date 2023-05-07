@@ -55,6 +55,13 @@ class PostDetails {
     cy.get("button.gh-btn-blue.gh-publishmenu-button").click();
     return cy.get(".gh-notification-content");
   }
+
+  deletePost(postTitle) {
+    cy.get('h3.gh-content-entry-title').contains(postTitle).click();
+    cy.get("button[title$='Settings']").click();
+    cy.get('button.settings-menu-delete-button').click();
+    cy.get('button.gh-btn-red').first().click();
+  }
 }
 
 export { PostDetails };
