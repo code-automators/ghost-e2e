@@ -29,6 +29,14 @@ class SettingsPage {
         cy.wait(1000)
     }
 
+    togglePrivate() {
+        cy.get("span[class$='input-toggle-component']").click()
+        cy.wait(500)
+
+        cy.contains("Save settings").click()
+        cy.wait(1000)
+    }
+
     deleteBanner() {
         cy.get('button.gh-setting-action-largeimg-delete').click();
         cy.contains("Save settings").click();
