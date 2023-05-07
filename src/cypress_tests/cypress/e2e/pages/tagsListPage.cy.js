@@ -13,6 +13,15 @@ class TagsListPage {
         cy.contains("New tag").click();
         return new TagDetails();
     }
+
+    getTagList() {
+        return cy.get("li.gh-list-row");
+    }
+
+    clickOnTag(tagName) {
+        cy.contains(tagName).click();
+        return new TagDetails();
+    }
 }
 
 export { TagsListPage };
