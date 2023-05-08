@@ -33,12 +33,18 @@ const checkNotFound = async function (driver) {
     expect(await notFoundMessage.getText()).to.equal('404');
 }
 
+const typeEscape = async function (driver) {
+    let body = await driver.$("body")
+    await body.click();
+    await driver.keys(['Escape']);
+}
 
 module.exports = {
     clickSaveOrUpdateButton,
     clickOnSettingsButton,
     clickOnCloseSettings,
     uploadAnImage,
+    typeEscape,
     publishItem,
     checkNotFound,
 }

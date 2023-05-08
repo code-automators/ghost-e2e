@@ -7,19 +7,21 @@ const assignTagToPost = async function (driver, tagname) {
     await driver.keys("Enter");
 }
 
-const assignMultipleTagsToPost = async function (driver) {
-    let tagsField = await driver.$('#tag-input').$("input[class$='ember-power-select-trigger-multiple-input']")
-    await tagsField.setValue('tag1');
-    await driver.keys("Enter");
-    await tagsField.setValue('tag2');
-    await driver.keys("Enter");
-    await tagsField.setValue('tag3');
+const typeAndEnter = async function (driver, element, text) {
+    await element.setValue(text);
     await driver.keys("Enter");
 }
 
-const checkIfPostUpdated = async function (driver, slug) {
-    await driver.url('http://localhost:2368/ghost/#/posts?tag=' + slug)
-    let postTitle = await driver.$("a[class$='ember-view permalink gh-list-data gh-post-list-title']")
+const assignMultipleTagsToPost = async function (driver) {
+    const tagsField = await driver.$('#tag-input').$("input[class$='ember-power-select-trigger-multiple-input']");
+    const tags = ['tag1', 'tag2', 'tag3'];
+    for (const tag of tags) {
+        await typeAndEnter(driver, tagsField, tag);
+    }
+}
+
+const checkIfPostsExists = async function (driver) {
+    let postTitle = await driver.$("h3[class$='gh-content-entry-title']")
     expect(postTitle).to.exist;
 }
 
@@ -37,11 +39,6 @@ const fillPostName = async function (driver, title) {
     await titlePost.setValue(title);
 }
 
-const clickOutsideSettings = async function (driver, title) {
-    let titlePost = await driver.$("textarea.gh-editor-title");
-    await titlePost.click();
-}
-
 const checkNewPostEdited = async function (driver, title) {
     let editedPost = await driver.$("li[class$='gh-list-row gh-posts-list-item']");
     expect(await editedPost.getText() == title);
@@ -49,7 +46,7 @@ const checkNewPostEdited = async function (driver, title) {
 
 /**
  * Creates a new post with given information
- * @param {*} driver The driver needed to operate 
+ * @param {*} driver The driver needed to operate
  * @param {*} title Title of the post
  * @param {*} content Content of the post
  * @param {*} additionalProps Additional properties for creating the post
@@ -151,15 +148,14 @@ const clickConfirmDelete = async function (driver) {
 module.exports = {
     assignTagToPost,
     assignMultipleTagsToPost,
-    checkIfPostUpdated,
+    checkIfPostsExists,
     fillEditPost,
     fillPostName,
-    clickOutsideSettings,
     checkNewPostEdited,
     createPost,
     addImage,
     checkPostUpdated,
     selectPostToDelete,
     deletePost,
-    clickConfirmDelete
+    clickConfirmDelete,
 }
