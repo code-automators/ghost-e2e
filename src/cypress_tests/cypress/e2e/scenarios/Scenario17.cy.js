@@ -1,7 +1,7 @@
 import { SignInPage } from "../pages/signinPage.cy";
 import  config  from "./assets/config.json";
 
-describe("Change user password and login using these new password.", () => {
+describe("Change slug and social media.", () => {
 
     it("Scenario 17", () => {
         // Given user is logged in
@@ -9,13 +9,19 @@ describe("Change user password and login using these new password.", () => {
         let homePage = signinPage.login(config.user, config.password);
         // When the user wants to change their password
         let profilePage = homePage.goToProfile();
-        // The user changes their password
-        profilePage.changeCredentials(config.user, config.new_password, config.password);
-        // The user logs out
-        signinPage = homePage.logout();
-        homePage = signinPage.login(config.user, config.new_password);
-        // Then the user log in successfully with new password
-        homePage.getUrl().should("eq", "http://localhost:2368/ghost/#/site");
+        // When user changes their password
+        profilePage.changeSlugAndSocialMedia(
+            config.user_profile_slug,
+            config.user_profile_website,
+            config.user_profile_slug,
+            config.user_profile_slug
+        );
+        // Then the user goes to author page
+        const authorPage = homePage.goToAuthorPage(config.user_profile_slug);
+        // And sees the added options
+        authorPage.getAuthorOptions().contains("Website");
+        authorPage.getAuthorOptions().contains("Twitter");
+        authorPage.getAuthorOptions().contains("Facebook");
     })
 
 })
