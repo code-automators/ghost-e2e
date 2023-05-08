@@ -33,6 +33,11 @@ const checkNotFound = async function (driver) {
     expect(await notFoundMessage.getText()).to.equal('404');
 }
 
+const checkPageFound = async function (driver) {
+    let body = await driver.$("body");
+    expect(await body.getText()).not.contains('404');
+}
+
 const typeEscape = async function (driver) {
     let body = await driver.$("body")
     await body.click();
@@ -47,4 +52,5 @@ module.exports = {
     typeEscape,
     publishItem,
     checkNotFound,
+    checkPageFound,
 }
