@@ -19,5 +19,9 @@
     "NEW_NAVBAR_OPTION_LABEL": "Reddit",
     "NEW_NAVBAR_OPTION_URL": "https://www.reddit.com",
     "NAME_INTEGRATION": "NewIntegration",
-    "DESCRIPTION_INTEGRATION": "Description new integration"
+    "DESCRIPTION_INTEGRATION": "Description new integration",
+    "USER_SLUG": "jpcorreap",
+    "USER_WEBSITE": "https://youtube.com",
+    "USER_FACEBOOK": "jpcorreap",
+    "USER_TWITTER": "jpcorreap"
 }
