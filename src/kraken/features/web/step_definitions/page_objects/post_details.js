@@ -27,13 +27,70 @@ const checkNewPostEdited = async function (driver, title) {
     expect(await editedPost.getText() == title);
 }
 
-const createPost = async function (driver, title, content) {
+/**
+ * Creates a new post with given information
+ * @param {*} driver The driver needed to operate 
+ * @param {*} title Title of the post
+ * @param {*} content Content of the post
+ * @param {*} additionalProps Additional properties for creating the post
+ */
+const createPost = async function (
+    driver,
+    title,
+    content,
+    additionalProps={}
+) {
+    const { tagname, scheduleDate, scheduleHour } = additionalProps;
     let titlePost = await driver.$("textarea.gh-editor-title");
     await titlePost.setValue(title);
+    await driver.pause(1000);
     let contentPost = await driver.$('div.koenig-editor__editor');
     await contentPost.setValue(content);
+    await driver.pause(1000);
+
+    // Add the tag when its the case
+    if(tagname) {
+        // Open settings
+        const settingsButton = await driver.$("button[title$='Settings']");
+        await settingsButton.click();
+        await driver.pause(1000);
+
+        // Add tag
+        let tagsField = await driver.$('#tag-input').$("input[class$='ember-power-select-trigger-multiple-input']");
+        await driver.pause(1000);
+        await tagsField.setValue(tagname);
+        await driver.pause(1000);
+        await driver.keys("Enter");
+        await driver.pause(1000);
+
+        // Close settings
+        const closeButton = await driver.$("button[aria-label$='Close']");
+        await closeButton.click();
+    }
+
+    await driver.pause(1000);
     let publishTrigger = await driver.$('div.ember-view.ember-basic-dropdown-trigger.gh-btn.gh-btn-outline.gh-publishmenu-trigger');
     await publishTrigger.click();
+
+    // Add schedule when its the case
+    if(scheduleDate && scheduleHour) {
+        await driver.pause(2000);
+        let radioButtons = await driver.$$("div[class$='gh-publishmenu-radio-button'");
+        const scheduleRadioButton = radioButtons[1];
+        await scheduleRadioButton.click();
+        await driver.pause(1000);
+
+        let dateInput = await driver.$("div[class$='gh-date-time-picker-date '").$("input");
+        await dateInput.setValue(scheduleDate);
+        await driver.pause(2000);
+        // let hourInput = await driver.$("div[class$='gh-date-time-picker-time '").$("input");
+        // await hourInput.setValue(scheduleHour);
+        await driver.keys("Tab");
+        await driver.keys(scheduleHour);
+        // await driver.keys("Enter");
+        await driver.pause(2000);
+    }
+
     let publishButton = await driver.$('button.gh-btn-blue.gh-publishmenu-button');
     await publishButton.click();
 }

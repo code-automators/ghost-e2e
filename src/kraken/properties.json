@@ -12,5 +12,12 @@
     "NEW_PASSWORD": "xv^Sy^cETQWkaBS53n#6hAN4s",
     "POST_TITLE": "New Title",
     "POST_TITLE_LARGE": "New Title147852369852147896541236547",
-    "POST_CONTENT": "New Content"
+    "POST_CONTENT": "New Content",
+    "POST_DATE": "2033-01-01",
+    "POST_HOUR": "00:00",
+    "BANNER_PATH": "./assets/robots.jpg",
+    "NEW_NAVBAR_OPTION_LABEL": "Reddit",
+    "NEW_NAVBAR_OPTION_URL": "https://www.reddit.com",
+    "NAME_INTEGRATION": "NewIntegration",
+    "DESCRIPTION_INTEGRATION": "Description new integration"
 }
