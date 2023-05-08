@@ -1,11 +1,16 @@
 const expect = require('chai').expect;
 
-const addIntegration = async function (driver, nameInt) {
-    let integrationButton = await driver.$('div.apps-grid-cell.new-integration-cell');
-    await integrationButton.click();
+const clickAddIntegration = async function (driver) {
+    let addButton = await driver.$('div.apps-grid-cell.new-integration-cell');
+    await addButton.click();
+}
+
+const addNameIntegration = async function (driver, nameInt) {
     let nameIntegration = await driver.$("input[name$='integration-name']");
     await nameIntegration.setValue(nameInt);
-    console.log('Nombre: ' + nameIntegration.getText());
+}
+
+const clickCreateIntegration = async function (driver) {
     let createButton = await driver.$('button.gh-btn.gh-btn-green');
     await createButton.click();
 }
@@ -23,7 +28,9 @@ const checkNewIntegration = async function (driver, nameInt) {
 }
 
 module.exports = {
-    addIntegration,
+    clickAddIntegration,
+    addNameIntegration,
     checkNewIntegration,
+    clickCreateIntegration,
     saveDescription
 }
