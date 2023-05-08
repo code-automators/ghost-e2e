@@ -13,5 +13,7 @@
     "POST_TITLE": "New Title",
     "POST_CONTENT": "New Content",
     "NEW_NAVBAR_OPTION_LABEL": "Reddit",
-    "NEW_NAVBAR_OPTION_URL": "https://www.reddit.com"
+    "NEW_NAVBAR_OPTION_URL": "https://www.reddit.com",
+    "NAME_INTEGRATION": "NewIntegration",
+    "DESCRIPTION_INTEGRATION": "Description new integration"
 }

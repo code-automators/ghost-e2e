@@ -30,6 +30,11 @@ const clickOnDesignTab = async function (driver) {
     await designButton.click();
 }
 
+const clickOnIntegrationTab = async function (driver) {
+    let integrationButton = await driver.$("a[href$='#/settings/integrations/']")
+    await integrationButton.click();
+}
+
 const clickOnProfileMenu = async function (driver) {
     let profileMenu = await driver.$("span[class$='gh-user-name mb1']")
     await profileMenu.click();
@@ -59,5 +64,6 @@ module.exports = {
     clickOnDesignTab,
     clickOnProfileMenu,
     clickOnLogout,
-    checkAdminMenu
+    checkAdminMenu,
+    clickOnIntegrationTab
 }
