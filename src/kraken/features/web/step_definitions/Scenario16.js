@@ -53,7 +53,7 @@ When('I click update the post - Scenario sixteen', async function () {
 });
 
 Then("I navigate to posts page with slug {kraken-string}", async function (slug) {
-    await this.driver.url(`http://localhost:2370/ghost/#/posts?tag=${slug}`);
+    await this.driver.url(`http://localhost:2368/ghost/#/posts?tag=${slug}`);
 });
 
 Then('the post should be updated with the tag slug {kraken-string}', async function (slug) {
