@@ -1,7 +1,7 @@
 import { SignInPage } from "../pages/signinPage.cy";
 import  config  from "./assets/config.json";
 
-describe("Change slug and social media.", () => {
+describe("Change user slug and social media info.", () => {
 
     it("Scenario 17", () => {
         // Given user is logged in
