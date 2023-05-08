@@ -7,19 +7,32 @@ class PostDetails {
     }
   }
 
-  fillNewPost(postTitle, content, tag) {
+  fillNewPost(postTitle, content, additionalProps={}) {
+    const {tag, scheduleDate, scheduleHour} = additionalProps;
+
     cy.get("textarea.gh-editor-title").type(postTitle);
     cy.get("article").type(content);
 
-    cy.get("button.post-settings").click();
+    if( tag ) { 
+      cy.get("button.post-settings").click();
 
-    cy.get("input.ember-power-select-trigger-multiple-input")
-      .first()
-      .type(`${tag}{enter}`);
+      cy.get("input.ember-power-select-trigger-multiple-input")
+        .first()
+        .type(`${tag}{enter}`);
 
-    cy.get("button.close.settings-menu-header-action").click();
+      cy.get("button.close.settings-menu-header-action").click();
+    }
 
     cy.get("div.gh-publishmenu-trigger").click();
+
+    if( scheduleDate && scheduleHour ) { 
+      cy.get("div.gh-publishmenu-radio-button").last().click();
+      cy.get("div[class$='gh-date-time-picker-date '").find("input").first().clear().type(scheduleDate, {force: true});
+      cy.wait(1000);
+      cy.get("div[class$='gh-date-time-picker-time '").find("input").first().clear().type(scheduleHour, {force: true});
+      cy.wait(1000);
+    }
+
     cy.get("button.gh-btn-blue.gh-publishmenu-button").click();
   }
 

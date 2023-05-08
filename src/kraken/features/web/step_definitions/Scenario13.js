@@ -6,21 +6,21 @@ const { clickOnNewPost } = require("./page_objects/posts_list.js");
 const { checkNewPostEdited } = require("./page_objects/post_details.js");
 
 
-Given("I login with {kraken-string} and {kraken-string} - Scenario one", async function (email, password) {
+Given("I login with {kraken-string} and {kraken-string} - Scenario thirteen", async function (email, password) {
     await login(this.driver, email, password)
 });
 
-When("I click on the Posts tab - Scenario one", async function () {
+When("I click on the Posts tab - Scenario thirteen", async function () {
     await clickOnPostsTab(this.driver)
 });
 
-When("I click on 'New Post' Button", async function () {
+When("I click on 'New Post' Button - Scenario thirteen", async function () {
     await clickOnNewPost(this.driver);
 });
 
-When("I create a new post with {kraken-string}, {kraken-string} and tag {kraken-string}",
-    async function(title, content, tagname) {
-        await createPost(this.driver, title, content, {tagname});
+When("I create a new post with {kraken-string}, {kraken-string} and schedule for day {kraken-string} and hour {kraken-string}",
+    async function(title, content, scheduleDate, scheduleHour) {
+        await createPost(this.driver, title, content, {scheduleDate, scheduleHour});
     }
 );
 
