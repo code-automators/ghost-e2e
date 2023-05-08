@@ -2,7 +2,7 @@ Feature: Delete a tag - Scenario 19
 
 @user1 @web
 Scenario: Delete a tag - Scenario 19
-  Given I navigate to page "http://localhost:2370/ghost/#/signin"
+  Given I navigate to page "http://localhost:2368/ghost/#/signin"
   And I login with "<USER_EMAIL>" and "<USER_PASSWORD>" - Scenario nineteen
   And I wait
   And I click on the Tags tab - Scenario nineteen
@@ -19,6 +19,6 @@ Scenario: Delete a tag - Scenario 19
   And I wait
   And I confirm to delete a tag
   And I wait
-  Then I navigate to page "http://localhost:2370/ghost/#/tags/to-delete/"
+  Then I navigate to page "http://localhost:2368/ghost/#/tags/to-delete/"
   And I wait
   And tag should not exist

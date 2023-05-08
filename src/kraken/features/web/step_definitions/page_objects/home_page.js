@@ -8,6 +8,20 @@ const checkNavigationOption = async function (driver, optionLabel) {
     expect(found).to.be.true;
 }
 
+const checkParagraphOnSite = async function (driver, paragraph) {
+    const pageTexts = await driver.$$('.inserted-p');
+    let found = false;
+    for (let i = 0; i < pageTexts.length; i++) {
+        const pageText = await pageTexts[i].getText();
+        if (pageText.includes(paragraph)) {
+            found = true;
+            break;
+        }
+    }
+    expect(found).to.be.true;
+}
+
 module.exports = {
-    checkNavigationOption
+    checkNavigationOption,
+    checkParagraphOnSite,
 }

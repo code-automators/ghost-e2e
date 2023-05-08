@@ -13,7 +13,7 @@ describe("Scenario 19", () => {
         let tagName = 'Tag to be deleted';
         newTag.createNewTag(tagName, config.new_tag_slug, config.image_path);
         tagsListPage = homePage.goToTagsList();
-        tagsListPage.getTagList().should('contain', config.new_tag_name);
+        tagsListPage.getTagList().should('contain', tagName);
         // When the user goes to the tag list
         tagsListPage = homePage.goToTagsList();
         // And deletes an existing tag
