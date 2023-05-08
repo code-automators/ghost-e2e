@@ -12,5 +12,9 @@
     "NEW_PASSWORD": "xv^Sy^cETQWkaBS53n#6hAN4s",
     "POST_TITLE": "New Title",
     "POST_CONTENT": "New Content",
-    "BANNER_PATH": "./assets/robots.jpg"
+    "BANNER_PATH": "./assets/robots.jpg",
+    "NEW_NAVBAR_OPTION_LABEL": "Reddit",
+    "NEW_NAVBAR_OPTION_URL": "https://www.reddit.com",
+    "NAME_INTEGRATION": "NewIntegration",
+    "DESCRIPTION_INTEGRATION": "Description new integration"
 }

@@ -8,8 +8,8 @@ class TagDetails {
         }
     }
 
-    createNewTag(tag_name, slug, image_path, description = "This is a test tag, tested with Cypress :)") {
-        cy.get("#tag-name").clear().type(tag_name, { force: true });
+    createNewTag(tagName, slug, imagePath, description = "This is a test tag, tested with Cypress :)") {
+        cy.get("#tag-name").clear().type(tagName, { force: true });
         cy.wait(500);
         cy.get("#tag-slug").clear().type(slug, { force: true })
         cy.wait(500);
@@ -17,19 +17,19 @@ class TagDetails {
         cy.wait(500);
         cy.get("input[name$='accent-color']").clear().type('000000', { force: true });
         cy.wait(500);
-        cy.get("input[class$='x-file--input']").selectFile(image_path, { force: true })
+        cy.get("input[class$='x-file--input']").selectFile(imagePath, { force: true })
         cy.wait(500);
         cy.contains("Save").click();
         cy.wait(2000);
     }
 
     setRandomTagName() {
-        let new_tag_name = this.generateRandomTagName(10);
-        cy.get("#tag-name").clear().type(new_tag_name, { force: true });
+        let newTagName = this.generateRandomTagName(10);
+        cy.get("#tag-name").clear().type(newTagName, { force: true });
         cy.wait(500);
         cy.contains("Save").click();
         cy.wait(1000);
-        return new_tag_name
+        return newTagName
     }
 
     generateRandomTagName(length) {
@@ -38,16 +38,22 @@ class TagDetails {
         for (let i = 0; i < length; i++) {
             result += characters.charAt(Math.floor(Math.random() * characters.length));
         }
-        return 'Tag ' + result;
+        return `Tag ${result}...`;
     }
 
-    uploadNewImage(image_path) {
+    uploadNewImage(imagePath) {
         cy.get("button[title$='Settings']").click();
-        cy.get("input[class$='x-file--input']").selectFile(image_path, { force: true })
+        cy.get("input[class$='x-file--input']").selectFile(imagePath, { force: true })
         cy.get("button[aria-label$='Close']").click()
         cy.get("div.gh-publishmenu-trigger").click();
         cy.get("button.gh-btn-blue.gh-publishmenu-button").click();
         return cy.get(".gh-notification-content");
+    }
+
+    deleteTag() {
+        cy.contains("Delete tag").click();
+        cy.wait(200);
+        cy.get(".gh-btn-red").eq(1).click();
     }
 
     verifySaveBtn() {
