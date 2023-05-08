@@ -1,4 +1,4 @@
-const { assert } = require("chai");
+const { assert, expect } = require("chai");
 
 const changeWebsiteSettings = async (driver, new_name) => {
     let expandTitleButton = await driver.$("div[class$='gh-setting-first']").$("div[class$='gh-setting-action']").$("button[class$='gh-btn']")
@@ -41,14 +41,13 @@ const checkPrivateSite = async (driver) => {
 }
 
 const uploadBanner = async (driver, image_path) =>  {
-    let imageSelector = await driver.$$("input[class$='x-file--input']");
-    let lastElement = imageSelector[imageSelector - 1];
-    await lastElement.setValue(image_path);
+    let imageSelector = await driver.$("div[class$='gh-setting-action gh-setting-action-largeimg']").$("input[class$='x-file--input']");
+    await imageSelector.setValue(image_path);
 }
 
 const checkBanner = async (driver) => {
-    let classBanner = await driver.$('div.outer.site-header-background');
-    assert(classBanner.includes('responsive-header-img'));
+    let classBanner = await driver.$('div.outer.site-header-background.responsive-header-img');
+    expect (classBanner).to.exist;
 }
 
 module.exports = {
