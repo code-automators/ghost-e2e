@@ -106,14 +106,25 @@ const checkPostUpdated = async function (driver) {
     expect(await updatedMessage.getText() == "Updated");
 }
 
-const deletePost = async function (driver, title) {
-    let postToDelete = await driver.$('h3.gh-content-entry-title').contains(title);
-    await postToDelete.click();
+const selectPostToDelete = async function (driver, title) {
+    let publishedPosts = await driver.$$("h3[class$='gh-content-entry-title']");
+    for (let post of publishedPosts) {
+        if (await post.getText() === title) {
+            await post.click();
+            break;
+        }
+    }
+}
+
+const deletePost = async function (driver) {
     let settingsButton = await driver.$("button[title$='Settings']");
     await settingsButton.click();
-    let deleteButton = await driver.$('button.settings-menu-delete-button');
+    let deleteButton = await driver.$('button.gh-btn.gh-btn-hover-red.gh-btn-icon.settings-menu-delete-button');
     await deleteButton.click();
-    let redButton = await driver.$('button.gh-btn-red');
+}
+
+const clickConfirmDelete = async function (driver) {
+    let redButton = await driver.$('button.gh-btn.gh-btn-red.gh-btn-icon.ember-view');
     await redButton.click();
 }
 
@@ -125,5 +136,7 @@ module.exports = {
     createPost,
     addImage,
     checkPostUpdated,
-    deletePost
+    selectPostToDelete,
+    deletePost,
+    clickConfirmDelete
 }

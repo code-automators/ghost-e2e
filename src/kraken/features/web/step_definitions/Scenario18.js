@@ -2,7 +2,7 @@ const { Given, When, Then } = require('@cucumber/cucumber');
 const { login } = require('./page_objects/login_page.js');
 const { clickOnPostsTab } = require('./page_objects/admin_menu.js');
 const { clickOnNewPost } = require('./page_objects/posts_list.js');
-const { createPost, deletePost, checkNewPostEdited } = require('./page_objects/post_details.js');
+const { createPost, checkNewPostEdited, selectPostToDelete, deletePost, clickConfirmDelete } = require('./page_objects/post_details.js');
 
 
 Given('I login with {kraken-string} and {kraken-string} - Scenario eighteen', async function (email, password) {
@@ -18,11 +18,19 @@ When('I click on New Post Button - Scenario eighteen', async function () {
 });
 
 When('I create a post with {kraken-string} and {kraken-string} - Scenario eighteen', async function(title, content) {
-    await createPost(this.driver, content);
+    await createPost(this.driver, title, content);
 });
 
-When('I delete a post with title {kraken-string}', async function(title) {
-    await deletePost(this.driver, title);
+When('I select delete post with title {kraken-string}', async function(title) {
+    await selectPostToDelete(this.driver, title);
+});
+
+When('I delete post', async function() {
+    await deletePost(this.driver);
+});
+
+When('I click confirm delete button', async function() {
+    await clickConfirmDelete(this.driver);
 });
 
 Then('I should not see the post called {kraken-string}', async function(title) {
