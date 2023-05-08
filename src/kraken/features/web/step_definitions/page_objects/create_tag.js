@@ -18,6 +18,18 @@ const fillTagDetails = async function (driver, tagname, image_path, slug) {
     await imageField.setValue(image_path);
 }
 
+const deleteTag = async function (driver) {
+    const deleteButton = await driver.$(".gh-btn.gh-btn-red");
+    await deleteButton.click();
+}
+
+const confirmDeleteTag = async function (driver) {
+    const confirmDeleteButton = await driver.$$(".gh-btn.gh-btn-red")[1];
+    await confirmDeleteButton.click();
+}
+
 module.exports = {
-    fillTagDetails
+    fillTagDetails,
+    deleteTag,
+    confirmDeleteTag,
 }
