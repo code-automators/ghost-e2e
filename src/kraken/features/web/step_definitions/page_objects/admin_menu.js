@@ -52,7 +52,7 @@ const clickOnLogout = async function (driver) {
 }
 
 const checkAdminMenu = async function (driver) {
-    expect(await driver.getUrl() === "http://localhost:2368/ghost/#/site")
+    expect(await driver.getUrl() === "http://localhost:2368/ghost/#/site").to.be.true;
 }
 
 module.exports = {
