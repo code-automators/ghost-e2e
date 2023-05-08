@@ -16,5 +16,5 @@ const clickOnNewPost = async function (driver) {
 module.exports = {
     selectRandomPost,
     clickListPostButton,
-    clickOnNewPost
+    clickOnNewPost,
 }

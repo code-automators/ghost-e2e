@@ -7,6 +7,16 @@ const assignTagToPost = async function (driver, tagname) {
     await driver.keys("Enter");
 }
 
+const assignMultipleTagsToPost = async function (driver) {
+    let tagsField = await driver.$('#tag-input').$("input[class$='ember-power-select-trigger-multiple-input']")
+    await tagsField.setValue('tag1');
+    await driver.keys("Enter");
+    await tagsField.setValue('tag2');
+    await driver.keys("Enter");
+    await tagsField.setValue('tag3');
+    await driver.keys("Enter");
+}
+
 const checkIfPostUpdated = async function (driver, slug) {
     await driver.url('http://localhost:2368/ghost/#/posts?tag=' + slug)
     let postTitle = await driver.$("a[class$='ember-view permalink gh-list-data gh-post-list-title']")
@@ -20,6 +30,16 @@ const fillEditPost = async function (driver, title) {
     await publishTrigger.click();
     let publishButton = await driver.$("button.gh-btn-blue.gh-publishmenu-button");
     await publishButton.click();
+}
+
+const fillPostName = async function (driver, title) {
+    let titlePost = await driver.$("textarea.gh-editor-title");
+    await titlePost.setValue(title);
+}
+
+const clickOutsideSettings = async function (driver, title) {
+    let titlePost = await driver.$("textarea.gh-editor-title");
+    await titlePost.click();
 }
 
 const checkNewPostEdited = async function (driver, title) {
@@ -38,7 +58,7 @@ const createPost = async function (
     driver,
     title,
     content,
-    additionalProps={}
+    additionalProps = {}
 ) {
     const { tagname, scheduleDate, scheduleHour } = additionalProps;
     let titlePost = await driver.$("textarea.gh-editor-title");
@@ -49,7 +69,7 @@ const createPost = async function (
     await driver.pause(1000);
 
     // Add the tag when its the case
-    if(tagname) {
+    if (tagname) {
         // Open settings
         const settingsButton = await driver.$("button[title$='Settings']");
         await settingsButton.click();
@@ -73,7 +93,7 @@ const createPost = async function (
     await publishTrigger.click();
 
     // Add schedule when its the case
-    if(scheduleDate && scheduleHour) {
+    if (scheduleDate && scheduleHour) {
         await driver.pause(2000);
         let radioButtons = await driver.$$("div[class$='gh-publishmenu-radio-button'");
         const scheduleRadioButton = radioButtons[1];
@@ -130,8 +150,11 @@ const clickConfirmDelete = async function (driver) {
 
 module.exports = {
     assignTagToPost,
+    assignMultipleTagsToPost,
     checkIfPostUpdated,
     fillEditPost,
+    fillPostName,
+    clickOutsideSettings,
     checkNewPostEdited,
     createPost,
     addImage,
