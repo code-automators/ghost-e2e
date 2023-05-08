@@ -5,6 +5,7 @@ import { SignInPage } from "./signinPage.cy";
 import { TagsListPage } from "./tagsListPage.cy";
 import { SettingsPage } from "./settingsPage.cy";
 import { MainPageSite } from "./mainPageSite.cy";
+import { AuthorPageSite } from "./authorPageSite";
 import { IntegrationListPage } from "./integrationListPage.cy";
 import { DesignPage } from "./designPage.cy";
 import { CodeInjectionPage } from "./codeInjectionPage.cy";
@@ -81,6 +82,12 @@ class HomePage {
     let host = window.location.origin
     cy.visit(host)
     return new MainPageSite();
+  }
+
+  goToAuthorPage(authorSlug) {
+    let host = window.location.origin
+    cy.visit(`${host}/author/${authorSlug}`)
+    return new AuthorPageSite();
   }
 
   getNavbarMenu() {
