@@ -29,16 +29,30 @@ const confirmDeleteTag = async function (driver) {
     await confirmDeleteButton.click();
 }
 
+const setRandomTagSlug = async function (driver) {
+    let newTagSlug = generateRandomTagSlug(5);
+    let slugField = await driver.$("#tag-slug")
+    await slugField.click();
+    await slugField.setValue(newTagSlug);
+    return newTagSlug
+}
+
+const generateRandomTagSlug = function (length) {
+    let result = '';
+    const characters = 'abcdefghijklmnopqrstuvwxyz0123456789';
+    for (let i = 0; i < length; i++) {
+        result += characters.charAt(Math.floor(Math.random() * characters.length));
+    }
+    return `tag-${result}`;
+}
+
 const addInvalidDescription = async function (driver) {
-    /*let textDescription = await driver.$('textarea.gh-tag-details-textarea.ember-text-area.gh-input ember-view');
-    textDescription.setValue("a".repeat(501));*/
     let textDescription = await driver.$("#tag-description");
     await textDescription.click();
     await driver.execute(des => {
         des.value = null
     }, textDescription)
     await textDescription.setValue("a".repeat(501));
-
 }
 
 const checkErrorMessage = async function (driver) {
@@ -51,6 +65,7 @@ module.exports = {
     fillTagDetails,
     deleteTag,
     confirmDeleteTag,
+    setRandomTagSlug,
     addInvalidDescription,
-    checkErrorMessage
+    checkErrorMessage,
 }
