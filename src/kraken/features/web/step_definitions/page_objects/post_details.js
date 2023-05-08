@@ -7,9 +7,21 @@ const assignTagToPost = async function (driver, tagname) {
     await driver.keys("Enter");
 }
 
-const checkIfPostUpdated = async function (driver, slug) {
-    await driver.url('http://localhost:2368/ghost/#/posts?tag=' + slug)
-    let postTitle = await driver.$("a[class$='ember-view permalink gh-list-data gh-post-list-title']")
+const typeAndEnter = async function (driver, element, text) {
+    await element.setValue(text);
+    await driver.keys("Enter");
+}
+
+const assignMultipleTagsToPost = async function (driver) {
+    const tagsField = await driver.$('#tag-input').$("input[class$='ember-power-select-trigger-multiple-input']");
+    const tags = ['tag1', 'tag2', 'tag3'];
+    for (const tag of tags) {
+        await typeAndEnter(driver, tagsField, tag);
+    }
+}
+
+const checkIfPostsExists = async function (driver) {
+    let postTitle = await driver.$("h3[class$='gh-content-entry-title']")
     expect(postTitle).to.exist;
 }
 
@@ -22,6 +34,11 @@ const fillEditPost = async function (driver, title) {
     await publishButton.click();
 }
 
+const fillPostName = async function (driver, title) {
+    let titlePost = await driver.$("textarea.gh-editor-title");
+    await titlePost.setValue(title);
+}
+
 const checkNewPostEdited = async function (driver, title) {
     let editedPost = await driver.$("li[class$='gh-list-row gh-posts-list-item']");
     expect(await editedPost.getText() == title);
@@ -29,7 +46,7 @@ const checkNewPostEdited = async function (driver, title) {
 
 /**
  * Creates a new post with given information
- * @param {*} driver The driver needed to operate 
+ * @param {*} driver The driver needed to operate
  * @param {*} title Title of the post
  * @param {*} content Content of the post
  * @param {*} additionalProps Additional properties for creating the post
@@ -38,7 +55,7 @@ const createPost = async function (
     driver,
     title,
     content,
-    additionalProps={}
+    additionalProps = {}
 ) {
     const { tagname, scheduleDate, scheduleHour } = additionalProps;
     let titlePost = await driver.$("textarea.gh-editor-title");
@@ -49,7 +66,7 @@ const createPost = async function (
     await driver.pause(1000);
 
     // Add the tag when its the case
-    if(tagname) {
+    if (tagname) {
         // Open settings
         const settingsButton = await driver.$("button[title$='Settings']");
         await settingsButton.click();
@@ -73,7 +90,7 @@ const createPost = async function (
     await publishTrigger.click();
 
     // Add schedule when its the case
-    if(scheduleDate && scheduleHour) {
+    if (scheduleDate && scheduleHour) {
         await driver.pause(2000);
         let radioButtons = await driver.$$("div[class$='gh-publishmenu-radio-button'");
         const scheduleRadioButton = radioButtons[1];
@@ -130,13 +147,15 @@ const clickConfirmDelete = async function (driver) {
 
 module.exports = {
     assignTagToPost,
-    checkIfPostUpdated,
+    assignMultipleTagsToPost,
+    checkIfPostsExists,
     fillEditPost,
+    fillPostName,
     checkNewPostEdited,
     createPost,
     addImage,
     checkPostUpdated,
     selectPostToDelete,
     deletePost,
-    clickConfirmDelete
+    clickConfirmDelete,
 }
