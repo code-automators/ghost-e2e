@@ -115,6 +115,8 @@ Notas:
 Para el caso de kraken hay unos escenarios que alteran el estado de la aplicación de manera que otros escenarios no puedan ser ejecutados.
 Es necesario restablecer ghost o arreglar manualmente estos cambios realizados por el escenario y seguir probando.
 
+Los escenarios de kraken NO se pueden ejecutar en paralelo, deberían ejecutarse secuencialmente reemplazamdo uno por uno en el RunningScenario.feature. Solo debe de haber un escenario al mismo tiempo en RunningScenario.feature
+
 Los escenarios que causan cambios de este estilo son:
 - Escenario 12 (Cambio de credenciales del admin)
   - Se arregla ingresando con las credenciales nuevas y cambiándolas por las viejas
