@@ -46,7 +46,7 @@ const clickOnProfileMenu = async function (driver) {
 const clickOnLogout = async function (driver) {
     let profileMenu = await driver.$("span[class$='gh-user-name mb1']")
     await profileMenu.click();
-
+    driver.pause(2000)
     let logoutButton = await driver.$("a[href*='#/signout/']")
     await logoutButton.click();
 }
