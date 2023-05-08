@@ -42,8 +42,9 @@ const addInvalidDescription = async function (driver) {
 }
 
 const checkErrorMessage = async function (driver) {
-    let errorMessage = await driver.$('.response');
-    expect(await errorMessage.getText() == "Description cannot be longer than 500 characters.");
+    let errorMessage = await driver.$(".gh-btn.gh-btn-red");
+    let btnText = await errorMessage.getText();
+    expect(btnText).to.equal("Retry");
 }
 
 module.exports = {
