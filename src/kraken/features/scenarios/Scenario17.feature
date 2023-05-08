@@ -1,17 +1,15 @@
-Feature: Editar el perfil, cambiar credenciales e intentar acceder con antiguas y nuevas - Escenario 12
+Feature: Add information to user profile - Scenario 17
 
 @user1 @web
-Scenario: Editar el perfil, cambiar credenciales e intentar acceder con antiguas y nuevas - Escenario 12
+Scenario: Add information to user profile - Scenario 17
     Given I navigate to page "http://localhost:2368/ghost/#/signin"
-    And I login with "<USER_EMAIL>" and "<USER_PASSWORD>" - Scenario twelve
+    And I login with "<USER_EMAIL>" and "<USER_PASSWORD>" - Scenario seventeen
     And I wait
-    When I click on the profile dropdown and access my profile
+    When I click on the profile dropdown and access my profile - Scenario seventeen
     And I wait
-    And I change my credentials with "<NEW_EMAIL>" and "<NEW_PASSWORD>", my old password was "<USER_PASSWORD>"
+    And I change my profile info with "<USER_SLUG>", "<USER_WEBSITE>", "<USER_FACEBOOK>" and "<USER_TWITTER>" 
     And I wait
-    Then I logout from my profile
-    And I login with "<NEW_EMAIL>" and "<USER_PASSWORD>" - Scenario twelve
-    And I should see incorrect password
+    Then I navigate to authors page with slug "<USER_SLUG>"
     And I wait
-    And I login with "<NEW_EMAIL>" and "<NEW_PASSWORD>" - Scenario twelve
-    And I should see the admin menu
+    And I should see the author options
+    And I wait
