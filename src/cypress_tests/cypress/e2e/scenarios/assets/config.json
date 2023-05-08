@@ -10,6 +10,8 @@
     "new_site_name": "Cypress Site",
     "new_title": "New Title Post",
     "new_content": "Content Post",
+    "new_schedule_date": "2030-01-01",
+    "new_schedule_hour": "00:00",
     "new_navigation_bar_label": "New Navigation Option",
     "new_navigation_bar_uri": "tag/getting-started/",
     "name_integration": "NewIntegration",
