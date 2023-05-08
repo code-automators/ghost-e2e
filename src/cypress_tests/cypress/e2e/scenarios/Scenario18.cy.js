@@ -1,4 +1,3 @@
-import { expect } from "chai";
 import { SignInPage } from "../pages/signinPage.cy";
 import  config  from "./assets/config.json";
 
