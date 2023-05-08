@@ -1,3 +1,4 @@
+const expect = require('chai').expect;
 
 const fillTagDetails = async function (driver, tagname, image_path, slug) {
     let nameField = await driver.$("#tag-name")
@@ -28,8 +29,27 @@ const confirmDeleteTag = async function (driver) {
     await confirmDeleteButton.click();
 }
 
+const addInvalidDescription = async function (driver) {
+    /*let textDescription = await driver.$('textarea.gh-tag-details-textarea.ember-text-area.gh-input ember-view');
+    textDescription.setValue("a".repeat(501));*/
+    let textDescription = await driver.$("#tag-description");
+    await textDescription.click();
+    await driver.execute(des => {
+        des.value = null
+    }, textDescription)
+    await textDescription.setValue("a".repeat(501));
+
+}
+
+const checkErrorMessage = async function (driver) {
+    let errorMessage = await driver.$('.response');
+    expect(await errorMessage.getText() == "Description cannot be longer than 500 characters.");
+}
+
 module.exports = {
     fillTagDetails,
     deleteTag,
     confirmDeleteTag,
+    addInvalidDescription,
+    checkErrorMessage
 }
