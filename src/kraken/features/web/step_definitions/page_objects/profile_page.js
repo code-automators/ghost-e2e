@@ -24,6 +24,29 @@ const changeCredentials = async function (driver, newEmail, oldPassword, newPass
     await changePasswordButton.click();
 }
 
+
+const changeAuthorInfo = async function (driver, slug, website, facebook, twitter) {
+    let slugField = await driver.$("#user-slug")
+    await slugField.setValue(slug);
+    await driver.pause(1000);
+
+    let websiteField = await driver.$("#user-website")
+    await websiteField.setValue(website);
+    await driver.pause(1000);
+
+    let facebookField = await driver.$("#user-facebook")
+    await facebookField.setValue(facebook);
+    await driver.pause(1000);
+
+    let twitterField = await driver.$("#user-twitter")
+    await twitterField.setValue(twitter);
+    await driver.pause(1000);
+
+    await clickSaveOrUpdateButton(driver);
+    await driver.pause(1000);
+}
+
 module.exports = {
-    changeCredentials
+    changeCredentials,
+    changeAuthorInfo
 }
