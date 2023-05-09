@@ -120,7 +120,7 @@ const addImage = async function (driver, image_path) {
 
 const checkPostUpdated = async function (driver) {
     let updatedMessage = await driver.$("span[class$='gh-notification-title']");
-    expect(await updatedMessage.getText() == "Updated");
+    expect(await updatedMessage.getText() == "Updated").to.be.true;
 }
 
 const selectPostToDelete = async function (driver, title) {
