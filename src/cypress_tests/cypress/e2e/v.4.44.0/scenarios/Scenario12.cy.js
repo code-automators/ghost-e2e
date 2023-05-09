@@ -1,6 +1,6 @@
 import { HomePage } from "../pages/homePage.cy";
 import { SignInPage } from "../pages/signinPage.cy";
-import  config  from "./assets/config.json";
+import config from "./assets/config.json";
 import { takeCypressScreenshot } from "./utils/takeScreenshot";
 
 describe("Scenario 12", () => {
@@ -33,7 +33,7 @@ describe("Scenario 12", () => {
         takeCypressScreenshot("Scenario12", "checkLoginWithNewCreds")
     })
 
-    after(() =>{
+    after(() => {
         let homePage = new HomePage();
         let profilePage = homePage.goToProfile();
         profilePage.changeCredentials(config.user, config.password, config.new_password)

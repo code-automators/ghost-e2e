@@ -1,6 +1,6 @@
 import config from '../assets/config.json';
 
-export function takeCypressScreenshot(scenario, step){
+export function takeCypressScreenshot(scenario, step) {
     let date = new Date();
     let datetime = date.getFullYear() + '-' + (date.getMonth()) + '-' + date.getDate();
     let ghostVersion = config.ghost_ver;

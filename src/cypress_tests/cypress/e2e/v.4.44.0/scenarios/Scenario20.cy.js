@@ -1,6 +1,6 @@
 import { HomePage } from "../pages/homePage.cy";
 import { SignInPage } from "../pages/signinPage.cy";
-import  config  from "./assets/config.json";
+import config from "./assets/config.json";
 import { takeCypressScreenshot } from "./utils/takeScreenshot";
 
 describe("Scenario 20", () => {
@@ -22,7 +22,7 @@ describe("Scenario 20", () => {
         takeCypressScreenshot("Scenario20", "checkIfSiteIsPrivate")
     })
 
-    after(()=> {
+    after(() => {
         let homePage = new HomePage();
         let settingsPage = homePage.goToGeneralSettings();
         settingsPage.togglePrivate();

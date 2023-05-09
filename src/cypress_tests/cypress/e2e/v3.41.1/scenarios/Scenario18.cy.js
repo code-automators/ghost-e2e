@@ -1,6 +1,6 @@
 import { SignInPage } from "../pages/signinPage.cy";
 import { takeCypressScreenshot } from "./utils/takeScreenshot";
-import  config  from "./assets/config.json";
+import config from "./assets/config.json";
 
 
 describe("Escenario 18", () => {
@@ -17,7 +17,7 @@ describe("Escenario 18", () => {
         let newPost = postsPage.goToCreatePost();
         takeCypressScreenshot("Scenario18", "goToCreatePost");
         // And the user fills out the form and publishes the post
-        let postName = config.new_title + (Math.random() * 10000 ).toString();
+        let postName = config.new_title + (Math.random() * 10000).toString();
         let publishedPost = newPost.createPost(postName, config.new_content);
         takeCypressScreenshot("Scenario18", "createPost");
         homePage.goToPostList();
