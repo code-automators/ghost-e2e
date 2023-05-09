@@ -10,6 +10,9 @@
   "license": "ISC",
   "dependencies": {
     "chai": "^4.3.7",
-    "kraken-node": "^1.0.24"
+    "kraken-node": "^1.0.24",
+    "prompt-sync": "^4.2.0",
+    "resemblejs": "^4.1.0",
+    "valid-path": "^2.1.0"
   }
 }
