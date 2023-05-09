@@ -12,7 +12,7 @@ describe("Scenario 20", () => {
         takeCypressScreenshot("Scenario20", "login")
         // When the user wants to change the blog's settings
         let settingsPage = homePage.goToGeneralSettings();
-        takeCypressScreenshot("Scenario20", "goToGeneralSettings")
+        takeCypressScreenshot("Scenario20", "goToSettings")
         // And the user changes the settings and makes the blog private
         settingsPage.changeSettingsAndMakePrivate(config.new_site_name);
         takeCypressScreenshot("Scenario20", "changeSettingsAndMakePrivate")

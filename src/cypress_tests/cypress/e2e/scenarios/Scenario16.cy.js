@@ -24,7 +24,7 @@ describe("Scenario 16", () => {
         takeCypressScreenshot("Scenario16", "createNewTag")
         // And once it is created, the user goes to the post list and selects a random post
         let postsPage = homePage.goToPostList();
-        takeCypressScreenshot("Scenario16", "goToPostList")
+        takeCypressScreenshot("Scenario16", "goToPostsList")
         let postDetails = postsPage.selectRandomPost();
         // And the user adds the new tag to the post
         postDetails.addTagToPost(uniqueTagName);
