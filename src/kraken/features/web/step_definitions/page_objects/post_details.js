@@ -41,7 +41,7 @@ const fillPostName = async function (driver, title) {
 
 const checkNewPostEdited = async function (driver, title) {
     let editedPost = await driver.$("li[class$='gh-list-row gh-posts-list-item']");
-    expect(await editedPost.getText() == title);
+    expect(await editedPost.getText() == title).to.be.true;
 }
 
 /**
