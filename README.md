@@ -121,7 +121,7 @@ Los escenarios que causan cambios de este estilo son:
 - Escenario 12 (Cambio de credenciales del admin)
   - Se arregla ingresando con las credenciales nuevas y cambiándolas por las viejas
 - Escenario 20 (Cambio de ajustes generales y visibilidad del sitio web)
-  - Se arregla llendo a la sección de ajustes y desactivando el modo privado del sitio web
+  - Se arregla yendo a la sección de ajustes y desactivando el modo privado del sitio web
 
 ## Licencia
 
