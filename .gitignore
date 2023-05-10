@@ -32,7 +32,7 @@ bld/
 [Oo]bj/
 [Ll]og/
 [Ll]ogs/
-src/cypress_tests/cypress/screenshots/*
+*screenshots/
 *reports/
 
 # Visual Studio 2015/2017 cache/options directory
