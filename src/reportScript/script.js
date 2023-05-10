@@ -1,71 +1,92 @@
-const compareImages = require("resemblejs/compareImages")
+const compareImages = require("resemblejs/compareImages");
 const config = require("./config.json");
-const fs = require('fs');
-const prompt = require('prompt-sync')({ sigint: true });
-const validPath = require('validPath');
+const fs = require("fs");
+const prompt = require("prompt-sync")({ sigint: true });
+const validPath = require("valid-path");
 
 const { options } = config;
 
 async function executeTest() {
+  const oldVersionFolder = getUserInput("Enter the old version folder path: ");
+  const newVersionFolder = getUserInput("Enter the new version folder path: ");
 
-    let oldVersionFolder = "";
-    let newVersionFolder = "";
-    let menu = true;
+  const datetime = getFormattedDate();
+  const reportDirectory = `./VRTReports/${datetime}`;
+  createDirectory(reportDirectory);
 
-    while (menu) {
-        if (oldVersionFolder === "") {
-            oldVersionFolder = prompt('Enter the old version folder path: ');
-            if (!validPath(oldVersionFolder)) {
-                console.log("Invalid path, please try again");
-                oldVersionFolder = "";
-                continue;
-            }
-        }
-
-        newVersionFolder = prompt('Enter the new version folder path: ');
-        if (!validPath(newVersionFolder)) {
-            console.log("Invalid path, please try again");
-            continue;
-        }
-    }
-
-    let date = new Date();
-    let datetime = date.getFullYear() + '-' + (date.getMonth()) + '-' + date.getDate();
-    if (!fs.existsSync(`./reports/${datetime}`)) {
-        fs.mkdirSync(`./reports/${datetime}/`, { recursive: true });
-    }
-    let resultInfo = {}
-    fs.readdir(newVersionFolder, async function (err, files) {
-        if (err) {
-            console.error("Could not list the directory.", err);
-            process.exit(1);
-        }
-
-        for (file in files) {
-            let filename = file.split(/(\\|\/)/g).pop()
-            const data = await compareImages(
-                fs.readFileSync(`${oldVersionFolder}/${filename}`),
-                fs.readFileSync(`${newVersionFolder}/${filename}`),
-                options
-            );
-            resultInfo[b] = {
-                isSameDimensions: data.isSameDimensions,
-                dimensionDifference: data.dimensionDifference,
-                rawMisMatchPercentage: data.rawMisMatchPercentage,
-                misMatchPercentage: data.misMatchPercentage,
-                diffBounds: data.diffBounds,
-                analysisTime: data.analysisTime
-            }
-            fs.writeFileSync(`./results/${datetime}/compare-${fileName}`, data.getBuffer());
-        }
-    })
-
-
-    console.log('------------------------------------------------------------------------------------')
-    console.log("Execution finished. Check the report under the results folder")
-    return resultInfo;
+  const resultInfo = await compareFiles(oldVersionFolder, newVersionFolder, reportDirectory);
+  console.log(
+    "------------------------------------------------------------------------------------"
+  );
+  console.log(
+    "Execution finished. Check the report under the results folder"
+  );
+  return resultInfo;
 }
 
+function getUserInput(message) {
+  let input = "";
+  while (!input) {
+    input = prompt(message);
+    if (!validPath(input)) {
+      console.log("Invalid path, please try again");
+      input = "";
+    }
+  }
+  return input;
+}
+
+function getFormattedDate() {
+  let date = new Date();
+  return (
+    date.getFullYear() +
+    "-" +
+    (date.getMonth() + 1) +
+    "-" +
+    date.getDate()
+  );
+}
+
+function createDirectory(path) {
+  if (!fs.existsSync(path)) {
+    fs.mkdirSync(path, { recursive: true });
+  }
+}
+
+async function compareFiles(oldVersionFolder, newVersionFolder, reportDirectory) {
+  const resultInfo = {};
+  const files = fs.readdirSync(newVersionFolder);
+
+  for (const file of files) {
+    const filename = file.split(/(\|\/)/g).pop();
+
+    // Copy old and new version files to the VRT Report folder
+    fs.copyFileSync(`${oldVersionFolder}/${filename}`, `${reportDirectory}/before-${filename}`);
+    fs.copyFileSync(`${newVersionFolder}/${filename}`, `${reportDirectory}/after-${filename}`);
+
+    const data = await compareImages(
+      fs.readFileSync(`${reportDirectory}/before-${filename}`),
+      fs.readFileSync(`${reportDirectory}/after-${filename}`),
+      options
+    );
+
+    resultInfo[file] = {
+      isSameDimensions: data.isSameDimensions,
+      dimensionDifference: data.dimensionDifference,
+      rawMisMatchPercentage: data.rawMisMatchPercentage,
+      misMatchPercentage: data.misMatchPercentage,
+      diffBounds: data.diffBounds,
+      analysisTime: data.analysisTime,
+    };
+
+    fs.writeFileSync(
+      `${reportDirectory}/compare-${filename}`,
+      data.getBuffer()
+    );
+  }
+
+  return resultInfo;
+}
 
 function browser(b, info){
     return `<div class=" browser" id="test0">
@@ -91,7 +112,6 @@ function browser(b, info){
     </div>
   </div>`
 }
-
 
 function createReport(datetime, resInfo){
     return `
