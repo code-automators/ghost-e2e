@@ -21,7 +21,7 @@ class PostPage {
     cy.get("button.close.settings-menu-header-action").click();
 
     cy.get("div.gh-publishmenu-trigger").click();
-    cy.get("button.gh-btn-blue.gh-publishmenu-button").click();
+    cy.get("button[class='gh-btn gh-btn-black gh-publishmenu-button gh-btn-icon ember-view']").click();
     return cy.get(".gh-notification-content");
   }
 
@@ -35,7 +35,7 @@ class PostPage {
     cy.get("a.gh-list-data.gh-post-list-title").first().click();
     cy.get("textarea.gh-editor-title").clear().type(postTitle);
     cy.get("div.gh-publishmenu-trigger").click();
-    cy.get("button.gh-btn-blue.gh-publishmenu-button").click();
+    cy.get("button[class='gh-btn gh-btn-black gh-publishmenu-button gh-btn-icon ember-view']").click();
     return cy.get(".gh-notification-content");
   }
 }

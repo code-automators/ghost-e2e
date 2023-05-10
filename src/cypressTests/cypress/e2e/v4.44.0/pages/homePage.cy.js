@@ -90,6 +90,12 @@ class HomePage {
     return new AuthorPageSite();
   }
 
+  goToPublishedPagesList(){
+    let host = window.location.origin
+    cy.visit(host + "/ghost/#/pages?type=published")
+    return new PageListPage();
+  }
+
   getNavbarMenu() {
     return cy.get("nav.site-nav");
   }

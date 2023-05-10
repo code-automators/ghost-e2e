@@ -12,14 +12,14 @@ class PageDetails {
     createNewImagedPage(page_name, image_path) {
         cy.get("textarea[placeholder$='Page Title']").clear().type(page_name);
         cy.get("div[data-placeholder$='Begin writing your page...']").clear()
-        .type("This is a test page, tested with Cypress :)");
+            .type("This is a test page, tested with Cypress :)");
 
         cy.get("button[title$='Settings']").click();
-        cy.get("input[class$='x-file--input']").selectFile(image_path, {force: true})
+        cy.get("input[class$='x-file--input']").selectFile(image_path, { force: true })
         cy.get("button[aria-label$='Close']").click()
 
         cy.get("div.gh-publishmenu-trigger").click();
-        cy.get("button.gh-btn-blue.gh-publishmenu-button").click();
+        cy.get("button[class='gh-btn gh-btn-black gh-publishmenu-button gh-btn-icon ember-view']").click();
 
         let host = window.location.origin
         cy.visit(host + "/ghost/#/pages?type=published")
@@ -27,22 +27,18 @@ class PageDetails {
     }
 
     createNewPage(page_name) {
-        cy.get("textarea[placeholder$='Page Title']").clear().type(page_name);
-        cy.get("div[data-placeholder$='Begin writing your page...']").clear().type("This is a test page, tested with Cypress :)")
+        cy.get("textarea[placeholder='Page title']").clear().type(page_name);
+        cy.get("div[data-placeholder='Begin writing your page...']").clear().type("This is a test page, tested with Cypress :)")
         cy.get("div.gh-publishmenu-trigger").click();
-        cy.get("button.gh-btn-blue.gh-publishmenu-button").click();
-
-        let host = window.location.origin
-        cy.visit(host + "/ghost/#/pages?type=published")
-        return new PageListPage();
+        cy.get("button[class='gh-btn gh-btn-black gh-publishmenu-button gh-btn-icon ember-view']").click();
     }
 
     uploadNewImage(image_path) {
         cy.get("button[title$='Settings']").click();
-        cy.get("input[class$='x-file--input']").selectFile(image_path, {force: true})
+        cy.get("input[class$='x-file--input']").selectFile(image_path, { force: true })
         cy.get("button[aria-label$='Close']").click()
         cy.get("div.gh-publishmenu-trigger").click();
-        cy.get("button.gh-btn-blue.gh-publishmenu-button").click();
+        cy.get("button[class='gh-btn gh-btn-black gh-publishmenu-button gh-btn-icon ember-view']").click();
         return cy.get(".gh-notification-content");
     }
 }
