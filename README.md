@@ -94,10 +94,10 @@ Link a la wiki: https://github.com/code-automators/ghost-e2e/wiki
 ### Cypress
 
 1. Instalar Cypress con `npm i -g cypress`.
-2. Ir a la ruta de Cypress con `cd src/cypress_tests/`.
-3. Modificar el archivo de configuración para asignar los valores deseados por el usuario. El archivo se encuentra en: `src/cypress_tests/cypress/e2e/scenarios/assets/config.json`. Es importante notar que acá se encuentran las credenciales a usar en los escenarios de prueba, por lo que es necesario que sean modificados de acorde a las preferencias del tester.
-4. Ejecutar todos los escenarios de prueba con: `cypress run --spec "cypress/e2e/scenarios/*cy.js"`.
-5. Ejecutar solo un escenario con: `cypress run --spec "cypress/e2e/scenarios/Scenario1.cy.js"`.
+2. Ir a la ruta de Cypress con `cd src/cypressTests/`.
+3. Modificar el archivo de configuración para asignar los valores deseados por el usuario. El archivo se encuentra en: `src/cypressTests/cypress/e2e/scenarios/assets/config.json`. Es importante notar que acá se encuentran las credenciales a usar en los escenarios de prueba, por lo que es necesario que sean modificados de acorde a las preferencias del tester.
+4. Ejecutar todos los escenarios de prueba con: `cypress run --spec "cypress/e2e/[VERSIÓN DE GHOST]/scenarios/*cy.js"`. Donde la versión de ghost es la versión de la aplicación que se quiere testear.
+5. Ejecutar solo un escenario con: `cypress run --spec "cypress/e2e/[VERSIÓN DE GHOST]/scenarios/Scenario1.cy.js"`.
 6. Alternativamente, puede usar `cypress open` y seleccionar este proyecto para seguir las instrucciones de ejecución mediante la GUI.
 
 ### Kraken
@@ -105,10 +105,10 @@ Link a la wiki: https://github.com/code-automators/ghost-e2e/wiki
 2. Ir a la carpeta de kraken con `cd src/kraken`.
 3. Modificar el archivo de configuración para asignar los valores deseados por el usuario. El archivo se encuentra en: `src/kraken/properties.json`. Es importante notar que acá se encuentran las credenciales a usar en los escenarios de prueba, por lo que es necesario que sean modificados de acorde a las preferencias del tester.
 4. Copiar el escenario deseado para ejecutar en el archivo RunningScenario.feature (Los escenarios se encuentran en `src/kraken/features/scenarios`).
-5. Ejecutar el comando `node [RUTA LOCAL DE KRAKEN] run`. 
-Notas: 
+5. Ejecutar el comando `node [RUTA LOCAL DE KRAKEN] run`.
+Notas:
 - Para que funcione este comando, es necesario estar ubicado en `src/kraken`.
-- El ejecutable es el script binario de kraken-node ubicado en `node_modules`, el cual fue instalado con el comando de `npm i kraken-node`.   Un ejemplo de este comando para correr las pruebas es:  
+- El ejecutable es el script binario de kraken-node ubicado en `node_modules`, el cual fue instalado con el comando de `npm i kraken-node`.   Un ejemplo de este comando para correr las pruebas es:
 `node "C:\Users\ElRey\Documents\Scripts\JavaScript\ghost-e2e\node_modules\kraken-node\bin\kraken-node" run`
 
 #### Notas de la ejecución
