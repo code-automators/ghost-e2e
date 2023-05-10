@@ -16,10 +16,8 @@ class SignInPage {
     cy.wait(1000);
     cy.get('input[name="identification"]').clear({ force: true }).type(email, { force: true });
     cy.wait(500);
-    cy.get('input[name="password"]').clear({ force: true }).type(password, { force: true });
+    cy.get('input[name="password"]').clear({ force: true }).type(password+"{enter}", { force: true });
     cy.wait(500);
-    cy.get("button[class='login gh-btn gh-btn-login gh-btn-block gh-btn-icon js-login-button ember-view'").click(({force: true}));
-    cy.wait(1000);
     return new HomePage();
   }
 

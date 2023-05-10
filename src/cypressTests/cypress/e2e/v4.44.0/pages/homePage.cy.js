@@ -61,8 +61,8 @@ class HomePage {
 
   goToProfile() {
     cy.wait(500)
-    cy.contains("Staff").click()
-    cy.contains("Owner").click()
+    cy.get("div[class='gh-user-avatar relative']").click()
+    cy.contains("Your profile").click()
     return new ProfilePage();
   }
 
