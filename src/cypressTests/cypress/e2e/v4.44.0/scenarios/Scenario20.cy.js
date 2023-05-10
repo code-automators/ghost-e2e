@@ -23,9 +23,9 @@ describe("Scenario20", () => {
     })
 
     after(() => {
-        let homePage = new HomePage();
-        let settingsPage = homePage.goToGeneralSettings();
-        settingsPage.togglePrivate();
+        //let homePage = new HomePage();
+        //let settingsPage = homePage.goToGeneralSettings();
+        //settingsPage.togglePrivate();
     })
 
 })
