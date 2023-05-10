@@ -1,7 +1,7 @@
 import { HomePage } from "../pages/homePage.cy";
 import { SignInPage } from "../pages/signinPage.cy";
 import config from "./assets/config.json";
-import { takeCypressScreenshot } from "./utils/takeScreenshot";
+import { takeCypressScreenshot } from "../utils/takeScreenshot";
 
 describe("Scenario 20", () => {
 
