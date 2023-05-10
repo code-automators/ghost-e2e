@@ -3,7 +3,7 @@
     "user": "juan.romero1201@gmail.com",
 	"password": "y@!kZ*Yw3pkCL3KpQ&%Z2XF8^",
     "new_page_name": "Ghost Test",
-    "image_path": "cypress/e2e/scenarios/assets/Kyra2.jpeg",
+    "image_path": "cypress/e2e/v4.44.0/assets/Kyra2.jpeg",
     "new_user" : "test@cypress.com",
     "new_password": "xv^Sy^cETQWkaBS53n#6hAN4s",
     "new_tag_name": "Cypress tag",
@@ -17,7 +17,7 @@
     "new_navigation_bar_uri": "tag/getting-started/",
     "name_integration": "NewIntegration",
     "description_integration": "Description new integration",
-    "banner_path": "cypress/e2e/scenarios/assets/robots.jpg",
+    "banner_path": "cypress/e2e/v4.44.0/assets/robots.jpg",
     "user_profile_slug": "jpcorreap",
     "user_profile_website": "https://google.com"
 }

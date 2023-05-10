@@ -1,6 +1,6 @@
 import { HomePage } from "../pages/homePage.cy";
 import { SignInPage } from "../pages/signinPage.cy";
-import config from "./assets/config.json";
+import config from "../assets/config.json";
 import { takeCypressScreenshot } from "../utils/takeScreenshot";
 
 describe("Scenario 12", () => {
@@ -27,7 +27,7 @@ describe("Scenario 12", () => {
         takeCypressScreenshot("checkForErrors")
         // And the user tries to login with their new credentials
         homePage = signinPage.login(config.new_user, config.new_password);
-        takeCypressScreenshot( "loginWithNewCreds")
+        takeCypressScreenshot("loginWithNewCreds")
         // Then the user should log in successfully
         homePage.getUrl().should('eq', 'http://localhost:2368/ghost/#/site')
         takeCypressScreenshot("checkLoginWithNewCreds")
