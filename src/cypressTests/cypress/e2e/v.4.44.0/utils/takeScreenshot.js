@@ -1,4 +1,4 @@
-import config from '../assets/config.json';
+import config from './../assets/config.json';
 
 export function takeCypressScreenshot(stepName) {
     let date = new Date();
