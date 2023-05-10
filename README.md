@@ -1,6 +1,6 @@
 # Ghost E2E
 
-Pruebas de extremo a extremo durante la automatización de pruebas en Ghost CMS v3.41.1
+Pruebas de extremo a extremo durante la automatización de pruebas en Ghost CMS v3.41.1 y v4.44.0
 
 Realizado por:
 - Juan Andrés Romero Colmenares - j.romero11@uniandes.edu.co
@@ -96,8 +96,14 @@ Link a la wiki: https://github.com/code-automators/ghost-e2e/wiki
 1. Instalar Cypress con `npm i -g cypress`.
 2. Ir a la ruta de Cypress con `cd src/cypressTests/`.
 3. Modificar el archivo de configuración para asignar los valores deseados por el usuario. El archivo se encuentra en: `src/cypressTests/cypress/e2e/scenarios/assets/config.json`. Es importante notar que acá se encuentran las credenciales a usar en los escenarios de prueba, por lo que es necesario que sean modificados de acorde a las preferencias del tester.
-4. Ejecutar todos los escenarios de prueba con: `cypress run --spec "cypress/e2e/[VERSIÓN DE GHOST]/scenarios/*cy.js"`. Donde la versión de ghost es la versión de la aplicación que se quiere testear.
-5. Ejecutar solo un escenario con: `cypress run --spec "cypress/e2e/[VERSIÓN DE GHOST]/scenarios/Scenario1.cy.js"`.
+4. Ejecutar todos los escenarios de prueba con: 
+    ```bash
+    cypress run --spec "cypress/e2e/v<VERSIÓN-DE-GHOST>/scenarios/*cy.js"
+    ```
+5. Ejecutar solo un escenario con: 
+    ```bash
+    cypress run --spec "cypress/e2e/v<VERSIÓN-DE-GHOST>/scenarios/Scenario1.cy.js"
+    ```
 6. Alternativamente, puede usar `cypress open` y seleccionar este proyecto para seguir las instrucciones de ejecución mediante la GUI.
 
 ### Kraken
@@ -105,17 +111,23 @@ Link a la wiki: https://github.com/code-automators/ghost-e2e/wiki
 2. Ir a la carpeta de kraken con `cd src/kraken`.
 3. Modificar el archivo de configuración para asignar los valores deseados por el usuario. El archivo se encuentra en: `src/kraken/properties.json`. Es importante notar que acá se encuentran las credenciales a usar en los escenarios de prueba, por lo que es necesario que sean modificados de acorde a las preferencias del tester.
 4. Copiar el escenario deseado para ejecutar en el archivo RunningScenario.feature (Los escenarios se encuentran en `src/kraken/features/scenarios`).
-5. Ejecutar el comando `node [RUTA LOCAL DE KRAKEN] run`.
+5. Ejecutar el comando `node <RUTA-LOCAL-DE-KRAKEN> run`.
 Notas:
 - Para que funcione este comando, es necesario estar ubicado en `src/kraken`.
-- El ejecutable es el script binario de kraken-node ubicado en `node_modules`, el cual fue instalado con el comando de `npm i kraken-node`.   Un ejemplo de este comando para correr las pruebas es:
-`node "C:\Users\ElRey\Documents\Scripts\JavaScript\ghost-e2e\node_modules\kraken-node\bin\kraken-node" run`
+- El ejecutable es el script binario de kraken-node ubicado en `node_modules`, el cual fue instalado con el comando de `npm i kraken-node`. Un ejemplo de este comando para correr las pruebas es: `node ".\node_modules\kraken-node\bin\kraken-node" run`
 
 #### Notas de la ejecución
-Para el caso de kraken hay unos escenarios que alteran el estado de la aplicación de manera que otros escenarios no puedan ser ejecutados.
+Puede ejecutar Ghost con el siguiente comando:
+```bash
+docker run -d -e url=http://localhost:2368 -p 2368:2368 --name ghost_3.41.1 ghost:3.41.1
+```
+
+Al inicializar Ghost, se debe acceder a la URL correspondiente desde el navegador y completar manualmente los pasos de registro inicial de usuario, con las credenciales en los archivos de configuración JSON del proyecto. Además, la primera vez que se abre el sitio web, aparecerá una alerta de solicitud de actualización de seguridad, esta se debe cerrar para evitar fallas por interfaz en algunas de las pruebas existentes.
+
+Para el caso de Kraken hay unos escenarios que alteran el estado de la aplicación de manera que otros escenarios no puedan ser ejecutados.
 Es necesario restablecer ghost o arreglar manualmente estos cambios realizados por el escenario y seguir probando.
 
-Los escenarios de kraken NO se pueden ejecutar en paralelo, deberían ejecutarse secuencialmente reemplazamdo uno por uno en el RunningScenario.feature. Solo debe de haber un escenario al mismo tiempo en RunningScenario.feature
+Los escenarios de Kraken NO se pueden ejecutar en paralelo, deberían ejecutarse secuencialmente reemplazando uno por uno en el RunningScenario.feature. Solo debe de haber un escenario al mismo tiempo en RunningScenario.feature
 
 Los escenarios que causan cambios de este estilo son:
 - Escenario 12 (Cambio de credenciales del admin)
