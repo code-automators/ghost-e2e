@@ -1,5 +1,5 @@
-import { SignInPage } from "./../pages/signinPage.cy";
 import config from "./../assets/config.json";
+import { SignInPage } from "./../pages/signinPage.cy";
 
 
 describe("Scenario 7", () => {
@@ -15,14 +15,9 @@ describe("Scenario 7", () => {
         let postsPage = homePage.goToPostList();
         let postDetails = postsPage.selectPostByName("Post with multiple tags");
         // And the user adds multiple tags to the post
-        let tags = ["tag1", "tag2", "tag3"];
+        let tags = Array.from({ length: 5 }, () => postDetails.generateRandomTagName(10));
         postDetails.addMultipleTagsToPost(tags);
         // Then the post should be displayed in the post list with the different tags
-        let filteredPosts = homePage.goToPostListFilteredByTag(tags[0]);
-        filteredPosts.selectPost().should('exist');
-        filteredPosts = homePage.goToPostListFilteredByTag(tags[1]);
-        filteredPosts.selectPost().should('exist');
-        filteredPosts = homePage.goToPostListFilteredByTag(tags[2]);
-        filteredPosts.selectPost().should('exist');
+        tags.forEach((tag) => { homePage.goToPostListFilteredByTag(tag).selectPost().should('exist'); });
     });
 });
