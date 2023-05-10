@@ -8,7 +8,8 @@ class IntegrationListPage {
     }
 
     addIntegration(name, description) {
-        cy.get('div.apps-grid-cell.new-integration-cell').click();
+        let host = window.location.origin;
+        cy.visit(host + "/ghost/#/settings/integrations/new");
         cy.get('input#new-integration-name').first().type(name);
         cy.get('button.gh-btn.gh-btn-green').click();
         cy.get('input#integration_description').type(description);
