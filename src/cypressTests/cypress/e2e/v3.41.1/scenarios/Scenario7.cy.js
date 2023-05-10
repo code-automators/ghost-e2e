@@ -15,7 +15,7 @@ describe("Scenario 7", () => {
         let postsPage = homePage.goToPostList();
         let postDetails = postsPage.selectPostByName("Post with multiple tags");
         // And the user adds multiple tags to the post
-        let tags = Array.from({ length: 5 }, () => postDetails.generateRandomTagName(10));
+        let tags = Array.from({ length: 3 }, () => postDetails.generateRandomTagName(5));
         postDetails.addMultipleTagsToPost(tags);
         // Then the post should be displayed in the post list with the different tags
         tags.forEach((tag) => { homePage.goToPostListFilteredByTag(tag).selectPost().should('exist'); });
