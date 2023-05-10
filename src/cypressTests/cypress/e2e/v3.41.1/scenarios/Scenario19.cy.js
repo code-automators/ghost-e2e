@@ -1,5 +1,5 @@
-import { SignInPage } from "../pages/signinPage.cy";
-import config from "../assets/config.json";
+import { SignInPage } from "./../pages/signinPage.cy";
+import config from "./../assets/config.json";
 
 
 describe("Scenario 19", () => {

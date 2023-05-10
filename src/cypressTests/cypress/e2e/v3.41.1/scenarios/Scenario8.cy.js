@@ -1,6 +1,6 @@
-import { SignInPage } from "../pages/signinPage.cy";
-import config from "../assets/config.json";
-import { takeCypressScreenshot } from "../utils/takeScreenshot";
+import { SignInPage } from "./../pages/signinPage.cy";
+import config from "./../assets/config.json";
+import { takeCypressScreenshot } from "./../utils/takeScreenshot";
 
 describe("Scenario8", () => {
 
