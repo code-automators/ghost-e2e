@@ -1,9 +1,9 @@
 import { SignInPage } from "../pages/signinPage.cy";
-import { takeCypressScreenshot } from "./utils/takeScreenshot";
+import { takeCypressScreenshot } from "../utils/takeScreenshot";
 import config from "./assets/config.json";
 
 
-describe("Escenario 18", () => {
+describe("Scenario18", () => {
 
     it("Eliminar un post", () => {
         // Given user is logged in
