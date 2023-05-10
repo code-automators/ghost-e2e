@@ -1,8 +1,8 @@
 import config from '../scenarios/assets/config.json';
 
-export function takeCypressScreenshot(scenario, step) {
+export function takeCypressScreenshot(stepName) {
     let date = new Date();
     let datetime = date.getFullYear() + '-' + (date.getMonth()) + '-' + date.getDate();
     let ghostVersion = config.ghost_ver;
-    cy.screenshot(`./cypress/screenshots/${datetime}/v${ghostVersion}/${scenario}_${step}`);
+    cy.screenshot(`./cypress/screenshots/${datetime}/v${ghostVersion}/${Cypress.currentTest.titlePath[0].replace(' ', '')}_${stepName}`);
 }
