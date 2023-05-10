@@ -12,9 +12,10 @@ async function executeTest() {
 
   const datetime = getFormattedDate();
   const reportDirectory = `./VRTReports/${datetime}`;
+  const screenshotDirectory = `${reportDirectory}/screenshots`
   createDirectory(reportDirectory);
 
-  const resultInfo = await compareFiles(oldVersionFolder, newVersionFolder, reportDirectory);
+  const resultInfo = await compareFiles(oldVersionFolder, newVersionFolder, screenshotDirectory);
   console.log(
     "------------------------------------------------------------------------------------"
   );
@@ -53,7 +54,7 @@ function createDirectory(path) {
   }
 }
 
-async function compareFiles(oldVersionFolder, newVersionFolder, reportDirectory) {
+async function compareFiles(oldVersionFolder, newVersionFolder, screenshotDirectory) {
   const resultInfo = {};
   const files = fs.readdirSync(newVersionFolder);
 
@@ -61,12 +62,12 @@ async function compareFiles(oldVersionFolder, newVersionFolder, reportDirectory)
     const filename = file.split(/(\|\/)/g).pop();
 
     // Copy old and new version files to the VRT Report folder
-    fs.copyFileSync(`${oldVersionFolder}/${filename}`, `${reportDirectory}/before-${filename}`);
-    fs.copyFileSync(`${newVersionFolder}/${filename}`, `${reportDirectory}/after-${filename}`);
+    fs.copyFileSync(`${oldVersionFolder}/${filename}`, `${screenshotDirectory}/before-${filename}`);
+    fs.copyFileSync(`${newVersionFolder}/${filename}`, `${screenshotDirectory}/after-${filename}`);
 
     const data = await compareImages(
-      fs.readFileSync(`${reportDirectory}/before-${filename}`),
-      fs.readFileSync(`${reportDirectory}/after-${filename}`),
+      fs.readFileSync(`${screenshotDirectory}/before-${filename}`),
+      fs.readFileSync(`${screenshotDirectory}/after-${filename}`),
       options
     );
 
@@ -80,7 +81,7 @@ async function compareFiles(oldVersionFolder, newVersionFolder, reportDirectory)
     };
 
     fs.writeFileSync(
-      `${reportDirectory}/compare-${filename}`,
+      `${screenshotDirectory}/compare-${filename}`,
       data.getBuffer()
     );
   }
