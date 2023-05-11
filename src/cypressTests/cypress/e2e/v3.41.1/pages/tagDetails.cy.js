@@ -20,7 +20,7 @@ class TagDetails {
         cy.get("input[class$='x-file--input']").selectFile(imagePath, { force: true })
         cy.wait(500);
         cy.contains("Save").click();
-        cy.wait(3000);
+        cy.wait(4000);
     }
 
     setRandomTagName() {
@@ -28,7 +28,7 @@ class TagDetails {
         cy.get("#tag-name").clear().type(newTagName, { force: true });
         cy.wait(500);
         cy.contains("Save").click();
-        cy.wait(1000);
+        cy.wait(3000);
         return newTagName;
     }
 
@@ -52,7 +52,7 @@ class TagDetails {
 
     deleteTag() {
         cy.contains("Delete tag").click();
-        cy.wait(200);
+        cy.wait(500);
         cy.get(".gh-btn-red").eq(1).click();
     }
 
