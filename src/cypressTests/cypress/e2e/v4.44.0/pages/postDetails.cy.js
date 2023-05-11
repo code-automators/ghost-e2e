@@ -61,8 +61,9 @@ class PostDetails {
   createPost(postTitle, contentTitle) {
     cy.get('textarea.gh-editor-title').type(postTitle);
     cy.get('div.koenig-editor__editor').type(contentTitle);
-    cy.get('div.ember-view.ember-basic-dropdown-trigger.gh-btn.gh-btn-outline.gh-publishmenu-trigger').click();
-    cy.get("button[class='gh - btn gh - btn - black gh - publishmenu - button gh - btn - icon ember - view']").click();
+    cy.contains('Publish').click();
+    cy.get("button[class='gh-btn gh-btn-black gh-publishmenu-button gh-btn-icon ember-view']").click();
+    cy.get('button.gh-btn.gh-btn-black.gh-btn-icon.ember-view').click();
     return new PostDetails();
   }
 
