@@ -19,8 +19,9 @@ describe("Scenario04", () => {
         let newPage = pageListPage.goToCreatePage();
         takeCypressScreenshot("goToCreatePage")
         // And the user fills out the form and publishes the page
-        let publishedList = newPage.createNewPage(uniquePageName);
+        newPage.createNewPage(uniquePageName);
         takeCypressScreenshot("createNewPage")
+        let publishedList = homePage.goToPublishedPagesList();
         // Then the new page should be present in the "Published" section
         publishedList.getList().should("contain", uniquePageName);
         takeCypressScreenshot("checkNewPagePublished")
