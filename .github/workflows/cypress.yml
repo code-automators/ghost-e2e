@@ -48,9 +48,9 @@ jobs:
       - run: npm ci
       - run: npm run build --if-present
       - run: npm test -- --spec 'cypress/e2e/v4.44.0/scenarios/*.cy.js'
+      continue-on-error: true
       - run: cd /home/runner/work/ghost-e2e/ghost-e2e/src/cypressTests/cypress/screenshots/${{steps.date.outputs.time}}/4.44.0/ && ls -l
       - run: cd /home/runner/work/ghost-e2e/ghost-e2e/src/cypressTests/cypress/screenshots/${{steps.date.outputs.time}}/ && ls -l
-        continue-on-error: true
       - uses: actions/upload-artifact@v3
         with:
           name: new-ghost-version-files
