@@ -6,6 +6,8 @@ import config from "./../assets/config.json";
 describe("Scenario4", () => {
 
     it("Publish a new page", () => {
+        let seed = Math.floor(Math.random() * 1000).toString();
+        let uniquePageName = config.new_page_name + seed;
         // Given user is logged in
         let signinPage = new SignInPage();
         let homePage = signinPage.login(config.user, config.password);
@@ -17,10 +19,10 @@ describe("Scenario4", () => {
         let newPage = pageListPage.goToCreatePage();
         takeCypressScreenshot("goToCreatePage")
         // And the user fills out the form and publishes the page
-        let publishedList = newPage.createNewPage(config.new_page_name);
+        let publishedList = newPage.createNewPage(uniquePageName);
         takeCypressScreenshot("createNewPage")
         // Then the new page should be present in the "Published" section
-        publishedList.getList().should("contain", config.new_page_name);
+        publishedList.getList().should("contain", uniquePageName);
         takeCypressScreenshot("checkNewPagePublished")
     })
 
