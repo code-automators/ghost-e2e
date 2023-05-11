@@ -5,6 +5,7 @@ module.exports = defineConfig({
   e2e: {
     video: false,
     trashAssetsBeforeRuns: false,
+    chromeWebSecurity: false,
     setupNodeEvents(on, config) {
       on('after:screenshot', (details) => {
         if (details.name == undefined){
