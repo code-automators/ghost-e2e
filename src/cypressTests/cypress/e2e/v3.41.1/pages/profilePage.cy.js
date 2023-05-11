@@ -31,6 +31,7 @@ class ProfilePage {
         cy.get("#user-new-password-verification").clear().type(newPassword)
         cy.wait(500)
         cy.contains("Change Password").click()
+        cy.wait(1000);
     }
 }
 
