@@ -31,6 +31,9 @@ class PageDetails {
         cy.get("div[data-placeholder='Begin writing your page...']").clear().type("This is a test page, tested with Cypress :)")
         cy.get("div.gh-publishmenu-trigger").click();
         cy.get("button[class='gh-btn gh-btn-black gh-publishmenu-button gh-btn-icon ember-view']").click();
+        let host = window.location.origin
+        cy.visit(host + "/ghost/#/pages?type=published")
+        return new PageListPage();
     }
 
     uploadNewImage(image_path) {
