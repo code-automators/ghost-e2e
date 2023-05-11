@@ -1,5 +1,5 @@
 {
-    "url":"https://localhost:2368/",
+    "url":"https://ghost.org/",
     "appName": "Ghost",
     "browsers":["chromium"],
     "options":{
