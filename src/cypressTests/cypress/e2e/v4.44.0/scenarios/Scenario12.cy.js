@@ -29,7 +29,7 @@ describe("Scenario12", () => {
         homePage = signinPage.login(config.new_user, config.new_password);
         takeCypressScreenshot("loginWithNewCreds")
         // Then the user should log in successfully
-        homePage.getUrl().should('eq', `${config.host}}ghost/#/dashboard`)
+        homePage.getUrl().should('eq', `${config.host}ghost/#/dashboard`)
         takeCypressScreenshot("checkLoginWithNewCreds")
     })
 

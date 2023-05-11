@@ -45,6 +45,7 @@ class HomePage {
   goToTagsList() {
     let host = window.location.origin;
     cy.visit(host + "/ghost/#/tags");
+    cy.wait(500);
     this.closeLeavingAlert();
     return new TagsListPage();
   }
@@ -104,7 +105,6 @@ class HomePage {
 
   // Close stochastic leaving page alert
   closeLeavingAlert() {
-    cy.wait(500);
     cy.get('body').then(($body) => {
       if ($body.text().includes('Leave')) {
         cy.get('.gh-btn-red').eq(1).click();
