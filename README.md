@@ -1,5 +1,7 @@
 # Ghost E2E
 
+[![Cypress Test Automation](https://github.com/code-automators/ghost-e2e/actions/workflows/cypress.yml/badge.svg?branch=main)](https://github.com/code-automators/ghost-e2e/actions/workflows/cypress.yml)
+
 Pruebas de extremo a extremo durante la automatización de pruebas en Ghost CMS v3.41.1 y v4.44.0
 
 Realizado por:
