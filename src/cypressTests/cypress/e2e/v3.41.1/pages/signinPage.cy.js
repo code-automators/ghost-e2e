@@ -11,14 +11,14 @@ class SignInPage {
   }
 
   login(email, password) {
-    let host = "http://localhost:2368";
+    let host = "http://34.171.125.255:3411";
     cy.visit(host + "/ghost/#/signin");
     cy.wait(1000);
     cy.get('input[name="identification"]').clear({ force: true }).type(email, { force: true });
     cy.wait(500);
     cy.get('input[name="password"]').clear({ force: true }).type(password, { force: true });
     cy.wait(500);
-    cy.get("#ember12").click(({force: true}));
+    cy.get("#ember12").click(({ force: true }));
     cy.wait(1000);
     return new HomePage();
   }

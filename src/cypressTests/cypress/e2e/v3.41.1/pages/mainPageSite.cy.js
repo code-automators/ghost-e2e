@@ -1,6 +1,6 @@
 class MainPageSite {
     MainPageSite() {
-        if (!cy.url().should("eq", "http://localhost:2368/")) {
+        if (!cy.url().should("eq", "http://34.171.125.255:3411/")) {
             throw new IllegalStateException(
                 "This is not the main blogs Page current page is: " + cy.url()
             );
