@@ -1,6 +1,8 @@
+import config from "./../assets/config.json";
+
 class MainPageSite {
     MainPageSite() {
-        if (!cy.url().should("eq", "http://34.171.125.255:4440/")) {
+        if (!cy.url().should("eq", config.host)) {
             throw new IllegalStateException(
                 "This is not the main blogs Page current page is: " + cy.url()
             );

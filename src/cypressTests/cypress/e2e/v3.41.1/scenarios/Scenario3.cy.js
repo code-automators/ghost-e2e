@@ -2,7 +2,7 @@ import { SignInPage } from "./../pages/signinPage.cy";
 import config from "./../assets/config.json";
 
 
-describe("Scenario 3", () => {
+describe("Scenario3", () => {
     it("Create a new tag with an invalid description", () => {
         // Given user is logged in
         let signinPage = new SignInPage();

@@ -1,5 +1,5 @@
 import { HomePage } from "./homePage.cy";
-
+import config from "./../assets/config.json";
 
 class SignInPage {
   SignInPage() {
@@ -11,8 +11,8 @@ class SignInPage {
   }
 
   login(email, password) {
-    let host = "http://34.171.125.255:3411";
-    cy.visit(host + "/ghost/#/signin");
+    let host = config.host;
+    cy.visit(host + "ghost/#/signin");
     cy.wait(1000);
     cy.get('input[name="identification"]').clear({ force: true }).type(email, { force: true });
     cy.wait(500);

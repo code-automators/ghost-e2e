@@ -3,7 +3,7 @@ import config from "./../assets/config.json";
 
 
 describe("Create a new scheduled post", () => {
-  it("Scenario 13", () => {
+  it("Scenario13", () => {
     // Given user is logged in
     let signinPage = new SignInPage();
     let homePage = signinPage.login(config.user, config.password);
