@@ -39,13 +39,7 @@ class PageDetails {
     uploadNewImage(image_path) {
         cy.get("button[title$='Settings']").click();
         cy.wait(500);
-        cy.get('body').then((body) => {
-            if(body.find("input[class$='x-file--input']").length > 0) {
-                cy.get("a[class='image-cancel']").click()
-                cy.wait(500);
-            }
-            cy.get("input[class$='x-file--input']").selectFile(image_path, {force: true});
-        })
+        cy.get("input[class$='x-file--input']").selectFile(image_path, {force: true});
         cy.get("button[aria-label$='Close']").click()
         cy.get("div.gh-publishmenu-trigger").click();
         cy.get("button.gh-btn-blue.gh-publishmenu-button").click();
