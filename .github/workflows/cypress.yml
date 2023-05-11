@@ -79,4 +79,6 @@ jobs:
       with:
         node-version: "18.x"
         cache: "npm"
+    - run: npm ci
+    - run: npm run build --if-present
     - run: node ./src/reportScript/script.js 'src/cypressTests/cypress/screenshots/${{steps.date.outputs.date}}/v3.41.1' 'src/cypressTests/cypress/screenshots/${{steps.date.outputs.date}}/v4.44.0'
