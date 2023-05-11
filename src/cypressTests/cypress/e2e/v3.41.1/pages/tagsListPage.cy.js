@@ -15,7 +15,7 @@ class TagsListPage {
     }
 
     getTagList() {
-        return cy.get("li.gh-list-row", { timeout: 100000 });
+        return cy.get("li.gh-list-row", { timeout: 30000 });
     }
 
     clickOnTag(tagName) {
