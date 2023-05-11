@@ -14,7 +14,7 @@ jobs:
         id: date
         uses: Kaven-Universe/github-action-current-date-time@v1
         with:
-          format: "YYYY-M-DD"
+          format: "YYYY-MM-DD"
 
       - name: Run tests
         uses: actions/setup-node@v3
@@ -39,7 +39,7 @@ jobs:
         id: date
         uses: Kaven-Universe/github-action-current-date-time@v1
         with:
-          format: "YYYY-M-DD"
+          format: "YYYY-MM-DD"
       - name: Use Node.js
         uses: actions/setup-node@v3
         with:
@@ -63,7 +63,7 @@ jobs:
       id: date
       uses: Kaven-Universe/github-action-current-date-time@v1
       with:
-        format: "YYYY-M-DD"
+        format: "YYYY-MM-DD"
     - uses: actions/download-artifact@master
       with:
           name: old-ghost-version-files
