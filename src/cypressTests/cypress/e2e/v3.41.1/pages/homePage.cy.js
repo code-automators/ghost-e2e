@@ -46,7 +46,7 @@ class HomePage {
   goToTagsList() {
     let host = window.location.origin;
     cy.visit(host + "/ghost/#/tags");
-    cy.wait(1000);
+    cy.wait(2000);
     this.closeLeavingAlert();
     return new TagsListPage();
   }
