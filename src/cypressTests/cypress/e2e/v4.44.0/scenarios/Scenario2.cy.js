@@ -3,7 +3,7 @@ import { takeCypressScreenshot } from "./../utils/takeScreenshot";
 import config from "./../assets/config.json";
 
 
-describe("Escenario 2", () => {
+describe("Scenario2", () => {
 
     it("Editar un post existente actualizando su título", () => {
         // Given user is logged in
