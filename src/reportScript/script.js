@@ -7,8 +7,30 @@ const validPath = require("valid-path");
 const { options } = config;
 
 async function executeTest() {
-  const oldVersionFolder = getUserInput("Enter the old version folder path: ");
-  const newVersionFolder = getUserInput("Enter the new version folder path: ");
+  let oldVersionFolder = null;
+  let newVersionFolder = null;
+  console.log(process.argv)
+
+  if (process.argv.length == 2) {
+    oldVersionFolder = getUserInput("Enter the old version folder path: ");
+    newVersionFolder = getUserInput("Enter the new version folder path: ");
+  } else if (process.argv.length != 4) {
+    console.log("Invalid number of arguments");
+    return;
+  }
+  else {
+    oldVersionFolder = process.argv[2];
+    newVersionFolder = process.argv[3];
+    if (!validPath(oldVersionFolder) || !validPath(newVersionFolder)) {
+      console.log("Invalid paths in the arguments, please try again");
+      return;
+    }
+  }
+
+  if (oldVersionFolder == newVersionFolder) {
+    console.log("The comparison folders must be different");
+    return;
+  }
 
   const datetime = getFormattedDate();
   const reportDirectory = `./VRTReports/${datetime}`;
@@ -51,7 +73,7 @@ function getFormattedDate() {
   );
 }
 
-function getDateString(){
+function getDateString() {
   return new Date().toISOString()
 }
 
