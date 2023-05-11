@@ -93,14 +93,21 @@ Link a la wiki: https://github.com/code-automators/ghost-e2e/wiki
 
 ### Cypress
 
+Desde la raiz del proyecto, puede ejecutar todos los escenarios de prueba, en ambas versiones de Ghost, con:
+  ```bash
+  npm test
+  ```
+
+Si se desea una ejecución con mayor granularidad puede:
+
 1. Instalar Cypress con `npm i -g cypress`.
 2. Ir a la ruta de Cypress con `cd src/cypressTests/`.
 3. Modificar el archivo de configuración para asignar los valores deseados por el usuario. El archivo se encuentra en: `src/cypressTests/cypress/e2e/scenarios/assets/config.json`. Es importante notar que acá se encuentran las credenciales a usar en los escenarios de prueba, por lo que es necesario que sean modificados de acorde a las preferencias del tester.
-4. Ejecutar todos los escenarios de prueba con: 
+4. Ejecutar todos los escenarios de prueba de una sola versión con:
     ```bash
     cypress run --spec "cypress/e2e/v<VERSIÓN-DE-GHOST>/scenarios/*cy.js"
     ```
-5. Ejecutar solo un escenario con: 
+5. Ejecutar solo un escenario con:
     ```bash
     cypress run --spec "cypress/e2e/v<VERSIÓN-DE-GHOST>/scenarios/Scenario1.cy.js"
     ```
