@@ -47,7 +47,7 @@ jobs:
           cache: "npm"
       - run: npm ci
       - run: npm run build --if-present
-      - run: ls
+      - run: ls && pwd
       - run: npm test -- --spec 'cypress/e2e/v4.44.0/scenarios/*.cy.js'
         continue-on-error: true
       - uses: actions/upload-artifact@v3
