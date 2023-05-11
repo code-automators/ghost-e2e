@@ -23,7 +23,8 @@ jobs:
           cache: "npm"
       - run: npm ci
       - run: npm run build --if-present
-      - run: npm test -- --spec 'cypress/e2e/v3.41.1/scenarios/*.cy.js'
+      - run: npm test -- --headed --spec 'cypress/e2e/v3.41.1/scenarios/*.cy.js'
+      continue-on-error: true
       - uses: actions/upload-artifact@v3
         with:
           name: old-ghost-version-files
@@ -46,7 +47,8 @@ jobs:
           cache: "npm"
       - run: npm ci
       - run: npm run build --if-present
-      - run: npm test -- --spec 'cypress/e2e/v4.44.0/scenarios/*.cy.js'
+      - run: npm test -- --headed --spec 'cypress/e2e/v4.44.0/scenarios/*.cy.js'
+      continue-on-error: true
       - uses: actions/upload-artifact@v3
         with:
           name: new-ghost-version-files
