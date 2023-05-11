@@ -9,7 +9,6 @@ const { options } = config;
 async function executeTest() {
   let oldVersionFolder = null;
   let newVersionFolder = null;
-  console.log(process.argv)
 
   if (process.argv.length == 2) {
     oldVersionFolder = getUserInput("Enter the old version folder path: ");
