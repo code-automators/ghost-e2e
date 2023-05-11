@@ -104,6 +104,7 @@ class HomePage {
 
   // Close stochastic leaving page alert
   closeLeavingAlert() {
+    cy.wait(500);
     cy.get('body').then(($body) => {
       if ($body.text().includes('Leave')) {
         cy.get('.gh-btn-red').eq(1).click();
