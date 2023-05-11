@@ -16,6 +16,9 @@ async function executeTest() {
   createDirectory(screenshotDirectory);
 
   const resultInfo = await compareFiles(oldVersionFolder, newVersionFolder, screenshotDirectory);
+  const reportContent = createReport(getDateString(), resultInfo);
+  fs.copyFileSync("./bootstrap.min.css", `${reportDirectory}/bootstrap.min.css`);
+  fs.writeFileSync(`${reportDirectory}/index.html`, reportContent);
   console.log(
     "------------------------------------------------------------------------------------"
   );
@@ -48,6 +51,10 @@ function getFormattedDate() {
   );
 }
 
+function getDateString(){
+  return new Date().toISOString()
+}
+
 function createDirectory(path) {
   if (!fs.existsSync(path)) {
     fs.mkdirSync(path, { recursive: true });
@@ -61,8 +68,7 @@ async function compareFiles(oldVersionFolder, newVersionFolder, screenshotDirect
   for (const file of files) {
     const filename = file.split(/(\|\/)/g).pop();
 
-    // Copy old and new version files to the VRT Report folder
-    if(!fs.existsSync(`${oldVersionFolder}/${filename}`)){
+    if (!fs.existsSync(`${oldVersionFolder}/${filename}`)) {
       console.log(`File ${filename} not found in ${oldVersionFolder}`);
       continue;
     }
@@ -94,48 +100,54 @@ async function compareFiles(oldVersionFolder, newVersionFolder, screenshotDirect
   return resultInfo;
 }
 
-function browser(b, info){
-    return `<div class=" browser" id="test0">
-    <div class=" btitle">
-        <h2>Browser: ${b}</h2>
-        <p>Data: ${JSON.stringify(info)}</p>
+function fileInfoComponent(fileInfo, filename) {
+  return `<div class="row mb-4">
+    <div class="col-md-12">
+      <h3>File: ${filename}</h3>
+      <ul>
+        <li>Is Same Dimensions: ${fileInfo.isSameDimensions}</li>
+        <li>Dimension Difference: ${JSON.stringify(fileInfo.dimensionDifference)}</li>
+        <li>Raw Mismatch Percentage: ${fileInfo.rawMisMatchPercentage}%</li>
+        <li>Mismatch Percentage: ${fileInfo.misMatchPercentage}%</li>
+        <li>Diff Bounds: ${JSON.stringify(fileInfo.diffBounds)}</li>
+        <li>Analysis Time: ${fileInfo.analysisTime} ms</li>
+      </ul>
     </div>
-    <div class="imgline">
-      <div class="imgcontainer">
-        <span class="imgname">Reference</span>
-        <img class="img2" src="before-${b}.png" id="refImage" label="Reference">
-      </div>
-      <div class="imgcontainer">
-        <span class="imgname">Test</span>
-        <img class="img2" src="after-${b}.png" id="testImage" label="Test">
-      </div>
+    <div class="col-md-4">
+      <h5>Before</h5>
+      <img class="img-fluid" src="./screenshots/before-${filename}" alt="Reference">
     </div>
-    <div class="imgline">
-      <div class="imgcontainer">
-        <span class="imgname">Diff</span>
-        <img class="imgfull" src="./compare-${b}.png" id="diffImage" label="Diff">
-      </div>
+    <div class="col-md-4">
+      <h5>After</h5>
+      <img class="img-fluid" src="./screenshots/after-${filename}" alt="Test">
     </div>
-  </div>`
+    <div class="col-md-4">
+      <h5>Diff</h5>
+      <img class="img-fluid" src="./screenshots/compare-${filename}" alt="Diff">
+    </div>
+  </div>`;
 }
 
-function createReport(datetime, resInfo){
-    return `
-    <html>
-        <head>
-            <title> VRT Report </title>
-            <link href="index.css" type="text/css" rel="stylesheet">
-        </head>
-        <body>
-            <h1>Report for
-                 <a href="${config.url}"> ${config.url}</a>
-            </h1>
-            <p>Executed: ${datetime}</p>
-            <div id="visualizer">
-                ${config.browsers.map(b=>browser(b, resInfo[b]))}
-            </div>
-        </body>
-    </html>`
+function createReport(datetime, resInfo) {
+  return `
+  <html>
+      <head>
+          <title> VRT Report </title>
+          <link href="./bootstrap.min.css" rel="stylesheet">
+      </head>
+      <body>
+        <div class="container">
+          <h1 class="my-4">Report for
+               <a href="${config.url}"> ${config.appName}</a>
+          </h1>
+          <p>Executed: ${datetime}</p>
+          <div id="visualizer">
+              ${Object.entries(resInfo)
+      .map(([filename, fileInfo]) => fileInfoComponent(fileInfo, filename))
+      .join("")}
+          </div>
+        </div>
+      </body>
+  </html>`;
 }
-
 (async () => console.log(await executeTest()))();
