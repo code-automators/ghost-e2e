@@ -5,7 +5,7 @@ on:
     branches: ["main", "development"]
 
 jobs:
-  cypress:
+  cypress-old-ghost-version:
     runs-on: ubuntu-latest
 
     steps:
@@ -13,8 +13,22 @@ jobs:
       - name: Use Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '18.x'
+          node-version: "18.x"
           cache: "npm"
       - run: npm ci
       - run: npm run build --if-present
-      - run: npm test
+      - run: npm test --spec 'cypress/e2e/v3.41.1/scenarios/*.cy.js'
+
+  cypress-new-ghost-version:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: Use Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: "18.x"
+          cache: "npm"
+      - run: npm ci
+      - run: npm run build --if-present
+      - run: npm test --spec 'cypress/e2e/v4.44.0/scenarios/*.cy.js'

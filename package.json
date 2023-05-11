@@ -1,13 +1,13 @@
 {
   "name": "ghost-e2e",
   "version": "1.0.0",
-  "description": "End-to-end tests during automated testing in Ghost CMS v3.41.1",
+  "description": "End-to-end tests during automated testing in Ghost CMS",
   "main": "index.js",
   "scripts": {
-    "test": "cd src/cypressTests && npx cypress run --spec 'cypress/e2e/*/scenarios/*.cy.js'"
+    "test": "cd src/cypressTests && npx cypress run"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "Code Automators",
+  "license": "MIT",
   "dependencies": {
     "chai": "^4.3.7",
     "cypress": "^12.12.0",

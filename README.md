@@ -97,7 +97,7 @@ Link a la wiki: https://github.com/code-automators/ghost-e2e/wiki
 
 Desde la raiz del proyecto, puede ejecutar todos los escenarios de prueba, en ambas versiones de Ghost, con:
   ```bash
-  npm test
+  npm test --spec 'cypress/e2e/*/scenarios/*.cy.js'
   ```
 
 Si se desea una ejecución con mayor granularidad puede:
