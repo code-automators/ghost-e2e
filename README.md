@@ -93,14 +93,21 @@ Link a la wiki: https://github.com/code-automators/ghost-e2e/wiki
 
 ### Cypress
 
+Desde la raiz del proyecto, puede ejecutar todos los escenarios de prueba, en ambas versiones de Ghost, con:
+  ```bash
+  npm test
+  ```
+
+Si se desea una ejecución con mayor granularidad puede:
+
 1. Instalar Cypress con `npm i -g cypress`.
 2. Ir a la ruta de Cypress con `cd src/cypressTests/`.
 3. Modificar el archivo de configuración para asignar los valores deseados por el usuario. El archivo se encuentra en: `src/cypressTests/cypress/e2e/scenarios/assets/config.json`. Es importante notar que acá se encuentran las credenciales a usar en los escenarios de prueba, por lo que es necesario que sean modificados de acorde a las preferencias del tester.
-4. Ejecutar todos los escenarios de prueba con: 
+4. Ejecutar todos los escenarios de prueba de una sola versión con:
     ```bash
     cypress run --spec "cypress/e2e/v<VERSIÓN-DE-GHOST>/scenarios/*cy.js"
     ```
-5. Ejecutar solo un escenario con: 
+5. Ejecutar solo un escenario con:
     ```bash
     cypress run --spec "cypress/e2e/v<VERSIÓN-DE-GHOST>/scenarios/Scenario1.cy.js"
     ```
@@ -119,8 +126,13 @@ Notas:
 #### Notas de la ejecución
 Puede ejecutar Ghost con el siguiente comando:
 ```bash
-docker run -d -e url=http://localhost:2368 -p 2368:2368 --name ghost_3.41.1 ghost:3.41.1
+docker run -d -e url=http://localhost:4440 -p 4440:2368 --name ghost_4.44.0 ghost:4.44.0
 ```
+
+Nosotros desplegamos una instancia en GCP para tener disponible la versión de Ghost 3.41.1 y 4.44.0 en los siguientes enlaces, y así integrarlo con nuestro pipeline de GitHub Actions que corre automáticamente todas las pruebas de Cypress:
+
+- v3.41.1: http://34.171.125.255:3411/
+- v4.44.0 http://34.171.125.255:4440/
 
 Al inicializar Ghost, se debe acceder a la URL correspondiente desde el navegador y completar manualmente los pasos de registro inicial de usuario, con las credenciales en los archivos de configuración JSON del proyecto. Además, la primera vez que se abre el sitio web, aparecerá una alerta de solicitud de actualización de seguridad, esta se debe cerrar para evitar fallas por interfaz en algunas de las pruebas existentes.
 
