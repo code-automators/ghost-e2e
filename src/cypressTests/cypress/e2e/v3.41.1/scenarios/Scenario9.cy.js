@@ -3,7 +3,7 @@ import config from "./../assets/config.json";
 
 describe("Create a post with an image", () => {
 
-    it("Scenario 9", () => {
+    it("Scenario9", () => {
         // Given user is logged in
         let signinPage = new SignInPage();
         let homePage = signinPage.login(config.user, config.password);

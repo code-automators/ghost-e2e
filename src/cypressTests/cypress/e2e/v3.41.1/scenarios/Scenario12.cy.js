@@ -3,7 +3,7 @@ import { SignInPage } from "./../pages/signinPage.cy";
 import config from "./../assets/config.json";
 import { takeCypressScreenshot } from "./../utils/takeScreenshot";
 
-describe("Scenario 12", () => {
+describe("Scenario12", () => {
 
     it("Changing admin user credentials and trying to login both with valid and invalid creds", () => {
         // Given user is logged in

@@ -2,7 +2,7 @@ import { SignInPage } from "./../pages/signinPage.cy";
 import config from "./../assets/config.json";
 
 
-describe("Scenario 15", () => {
+describe("Scenario15", () => {
     it("Insert content on website with code injection", () => {
         // Given user is logged in
         let signinPage = new SignInPage();

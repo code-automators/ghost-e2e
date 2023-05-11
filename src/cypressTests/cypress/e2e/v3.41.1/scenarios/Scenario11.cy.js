@@ -2,7 +2,7 @@ import { SignInPage } from "./../pages/signinPage.cy";
 import config from "./../assets/config.json";
 
 
-describe("Scenario 11", () => {
+describe("Scenario11", () => {
     it("Edit an existing tag", () => {
         // Given user is logged in
         let signinPage = new SignInPage();

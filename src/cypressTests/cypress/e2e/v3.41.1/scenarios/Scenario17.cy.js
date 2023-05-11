@@ -3,7 +3,7 @@ import config from "./../assets/config.json";
 
 describe("Change user slug and social media info.", () => {
 
-    it("Scenario 17", () => {
+    it("Scenario17", () => {
         // Given user is logged in
         let signinPage = new SignInPage();
         let homePage = signinPage.login(config.user, config.password);

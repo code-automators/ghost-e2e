@@ -2,7 +2,7 @@ import config from "./../assets/config.json";
 import { SignInPage } from "./../pages/signinPage.cy";
 
 
-describe("Scenario 7", () => {
+describe("Scenario7", () => {
     it("Create a post with multiple tags", () => {
         // Given user is logged in
         let signinPage = new SignInPage();

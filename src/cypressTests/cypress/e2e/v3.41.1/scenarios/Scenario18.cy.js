@@ -9,24 +9,24 @@ describe("Scenario18", () => {
         // Given user is logged in
         let signinPage = new SignInPage();
         let homePage = signinPage.login(config.user, config.password);
-        takeCypressScreenshot("Scenario18", "login");
+        takeCypressScreenshot("login");
         // When the user selects the post and deletes it
         let postsPage = homePage.goToPostList();
-        takeCypressScreenshot("Scenario18", "goToPostList");
+        takeCypressScreenshot("goToPostList");
         //And the user user goes post list and click in New Post
         let newPost = postsPage.goToCreatePost();
-        takeCypressScreenshot("Scenario18", "goToCreatePost");
+        takeCypressScreenshot("goToCreatePost");
         // And the user fills out the form and publishes the post
         let postName = config.new_title + (Math.random() * 10000).toString();
         let publishedPost = newPost.createPost(postName, config.new_content);
-        takeCypressScreenshot("Scenario18", "createPost");
+        takeCypressScreenshot("createPost");
         homePage.goToPostList();
         // And user deletes a post
         publishedPost.deletePost(postName);
-        takeCypressScreenshot("Scenario18", "deletePost");
+        takeCypressScreenshot("deletePost");
         homePage.goToPostList();
         // Then the post was deleted correctly
         postsPage.getListPosts().should('not.contain', postName);
-        takeCypressScreenshot("Scenario18", "checkDeletePost");
+        takeCypressScreenshot("checkDeletePost");
     });
 })
