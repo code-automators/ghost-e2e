@@ -7,12 +7,16 @@ describe("Scenario15", () => {
         // Given user is logged in
         let signinPage = new SignInPage();
         let homePage = signinPage.login(config.user, config.password);
+        takeCypressScreenshot("login");
         // When the user goes to the code injection page
         let codeInjectionPage = homePage.goToCodeInjection();
+        takeCypressScreenshot("goToCodeInjection");
         // And inserts a paragraph on page header
         let randomParagraph = codeInjectionPage.insertRandomParagraphOnHeader();
+        takeCypressScreenshot("insertParagraphOnHeader");
         // Then all pages of website should contain that header
         let mainPage = homePage.goToMainPageSite();
         mainPage.getParagraphsByText(randomParagraph).should('exist');
+        takeCypressScreenshot("websiteContainsHeaderInjections");
     });
 });
