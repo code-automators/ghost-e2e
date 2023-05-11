@@ -46,7 +46,7 @@ class TagDetails {
         cy.get("input[class$='x-file--input']").selectFile(imagePath, { force: true })
         cy.get("button[aria-label$='Close']").click()
         cy.get("div.gh-publishmenu-trigger").click();
-        cy.get("button.gh-btn-blue.gh-publishmenu-button").click();
+        cy.get("button[class='gh-btn gh-btn-black gh-publishmenu-button gh-btn-icon ember-view']").click();
         return cy.get(".gh-notification-content");
     }
 

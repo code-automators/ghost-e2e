@@ -1,5 +1,6 @@
 {
-    "url":"https://monitor177.github.io/color-palette/",
+    "url":"https://localhost:2368/",
+    "appName": "Ghost",
     "browsers":["chromium"],
     "options":{
         "output": {

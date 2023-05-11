@@ -61,8 +61,8 @@ class HomePage {
 
   goToProfile() {
     cy.wait(500)
-    cy.contains("Staff").click()
-    cy.contains("Owner").click()
+    cy.get("div[class='gh-user-avatar relative']").click()
+    cy.contains("Your profile").click()
     return new ProfilePage();
   }
 
@@ -88,6 +88,12 @@ class HomePage {
     let host = window.location.origin
     cy.visit(`${host}/author/${authorSlug}`)
     return new AuthorPageSite();
+  }
+
+  goToPublishedPagesList(){
+    let host = window.location.origin
+    cy.visit(host + "/ghost/#/pages?type=published")
+    return new PageListPage();
   }
 
   getNavbarMenu() {

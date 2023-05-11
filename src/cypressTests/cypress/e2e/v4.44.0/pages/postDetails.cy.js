@@ -7,13 +7,13 @@ class PostDetails {
     }
   }
 
-  fillNewPost(postTitle, content, additionalProps={}) {
-    const {tag, scheduleDate, scheduleHour} = additionalProps;
+  fillNewPost(postTitle, content, additionalProps = {}) {
+    const { tag, scheduleDate, scheduleHour } = additionalProps;
 
     cy.get("textarea.gh-editor-title").type(postTitle);
     cy.get("article").type(content);
 
-    if( tag ) { 
+    if (tag) {
       cy.get("button.post-settings").click();
 
       cy.get("input.ember-power-select-trigger-multiple-input")
@@ -25,21 +25,21 @@ class PostDetails {
 
     cy.get("div.gh-publishmenu-trigger").click();
 
-    if( scheduleDate && scheduleHour ) { 
+    if (scheduleDate && scheduleHour) {
       cy.get("div.gh-publishmenu-radio-button").last().click();
-      cy.get("div[class$='gh-date-time-picker-date '").find("input").first().clear().type(scheduleDate, {force: true});
+      cy.get("div[class$='gh-date-time-picker-date '").find("input").first().clear().type(scheduleDate, { force: true });
       cy.wait(1000);
-      cy.get("div[class$='gh-date-time-picker-time '").find("input").first().clear().type(scheduleHour, {force: true});
+      cy.get("div[class$='gh-date-time-picker-time '").find("input").first().clear().type(scheduleHour, { force: true });
       cy.wait(1000);
     }
 
-    cy.get("button.gh-btn-blue.gh-publishmenu-button").click();
+    cy.get("button[class='gh-btn gh-btn-black gh-publishmenu-button gh-btn-icon ember-view']").click();
   }
 
   editPost(postTitle) {
     cy.get("textarea.gh-editor-title").clear().type(postTitle);
     cy.get("div.gh-publishmenu-trigger").click();
-    cy.get("button.gh-btn-blue.gh-publishmenu-button").click();
+    cy.get("button[class='gh-btn gh-btn-black gh-publishmenu-button gh-btn-icon ember-view']").click();
   }
 
   addTagToPost(tagName) {
@@ -49,7 +49,7 @@ class PostDetails {
       .type(tagName + "{enter}", { force: true });
     cy.get("button[aria-label$='Close']").click();
     cy.get("div.gh-publishmenu-trigger").click();
-    cy.get("button.gh-btn-blue.gh-publishmenu-button").click();
+    cy.get("button[class='gh-btn gh-btn-black gh-publishmenu-button gh-btn-icon ember-view']").click();
   }
 
   addMultipleTagsToPost(tags) {
@@ -62,7 +62,7 @@ class PostDetails {
     cy.get('textarea.gh-editor-title').type(postTitle);
     cy.get('div.koenig-editor__editor').type(contentTitle);
     cy.get('div.ember-view.ember-basic-dropdown-trigger.gh-btn.gh-btn-outline.gh-publishmenu-trigger').click();
-    cy.get('button.gh-btn-blue.gh-publishmenu-button').click();
+    cy.get("button[class='gh - btn gh - btn - black gh - publishmenu - button gh - btn - icon ember - view']").click();
     return new PostDetails();
   }
 
@@ -71,7 +71,7 @@ class PostDetails {
     cy.get("input[class$='x-file--input']").selectFile(image_path, { force: true })
     cy.get("button[aria-label$='Close']").click()
     cy.get("div.gh-publishmenu-trigger").click();
-    cy.get("button.gh-btn-blue.gh-publishmenu-button").click();
+    cy.get("button[class='gh-btn gh-btn-black gh-publishmenu-button gh-btn-icon ember-view']").click();
     return cy.get(".gh-notification-content");
   }
 
