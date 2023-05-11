@@ -128,7 +128,7 @@ Notas:
 #### Notas de la ejecución
 Puede ejecutar Ghost con el siguiente comando:
 ```bash
-docker run -d -e url=http://localhost:4440 -p 4440:2368 --name ghost_4.44.0 ghost:4.44.0
+docker run -d -e url=http://<machine-ip>:4440 -p 4440:2368 --name ghost_4.44.0 ghost:4.44.0
 ```
 
 Nosotros desplegamos una instancia en GCP para tener disponible la versión de Ghost 3.41.1 y 4.44.0 en los siguientes enlaces, y así integrarlo con nuestro pipeline de GitHub Actions que corre automáticamente todas las pruebas de Cypress:
