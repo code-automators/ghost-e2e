@@ -71,9 +71,9 @@ jobs:
           name: new-ghost-version-files
           path: /home/runner/work/ghost-e2e/ghost-e2e/src/cypressTests/cypress/screenshots/${{steps.date.outputs.time}}/4.44.0/
     - uses: actions/checkout@v3
-      - name: Use Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: "18.x"
-          cache: "npm"
+    - name: Use Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: "18.x"
+        cache: "npm"
     - run: node ./src/reportScript/script.js '/home/runner/work/ghost-e2e/ghost-e2e/src/cypressTests/cypress/screenshots/${{steps.date.outputs.date}}/3.41.1' '/home/runner/work/ghost-e2e/ghost-e2e/src/cypressTests/cypress/screenshots/${{steps.date.outputs.date}}/4.44.0'
