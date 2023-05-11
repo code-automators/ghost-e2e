@@ -19,7 +19,8 @@ module.exports = defineConfig({
         const screenshotStep = screenshotName[2];
 
         const date = new Date();
-        const datetime = date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate();
+        const month = (date.getMonth() + 1).toString().padStart(2, '0');
+        const datetime = date.getFullYear() + '-' + month + '-' + date.getDate();
 
         const newPath = `./cypress/screenshots/${datetime}/${screenshotVersion}/${screenshotScenario}_${screenshotStep}.png`;
 
