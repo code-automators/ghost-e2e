@@ -1,7 +1,7 @@
 const compareImages = require("resemblejs/compareImages");
 const config = require("./config.json");
 const fs = require("fs");
-const prompt = require("prompt-sync")({ sigint: true });
+const readlineSync = require('readline-sync');
 const validPath = require("valid-path");
 
 const { options } = config;
@@ -13,7 +13,7 @@ async function executeTest() {
   const datetime = getFormattedDate();
   const reportDirectory = `./VRTReports/${datetime}`;
   const screenshotDirectory = `${reportDirectory}/screenshots`
-  createDirectory(reportDirectory);
+  createDirectory(screenshotDirectory);
 
   const resultInfo = await compareFiles(oldVersionFolder, newVersionFolder, screenshotDirectory);
   console.log(
@@ -28,7 +28,7 @@ async function executeTest() {
 function getUserInput(message) {
   let input = "";
   while (!input) {
-    input = prompt(message);
+    input = readlineSync.question(message);
     if (!validPath(input)) {
       console.log("Invalid path, please try again");
       input = "";
@@ -62,6 +62,11 @@ async function compareFiles(oldVersionFolder, newVersionFolder, screenshotDirect
     const filename = file.split(/(\|\/)/g).pop();
 
     // Copy old and new version files to the VRT Report folder
+    if(!fs.existsSync(`${oldVersionFolder}/${filename}`)){
+      console.log(`File ${filename} not found in ${oldVersionFolder}`);
+      continue;
+    }
+    console.log(`Comparing ${filename}`)
     fs.copyFileSync(`${oldVersionFolder}/${filename}`, `${screenshotDirectory}/before-${filename}`);
     fs.copyFileSync(`${newVersionFolder}/${filename}`, `${screenshotDirectory}/after-${filename}`);
 

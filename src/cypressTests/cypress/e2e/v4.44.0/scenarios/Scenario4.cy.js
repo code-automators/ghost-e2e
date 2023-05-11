@@ -22,7 +22,7 @@ describe("Scenario4", () => {
         let publishedList = homePage.goToPublishedPagesList();
         // Then the new page should be present in the "Published" section
         publishedList.getList().should("contain", config.new_page_name);
-        takeCypressScreenshot("Scenario4", "checkNewPagePublished")
+        takeCypressScreenshot("checkNewPagePublished")
     })
 
 })
