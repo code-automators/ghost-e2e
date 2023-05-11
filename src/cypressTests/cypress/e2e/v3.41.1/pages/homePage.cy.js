@@ -26,6 +26,7 @@ class HomePage {
   goToPostList() {
     let host = window.location.origin;
     cy.visit(host + "/ghost/#/posts");
+    cy.wait(1000);
     this.closeLeavingAlert();
     return new PostPageList();
   }
@@ -45,7 +46,7 @@ class HomePage {
   goToTagsList() {
     let host = window.location.origin;
     cy.visit(host + "/ghost/#/tags");
-    cy.wait(500);
+    cy.wait(1000);
     this.closeLeavingAlert();
     return new TagsListPage();
   }
