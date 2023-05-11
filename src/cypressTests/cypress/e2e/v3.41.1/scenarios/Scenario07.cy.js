@@ -1,6 +1,6 @@
 import config from "./../assets/config.json";
 import { SignInPage } from "./../pages/signinPage.cy";
-
+import { takeCypressScreenshot } from "./../utils/takeScreenshot";
 
 describe("Scenario07", () => {
     it("Create a post with multiple tags", () => {

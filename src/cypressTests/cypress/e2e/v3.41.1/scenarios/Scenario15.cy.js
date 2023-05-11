@@ -1,6 +1,6 @@
 import { SignInPage } from "./../pages/signinPage.cy";
 import config from "./../assets/config.json";
-
+import { takeCypressScreenshot } from "./../utils/takeScreenshot";
 
 describe("Scenario15", () => {
     it("Insert content on website with code injection", () => {
