@@ -24,12 +24,12 @@ class TagDetails {
     }
 
     setRandomTagName() {
-        let newTagName = this.generateRandomTagName(10);
+        let newTagName = this.generateRandomTagName(5);
         cy.get("#tag-name").clear().type(newTagName, { force: true });
         cy.wait(500);
         cy.contains("Save").click();
         cy.wait(1000);
-        return newTagName
+        return newTagName;
     }
 
     generateRandomTagName(length) {
