@@ -28,7 +28,7 @@ jobs:
       - uses: actions/upload-artifact@v3
         with:
           name: old-ghost-version-files
-          path: ./src/cypressTests/cypress/screenshots/${{steps.date.outputs.time}}/3.41.1/
+          path: src/cypressTests/cypress/screenshots/${{steps.date.outputs.time}}/3.41.1/
 
   cypress-new-ghost-version:
     runs-on: ubuntu-latest
@@ -52,7 +52,7 @@ jobs:
       - uses: actions/upload-artifact@v3
         with:
           name: new-ghost-version-files
-          path: ./src/cypressTests/cypress/screenshots/${{steps.date.outputs.time}}/4.44.0/
+          path: src/cypressTests/cypress/screenshots/${{steps.date.outputs.time}}/4.44.0/
 
   cypress-vrt-report:
     runs-on: ubuntu-latest
@@ -67,11 +67,11 @@ jobs:
     - uses: actions/download-artifact@master
       with:
           name: old-ghost-version-files
-          path: ./src/cypressTests/cypress/screenshots/${{steps.date.outputs.time}}/3.41.1/
+          path: src/cypressTests/cypress/screenshots/${{steps.date.outputs.time}}/3.41.1/
     - uses: actions/download-artifact@master
       with:
           name: new-ghost-version-files
-          path: ./src/cypressTests/cypress/screenshots/${{steps.date.outputs.time}}/4.44.0/
+          path: src/cypressTests/cypress/screenshots/${{steps.date.outputs.time}}/4.44.0/
     - uses: actions/checkout@v3
     - name: Use Node.js
       uses: actions/setup-node@v3
