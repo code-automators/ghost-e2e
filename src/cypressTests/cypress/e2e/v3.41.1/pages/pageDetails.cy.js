@@ -39,6 +39,7 @@ class PageDetails {
 
     uploadNewImage(image_path) {
         cy.get("button[title$='Settings']").click();
+        cy.wait(500);
         cy.get('body').then((body) => {
             if(body.find("input[class$='x-file--input']").length > 0) {
                 cy.get("a[class='image-cancel']").click()
