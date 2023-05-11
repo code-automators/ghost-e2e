@@ -38,8 +38,9 @@ class PageDetails {
 
     uploadNewImage(image_path) {
         cy.get("button[title$='Settings']").click();
-        cy.wait(1000);
+        cy.wait(2000);
         cy.get("input[class$='x-file--input']").selectFile(image_path, {force: true});
+        cy.wait(500);
         cy.get("button[aria-label$='Close']").click()
         cy.get("div.gh-publishmenu-trigger").click();
         cy.get("button.gh-btn-blue.gh-publishmenu-button").click();
