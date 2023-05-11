@@ -26,6 +26,7 @@ class HomePage {
   goToPostList() {
     let host = window.location.origin;
     cy.visit(host + "/ghost/#/posts");
+    this.closeLeavingAlert();
     return new PostPageList();
   }
 
@@ -44,13 +45,7 @@ class HomePage {
   goToTagsList() {
     let host = window.location.origin;
     cy.visit(host + "/ghost/#/tags");
-    // Close stochastic leaving page alert
-    cy.get('body').then(($body) => {
-      cy.wait(100);
-      if ($body.text().includes('Leave')) {
-        cy.get('.modal-footer > .gh-btn-red > span').first().click();
-      }
-    });
+    this.closeLeavingAlert();
     return new TagsListPage();
   }
 
@@ -105,6 +100,15 @@ class HomePage {
     let host = window.location.origin;
     cy.visit(host + "/ghost/#/signout");
     return new SignInPage();
+  }
+
+  // Close stochastic leaving page alert
+  closeLeavingAlert() {
+    cy.get('body').then(($body) => {
+      if ($body.text().includes('Leave')) {
+        cy.get('.gh-btn-red').eq(1).click();
+      }
+    });
   }
 }
 
