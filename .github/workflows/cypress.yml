@@ -49,6 +49,7 @@ jobs:
       - run: npm run build --if-present
       - run: npm test -- --spec 'cypress/e2e/v4.44.0/scenarios/*.cy.js'
         continue-on-error: true
+      - run: ls -la && pwd
       - uses: actions/upload-artifact@v3
         with:
           name: new-ghost-version-files
