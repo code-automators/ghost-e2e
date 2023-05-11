@@ -14,7 +14,7 @@ describe("Scenario03", () => {
         // And the user goes to create tag and fills out the details with a too large description
         let newTag = tagsListPage.goToCreateTag();
         newTag.createNewTag(config.new_tag_name, config.new_tag_slug, config.image_path, "a".repeat(501));
-        takeCypressScreenshot("tryToCreateInvalidNewTag");
+        takeCypressScreenshot("tryToCreateNewInvalidTag");
         // Then retry and error message appears. Tag is not created.
         newTag.verifySaveBtn().should("contain", "Retry");
         newTag.getCreationResponse().should("contain", "Description cannot be longer than 500 characters.");
