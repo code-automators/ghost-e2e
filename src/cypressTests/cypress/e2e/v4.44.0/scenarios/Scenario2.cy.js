@@ -9,19 +9,19 @@ describe("Escenario 2", () => {
         // Given user is logged in
         let signinPage = new SignInPage();
         let homePage = signinPage.login(config.user, config.password);
-        takeCypressScreenshot("Scenario2", "login");
+        takeCypressScreenshot("login");
         //when the user wants to edit a post
         let postsPage = homePage.goToPostList();
-        takeCypressScreenshot("Scenario2", "goToPostList");
+        takeCypressScreenshot("goToPostList");
         // And the user select random post
         let postDetails = postsPage.selectRandomPost();
-        takeCypressScreenshot("Scenario2", "selectRandomPost");
+        takeCypressScreenshot("selectRandomPost");
         // And the user edit post
         postDetails.editPost(config.new_title);
-        takeCypressScreenshot("Scenario2", "editPost");
+        takeCypressScreenshot("editPost");
         homePage.goToPostList();
         // Then the edited post is displayed in the post list with the new title
         postsPage.getListPosts().should('contain', config.new_title);
-        takeCypressScreenshot("Scenario2", "checkPostEdited")
+        takeCypressScreenshot("checkPostEdited")
     })
 })
