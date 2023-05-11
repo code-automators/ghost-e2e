@@ -3,7 +3,7 @@ import { takeCypressScreenshot } from "./../utils/takeScreenshot";
 import config from "./../assets/config.json";
 
 
-describe("Scenario4", () => {
+describe("Scenario04", () => {
 
     it("Publish a new page", () => {
         let seed = Math.floor(Math.random() * 1000).toString();

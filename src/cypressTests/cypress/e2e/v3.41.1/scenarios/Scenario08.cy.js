@@ -2,7 +2,7 @@ import { SignInPage } from "./../pages/signinPage.cy";
 import config from "./../assets/config.json";
 import { takeCypressScreenshot } from "./../utils/takeScreenshot";
 
-describe("Scenario8", () => {
+describe("Scenario08", () => {
 
     it("Edit an existing page and add an image to it", () => {
         // Given user is logged in

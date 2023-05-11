@@ -3,7 +3,7 @@ import { takeCypressScreenshot } from "./../utils/takeScreenshot";
 import config from "./../assets/config.json";
 
 
-describe("Scenario6", () => {
+describe("Scenario06", () => {
 
     it("Crear un post y agregar una imagen", () => {
         // Given user is logged in
