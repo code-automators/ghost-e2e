@@ -82,6 +82,15 @@ class PostDetails {
     cy.get('button.settings-menu-delete-button').click();
     cy.get('button.gh-btn-red').first().click();
   }
+
+  generateRandomTagName(length) {
+    let result = '';
+    const characters = 'abcdefghijklmnopqrstuvwxyz0123456789';
+    for (let i = 0; i < length; i++) {
+      result += characters.charAt(Math.floor(Math.random() * characters.length));
+    }
+    return `tag-${result}`;
+  }
 }
 
 export { PostDetails };

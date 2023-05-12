@@ -15,7 +15,7 @@ class TagDetails {
         cy.wait(500);
         cy.get("#tag-description").clear().type(description, { force: true });
         cy.wait(500);
-        cy.get("input[name$='accent-color']").clear().type('000000', { force: true });
+        cy.get('.input-color > .gh-input').clear().type('000000', { force: true });
         cy.wait(500);
         cy.get("input[class$='x-file--input']").selectFile(imagePath, { force: true })
         cy.wait(500);
