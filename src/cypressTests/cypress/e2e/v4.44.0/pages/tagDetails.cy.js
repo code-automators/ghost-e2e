@@ -20,7 +20,7 @@ class TagDetails {
         cy.get("input[class$='x-file--input']").selectFile(imagePath, { force: true })
         cy.wait(500);
         cy.contains("Save").click();
-        cy.wait(4000);
+        cy.wait(3000);
     }
 
     setRandomTagName() {

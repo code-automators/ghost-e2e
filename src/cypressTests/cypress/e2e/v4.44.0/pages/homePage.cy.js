@@ -116,7 +116,7 @@ class HomePage {
   closeLeavingAlert() {
     cy.get('body').then(($body) => {
       if ($body.text().includes('Leave')) {
-        cy.get('.gh-btn-red').click();
+        cy.get('.gh-btn-red').eq(1).click();
       }
     });
   }
