@@ -4,7 +4,8 @@
   "description": "End-to-end tests during automated testing in Ghost CMS",
   "main": "index.js",
   "scripts": {
-    "test": "cd src/cypressTests && npx cypress run --browser chrome"
+    "test": "cd src/cypressTests && npx cypress run --browser chrome",
+    "report": "cd src/reportScript && node ./script.js"
   },
   "author": "Code Automators",
   "license": "MIT",
