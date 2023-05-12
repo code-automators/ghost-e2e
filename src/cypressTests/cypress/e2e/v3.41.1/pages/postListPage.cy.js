@@ -16,20 +16,20 @@ class PostPageList {
   }
 
   selectPost() {
-    return cy.get("li[class$='gh-list-row gh-posts-list-item']").first();
+    return cy.get("h3[class$='gh-content-entry-title']").first();
   }
 
   selectPostByName(name) {
-    cy.contains("li[class$='gh-list-row gh-posts-list-item']", name)
+    cy.contains("h3[class$='gh-content-entry-title']", name)
       .click();
     return new PostDetails();
   }
 
   selectRandomPost() {
-    cy.get("li[class$='gh-list-row gh-posts-list-item']")
+    cy.get("h3[class$='gh-content-entry-title']")
       .its('length')
       .then((len) => {
-        cy.get("li[class$='gh-list-row gh-posts-list-item']")
+        cy.get("h3[class$='gh-content-entry-title']")
           .eq(Math.floor(Math.random() * ((len - 1) - 0 + 1)) + 0)
           .click()
       })
@@ -37,7 +37,7 @@ class PostPageList {
   }
 
   getListPosts() {
-    return cy.get("li[class$='gh-list-row gh-posts-list-item']");
+    return cy.get("h3[class$='gh-content-entry-title']");
   }
 
   goToCreatePost() {
