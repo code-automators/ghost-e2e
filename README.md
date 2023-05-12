@@ -133,8 +133,8 @@ docker run -d -e url=http://<machine-ip>:4440 -p 4440:2368 --name ghost_4.44.0 g
 
 Nosotros desplegamos una instancia en GCP para tener disponible la versión de Ghost 3.41.1 y 4.44.0 en los siguientes enlaces, y así integrarlo con nuestro pipeline de GitHub Actions que corre automáticamente todas las pruebas de Cypress:
 
-- v3.41.1: http://34.170.225.222:3411/
-- v4.44.0 http://34.170.225.222:4440/
+- v3.41.1: http://34.132.112.110:3411/
+- v4.44.0 http://34.132.112.110:4440/
 
 Al inicializar Ghost, se debe acceder a la URL correspondiente desde el navegador y completar manualmente los pasos de registro inicial de usuario, con las credenciales en los archivos de configuración JSON del proyecto. Además, la primera vez que se abre el sitio web, aparecerá una alerta de solicitud de actualización de seguridad, esta se debe cerrar para evitar fallas por interfaz en algunas de las pruebas existentes.
 
