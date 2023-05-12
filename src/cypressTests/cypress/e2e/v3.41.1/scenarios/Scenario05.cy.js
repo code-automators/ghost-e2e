@@ -13,8 +13,8 @@ describe("Add a new option to the navigation menu", () => {
         // The user adds an option to the navigation menu
         designPage.addNavigationOption(config.new_navigation_bar_label, config.new_navigation_bar_uri);
         // The user goes back into the main page site
-        homePage.goToMainPageSite();
+        let mainPage = homePage.goToMainPageSite();
         // Then the new navigation option should be visible in main page site
-        homePage.getNavbarMenu().should("contain", config.new_navigation_bar_label);
+        mainPage.getNavbarMenu().should("contain", config.new_navigation_bar_label);
     });
 });

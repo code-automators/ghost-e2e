@@ -94,10 +94,6 @@ class HomePage {
     return new AuthorPageSite();
   }
 
-  getNavbarMenu() {
-    return cy.get("nav.site-nav");
-  }
-
   logout() {
     let host = window.location.origin;
     cy.visit(host + "/ghost/#/signout");

@@ -9,6 +9,11 @@ class MainPageSite {
         }
     }
 
+    getNavbarMenu() {
+        cy.wait(1000);
+        return cy.get("nav.site-nav");
+    }
+
     checkIfSiteIsPrivate() {
         return cy.contains("This site is private")
     }
