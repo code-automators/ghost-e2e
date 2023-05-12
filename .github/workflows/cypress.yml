@@ -56,7 +56,12 @@ jobs:
 
   cypress-vrt-report:
     runs-on: ubuntu-latest
-    needs: [cypress-old-ghost-version]
+    needs: [cypress-old-ghost-version, cypress-new-ghost-version]
+
+    permissions:
+      pages: write
+      id-token: write
+
     environment:
       name: github-pages-deployment
       url: ${{ steps.deployment.outputs.page_url }}
@@ -68,27 +73,23 @@ jobs:
       with:
         format: "YYYY-MM-DD"
     - uses: actions/checkout@v3
-    - name: Download all workflow run artifacts
-      uses: actions/download-artifact@v3
-    - run: ls && pwd
-    - run: cd old-ghost-version-files && ls
-    - uses: actions/checkout@v3
     - name: Use Node.js
-      uses: actions/setup-node@v3s
+      uses: actions/setup-node@v3
       with:
         node-version: "18.x"
         cache: "npm"
     - run: npm ci
     - run: npm run build --if-present
-    - run: ls && pwd
-    - run: cd ./src/ && ls && pwd
-    - run: npm run report -- src/old-ghost-version-files src/new-ghost-version-files
+    - name: Download all workflow run artifacts
+      uses: actions/download-artifact@v3
+    - run: npm run report -- old-ghost-version-files new-ghost-version-files
+    - run: cd VRTReports && ls && pwd
     - name: Setup Pages
       uses: actions/configure-pages@v3
     - name: Upload artifact
       uses: actions/upload-pages-artifact@v1
       with:
-        path: './VRTReports/${{steps.date.outputs.time}}/'
+        path: './VRTReports'
     - name: Deploy to GitHub Pages
       id: deployment
       uses: actions/deploy-pages@v2

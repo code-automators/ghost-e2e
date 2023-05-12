@@ -38,7 +38,11 @@ async function executeTest() {
 
   const resultInfo = await compareFiles(oldVersionFolder, newVersionFolder, screenshotDirectory);
   const reportContent = createReport(getDateString(), resultInfo);
-  fs.copyFileSync("./bootstrap.min.css", `${reportDirectory}/bootstrap.min.css`);
+  if (process.cwd().includes("reportScript")) {
+    fs.copyFileSync("./bootstrap.min.css", `${reportDirectory}/bootstrap.min.css`);
+  } else {
+    fs.copyFileSync("src/reportScript/bootstrap.min.css", `${reportDirectory}/bootstrap.min.css`);
+  }
   fs.writeFileSync(`${reportDirectory}/index.html`, reportContent);
   console.log(
     "------------------------------------------------------------------------------------"
@@ -46,6 +50,7 @@ async function executeTest() {
   console.log(
     "Execution finished. Check the report under the results folder"
   );
+  console.log(reportDirectory)
   return resultInfo;
 }
 

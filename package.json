@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "cd src/cypressTests && npx cypress run --browser chrome",
-    "report": "cd src/reportScript && node ./script.js"
+    "report": "node src/reportScript/script.js"
   },
   "author": "Code Automators",
   "license": "MIT",
