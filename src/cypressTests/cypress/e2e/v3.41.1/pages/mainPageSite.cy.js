@@ -11,7 +11,7 @@ class MainPageSite {
 
     getNavbarMenu() {
         cy.wait(1000);
-        return cy.get("nav.site-nav");
+        return cy.get("nav.site-nav", { timeout: 4000 });
     }
 
     checkIfSiteIsPrivate() {
