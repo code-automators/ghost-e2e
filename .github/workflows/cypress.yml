@@ -83,8 +83,8 @@ jobs:
         cache: "npm"
     - run: npm ci
     - run: npm run build --if-present
-    - run: mkdir src/cypressTests/cypress/screenshots/${{steps.date.outputs.time}}/v3.41.1
-    - run: mkdir src/cypressTests/cypress/screenshots/${{steps.date.outputs.time}}/v4.44.0
+    - run: mkdir -p ./src/cypressTests/cypress/screenshots/${{steps.date.outputs.time}}/v3.41.1
+    - run: mkdir -p ./src/cypressTests/cypress/screenshots/${{steps.date.outputs.time}}/v4.44.0
     - run: npm run report -- src/cypressTests/cypress/screenshots/${{steps.date.outputs.time}}/v3.41.1 src/cypressTests/cypress/screenshots/${{steps.date.outputs.time}}/v4.44.0
     - name: Setup Pages
       uses: actions/configure-pages@v3
