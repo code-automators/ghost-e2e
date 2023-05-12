@@ -24,7 +24,7 @@ class HomePage {
   }
 
   goToPostList() {
-    cy.wait(1000);
+    cy.wait(500);
     let host = window.location.origin;
     cy.visit(host + "/ghost/#/posts");
     cy.wait(1000);
@@ -33,19 +33,21 @@ class HomePage {
   }
 
   goToPostListFilteredByTag(slug) {
+    cy.wait(500);
     let host = window.location.origin;
     cy.visit(host + "/ghost/#/posts?tag=" + slug);
     return new PostPageList();
   }
 
   goToPageList() {
+    cy.wait(500);
     let host = window.location.origin;
     cy.visit(host + "/ghost/#/pages");
     return new PageListPage();
   }
 
   goToTagsList() {
-    cy.wait(1000);
+    cy.wait(500);
     let host = window.location.origin;
     cy.visit(host + "/ghost/#/tags");
     cy.wait(2000);
@@ -54,62 +56,70 @@ class HomePage {
   }
 
   goToIntegrationsList() {
+    cy.wait(500);
     let host = window.location.origin;
     cy.visit(host + "/ghost/#/settings/integrations")
     return new IntegrationListPage();
   }
 
   goToDesignPage() {
+    cy.wait(500);
     let host = window.location.origin;
     cy.visit(host + "/ghost/#/settings/design")
     return new DesignPage();
   }
 
   goToProfile() {
-    cy.wait(500)
+    cy.wait(500);
     cy.get("div[class='gh-user-avatar relative']").click()
     cy.contains("Your profile").click()
     return new ProfilePage();
   }
 
   goToGeneralSettings() {
+    cy.wait(500);
     let host = window.location.origin;
     cy.visit(host + "/ghost/#/settings/general");
     return new SettingsPage();
   }
 
   goToCodeInjection() {
+    cy.wait(500);
     let host = window.location.origin;
     cy.visit(host + "/ghost/#/settings/code-injection");
     return new CodeInjectionPage();
   }
 
   goToMainPageSite() {
+    cy.wait(500);
     let host = window.location.origin;
     cy.visit(host);
     return new MainPageSite();
   }
 
   goToAuthorPage(authorSlug) {
+    cy.wait(500);
     let host = window.location.origin;
     cy.visit(`${host}/author/${authorSlug}`);
     return new AuthorPageSite();
   }
 
-  goToPublishedPagesList(){
+  goToPublishedPagesList() {
+    cy.wait(500);
     let host = window.location.origin
     cy.visit(host + "/ghost/#/pages?type=published")
     return new PageListPage();
   }
 
-  getNavbarMenu() {
-    return cy.get("nav.site-nav");
-  }
-
   logout() {
+    cy.wait(500);
     let host = window.location.origin;
     cy.visit(host + "/ghost/#/signout");
     return new SignInPage();
+  }
+
+  getNavbarMenu() {
+    return cy.get("nav.site-nav");
   }
 
   // Close stochastic leaving page alert
