@@ -80,5 +80,5 @@ jobs:
         cache: "npm"
     - run: npm ci
     - run: npm run build --if-present
-    - run: cd /src/cypressTests/cypress/screenshots/${{steps.date.outputs.time}} && ls && pwd
+    - run: cd /src/cypressTests/cypress/screenshots && ls && pwd
     - run: npm run report -- /src/cypressTests/cypress/screenshots/${{steps.date.outputs.time}}/v3.41.1 /src/cypressTests/cypress/screenshots/${{steps.date.outputs.time}}/v4.44.0
