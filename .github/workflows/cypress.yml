@@ -5,58 +5,47 @@ on:
     branches: ["main", "development"]
 
 jobs:
-  cypress-old-ghost-version:
+  get-date:
     runs-on: ubuntu-latest
-
     steps:
-      - uses: actions/checkout@v3
       - name: Get current date
         id: date
         uses: Kaven-Universe/github-action-current-date-time@v1
         with:
           format: "YYYY-MM-DD"
+    outputs:
+      date: ${{ steps.date.outputs.time }}
 
-      - name: Run tests
-        uses: actions/setup-node@v3
-        with:
-          node-version: "18.x"
-          cache: "npm"
-      - run: npm ci
-      - run: npm run build --if-present
-      - run: npm test -- --spec 'cypress/e2e/v3.41.1/scenarios/*.cy.js'
-        continue-on-error: true
-      - uses: actions/upload-artifact@v3
-        with:
-          name: old-ghost-version-files
-          path: src/cypressTests/cypress/screenshots/${{steps.date.outputs.time}}/v3.41.1
-
-  cypress-new-ghost-version:
+  cypress:
+    needs: get-date
     runs-on: ubuntu-latest
-
+    strategy:
+      matrix:
+        ghost-version: ["v3.41.1", "v4.44.0"]
     steps:
       - uses: actions/checkout@v3
-      - name: Get current date
-        id: date
-        uses: Kaven-Universe/github-action-current-date-time@v1
-        with:
-          format: "YYYY-MM-DD"
       - name: Use Node.js
         uses: actions/setup-node@v3
         with:
           node-version: "18.x"
           cache: "npm"
+      - uses: actions/cache@v2
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
       - run: npm ci
-      - run: npm run build --if-present
-      - run: npm test -- --spec 'cypress/e2e/v4.44.0/scenarios/*.cy.js'
-        continue-on-error: true
+      - run: npm test -- --spec "cypress/e2e/${{ matrix.ghost-version }}/scenarios/*.cy.js"
+
       - uses: actions/upload-artifact@v3
         with:
-          name: new-ghost-version-files
-          path: src/cypressTests/cypress/screenshots/${{steps.date.outputs.time}}/v4.44.0
+          name: "${{ matrix.ghost-version }}-screenshots"
+          path: src/cypressTests/cypress/screenshots/${{ needs.get-date.outputs.date }}/${{ matrix.ghost-version }}
 
-  cypress-vrt-report:
+  vrt-report:
     runs-on: ubuntu-latest
-    needs: [cypress-old-ghost-version, cypress-new-ghost-version]
+    needs: [cypress, get-date]
 
     permissions:
       pages: write
@@ -67,26 +56,27 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
 
     steps:
-    - name: Get current date
-      id: date
-      uses: Kaven-Universe/github-action-current-date-time@v1
-      with:
-        format: "YYYY-MM-DD"
     - uses: actions/checkout@v3
-    - name: Use Node.js
+    - name: Download all workflow run artifacts
+      uses: actions/download-artifact@v3
+
+    - name: Use Node.js for generating report
       uses: actions/setup-node@v3
       with:
         node-version: "18.x"
         cache: "npm"
+    - uses: actions/cache@v2
+      with:
+        path: ~/.npm
+        key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+        restore-keys: |
+          ${{ runner.os }}-node-
     - run: npm ci
-    - run: npm run build --if-present
-    - name: Download all workflow run artifacts
-      uses: actions/download-artifact@v3
-    - run: npm run report -- old-ghost-version-files new-ghost-version-files
-    - run: cd VRTReports && ls && pwd
+    - run: npm run report -- v3.41.1-screenshots v4.44.0-screenshots
+
     - name: Setup Pages
       uses: actions/configure-pages@v3
-    - name: Upload artifact
+    - name: Upload pages artifact
       uses: actions/upload-pages-artifact@v1
       with:
         path: './VRTReports'
