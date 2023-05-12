@@ -26,6 +26,7 @@ class PageListPage {
     }
 
     getList() {
+        cy.wait(1000)
         return cy.get("h3[class$='gh-content-entry-title']")
     }
 }
