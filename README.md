@@ -210,7 +210,7 @@ En el reporte, se pueden encontrar las imágenes de referencia y las imágenes d
 Es importante tener en cuenta que el Visual Regression Testing no reemplaza las pruebas manuales y de unit testing, sino que complementa la suite de pruebas automatizadas. De esta manera, se pueden detectar posibles cambios visuales no deseados antes de que se desplieguen a producción.
 
 ### Reporte usado en el video
-Debido a que con cada ejecución diferente del workflow se genera un reporte diferente, se decidió usar un reporte estático para el video. Este reporte se puede encontrar en la siguiente URL: https://code-automators.github.io/ghost-e2e/VRTReports/ExampleReport/VRT%20Report.html
+Debido a que con cada ejecución diferente del workflow se genera un reporte diferente, se decidió usar un reporte estático para el video. Este reporte se puede encontrar en la siguiente URL: https://code-automators.github.io/ghost-e2e/VRTReports/ExampleReport
 
 Este reporte fue generado con los screenshots de la ejecución del workflow del día 13 de mayo de 2023. La cual se puede encontrar en el siguiente enlace: https://github.com/code-automators/ghost-e2e/actions/runs/4967891934
 
