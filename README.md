@@ -188,6 +188,7 @@ Los escenarios que causan cambios de este estilo son:
   - Se arregla yendo a la sección de ajustes y desactivando el modo privado del sitio web
 
 ## Visual Regression Testing - Resultados
+Para realizar pruebas de regresión visual sobre los 10 escenarios de pruebas ejecutadas en Cypress, hemos utilizado una biblioteca llamada ResembleJS. Esta biblioteca se utiliza para comparar imágenes y, en nuestro caso, nos permite comparar automáticamente capturas de pantalla tomadas durante las pruebas con capturas de pantalla de referencia previas. Al hacerlo, podemos asegurarnos de que no haya cambios no deseados en la apariencia visual de nuestra aplicación después de un cambio de código.
 
 ### Reporte Manual
 
