@@ -3,8 +3,8 @@ import { takeCypressScreenshot } from "./../utils/takeScreenshot";
 import config from "./../assets/config.json";
 
 
-describe("Add a new option to the navigation menu", () => {
-  it("Scenario05", () => {
+describe("Scenario05", () => {
+  it("Add a new option to the navigation menu", () => {
     // Given user is logged in
     let signinPage = new SignInPage();
     let homePage = signinPage.login(config.user, config.password);

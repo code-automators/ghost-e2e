@@ -3,8 +3,8 @@ import { takeCypressScreenshot } from "./../utils/takeScreenshot";
 import config from "./../assets/config.json";
 
 
-describe("Create a new scheduled post", () => {
-  it("Scenario13", () => {
+describe("Scenario13", () => {
+  it("Create a new scheduled post", () => {
     // Given user is logged in
     let signinPage = new SignInPage();
     let homePage = signinPage.login(config.user, config.password);

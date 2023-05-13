@@ -3,8 +3,8 @@ import { takeCypressScreenshot } from "./../utils/takeScreenshot";
 import config from "./../assets/config.json";
 
 
-describe("Create a new post with a tag and publish it", () => {
-  it("Scenario01", () => {
+describe("Scenario01", () => {
+  it("Create a new post with a tag and publish it", () => {
     // Given user is logged in
     let signinPage = new SignInPage();
     let homePage = signinPage.login(config.user, config.password);

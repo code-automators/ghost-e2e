@@ -3,8 +3,8 @@ import { takeCypressScreenshot } from "./../utils/takeScreenshot";
 import config from "./../assets/config.json";
 
 
-describe("Change user slug and social media info.", () => {
-  it("Scenario17", () => {
+describe("Scenario17", () => {
+  it("Change user slug and social media info.", () => {
     // Given user is logged in
     let signinPage = new SignInPage();
     let homePage = signinPage.login(config.user, config.password);

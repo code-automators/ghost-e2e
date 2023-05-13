@@ -3,8 +3,8 @@ import { takeCypressScreenshot } from "./../utils/takeScreenshot";
 import config from "./../assets/config.json";
 
 
-describe("Create a page with an image", () => {
-  it("Scenario09", () => {
+describe("Scenario09", () => {
+  it("Create a page with an image", () => {
     // Given user is logged in
     let signinPage = new SignInPage();
     let homePage = signinPage.login(config.user, config.password);
