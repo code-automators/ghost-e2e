@@ -149,7 +149,7 @@ Los escenarios que causan cambios de este estilo son:
 - Escenario 20 (Cambio de ajustes generales y visibilidad del sitio web)
   - Se arregla yendo a la sección de ajustes y desactivando el modo privado del sitio web
 
-# Visual Regression Testing - Resultados
+## Visual Regression Testing - Resultados
 
 Los resultados del Visual Regression Testing se pueden acceder a través del reporte generado por el Workflow de Github Actions. Este reporte se genera tras la ejecución del workflow y muestra el estado actual de las pruebas visuales de Ghost CMS.
 
