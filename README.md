@@ -158,12 +158,18 @@ Notas:
 - El ejecutable es el script binario de kraken-node ubicado en `node_modules`, el cual fue instalado con el comando de `npm i kraken-node`. Un ejemplo de este comando para correr las pruebas es: `node ".\node_modules\kraken-node\bin\kraken-node" run`
 
 #### Notas de la ejecución
-Puede ejecutar Ghost con el siguiente comando:
+Estas pruebas se ejecutaron sobre 2 versiones de ghost específicas. La v3.41.1 y la v4.44.0. Para esto, se crearon 2 contenedores de Docker con las siguientes instrucciones:
+
+Puede ejecutar Ghost con los siguientes comandos (se recomienda no correrlos al tiempo):
 ```bash
-docker run -d -e url=http://<machine-ip>:4440 -p 4440:2368 --name ghost_4.44.0 ghost:4.44.0
+docker run -d -e url=http://<machine-ip>:2368 -p 2368:2368 --name ghost_3.41.1 ghost:3.41.1
 ```
 
-Nosotros desplegamos una instancia en GCP para tener disponible la versión de Ghost 3.41.1 y 4.44.0 en los siguientes enlaces, y así integrarlo con nuestro pipeline de GitHub Actions que corre automáticamente todas las pruebas de Cypress:
+```bash
+docker run -d -e url=http://<machine-ip>:2368 -p 2368:2368 --name ghost_4.44.0 ghost:4.44.0
+```
+
+Nosotros también desplegamos una instancia en GCP para tener disponible la versión de Ghost 3.41.1 y 4.44.0 en los siguientes enlaces, y así integrarlo con nuestro pipeline de GitHub Actions que corre automáticamente todas las pruebas de Cypress:
 
 - v3.41.1: http://34.132.112.110:3411/
 - v4.44.0 http://34.132.112.110:4440/
