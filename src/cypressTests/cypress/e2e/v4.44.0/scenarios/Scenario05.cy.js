@@ -10,8 +10,8 @@ describe("Add a new option to the navigation menu", () => {
     let homePage = signinPage.login(config.user, config.password);
     takeCypressScreenshot("login");
     // When the user wants to add a new option to the navbar menu
-    // The user goes to the design page
-    let designPage = homePage.goToDesignPage();
+    // The user goes to the navigation page
+    let designPage = homePage.goToNavigationPage();
     takeCypressScreenshot("goToNavigationPage");
     // The user adds an option to the navigation menu
     designPage.addNavigationOption(config.new_navigation_bar_label, config.new_navigation_bar_uri);

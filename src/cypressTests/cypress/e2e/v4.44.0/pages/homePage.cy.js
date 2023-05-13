@@ -62,10 +62,10 @@ class HomePage {
     return new IntegrationListPage();
   }
 
-  goToDesignPage() {
+  goToNavigationPage() {
     cy.wait(500);
     let host = window.location.origin;
-    cy.visit(host + "/ghost/#/settings/design")
+    cy.visit(host + "/ghost/#/settings/navigation")
     return new DesignPage();
   }
 

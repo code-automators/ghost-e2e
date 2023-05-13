@@ -10,8 +10,8 @@ class PostDetails {
   fillNewPost(postTitle, content, additionalProps = {}) {
     const { tag, scheduleDate, scheduleHour } = additionalProps;
 
-    cy.get("textarea.gh-editor-title").type(postTitle);
-    cy.get("article").type(content);
+    cy.get("textarea[class$='gh-editor-title ember-text-area gh-input ember-view']").type(postTitle);
+    cy.get("article[class$='koenig-editor w-100 flex-grow relative center mb0 mt0 ember-view']").type(content);
 
     if (tag) {
       cy.get("button.post-settings").click();
@@ -34,6 +34,8 @@ class PostDetails {
     }
 
     cy.get("button[class='gh-btn gh-btn-black gh-publishmenu-button gh-btn-icon ember-view']").click();
+    cy.wait(2000);
+    cy.get("div[class$='modal-footer']").contains("Publish").click();
   }
 
   editPost(postTitle) {
