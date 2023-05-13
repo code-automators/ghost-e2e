@@ -11,6 +11,7 @@ Realizado por:
 - Juan Pablo Correa - jp.correap@uniandes.edu.co
 
 Link a la wiki: https://github.com/code-automators/ghost-e2e/wiki
+Link a los issues: https://github.com/code-automators/ghost-issues/issues
 
 ## Funcionalidades bajo pruebas
 1. Manejo de posts: Esta funcionalidad permite al administrador de Ghost crear, editar y eliminar publicaciones de blog en su sitio web. Desde el panel de administración, se pueden redactar nuevos posts, agregar imágenes y otros medios, programar su publicación y actualizar o eliminar publicaciones existentes.
