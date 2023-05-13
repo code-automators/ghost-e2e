@@ -1,6 +1,8 @@
 name: Cypress Test Automation
 
 on:
+  push:
+    branches: ["main"]
   pull_request:
     branches: ["main", "development"]
 
