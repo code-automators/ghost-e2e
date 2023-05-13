@@ -149,6 +149,16 @@ Los escenarios que causan cambios de este estilo son:
 - Escenario 20 (Cambio de ajustes generales y visibilidad del sitio web)
   - Se arregla yendo a la sección de ajustes y desactivando el modo privado del sitio web
 
+# Visual Regression Testing - Resultados
+
+Los resultados del Visual Regression Testing se pueden acceder a través del reporte generado por el Workflow de Github Actions. Este reporte se genera tras la ejecución del workflow y muestra el estado actual de las pruebas visuales de Ghost CMS.
+
+Para acceder al reporte del día, puedes hacerlo directamente a través del siguiente enlace: https://code-automators.github.io/ghost-e2e/. Si deseas ver el reporte de un día específico, puedes agregar la fecha del reporte deseado al final del enlace de la siguiente manera: https://code-automators.github.io/ghost-e2e/2023-05-13/.
+
+En el reporte, se pueden encontrar las imágenes de referencia y las imágenes de prueba junto con la diferencia visual detectada, en caso de que haya alguna. También se puede observar el porcentaje de similitud entre las imágenes y la fecha y hora en que se ejecutó el Workflow.
+
+Es importante tener en cuenta que el Visual Regression Testing no reemplaza las pruebas manuales y de unit testing, sino que complementa la suite de pruebas automatizadas. De esta manera, se pueden detectar posibles cambios visuales no deseados antes de que se desplieguen a producción.
+
 ## Licencia
 
 [![Licencia](http://img.shields.io/:license-mit-blue.svg?style=flat-square)](http://badges.mit-license.org)
