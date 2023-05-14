@@ -10,6 +10,7 @@ Realizado por:
 - Luisa Johanna Torres - lj.torresm1@uniandes.edu.co
 - Juan Pablo Correa - jp.correap@uniandes.edu.co
 
+Link al video explicativo: https://youtu.be/4azl89Ijzq8  
 Link a la wiki: https://github.com/code-automators/ghost-e2e/wiki  
 Link a los issues: https://github.com/code-automators/ghost-issues/issues
 
