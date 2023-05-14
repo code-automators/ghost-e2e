@@ -1,0 +1,75 @@
+name: Cypress Test Automation
+
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main", "development"]
+
+jobs:
+  get-date:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get current date
+        id: date
+        uses: Kaven-Universe/github-action-current-date-time@v1
+        with:
+          format: "YYYY-MM-DD"
+    outputs:
+      date: ${{ steps.date.outputs.time }}
+
+  cypress:
+    needs: get-date
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        ghost-version: ["v3.41.1", "v4.44.0"]
+    steps:
+      - uses: actions/checkout@v3
+      - name: Use Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: "18.x"
+          cache: "npm"
+      - run: npm ci
+      - run: npm test -- --spec "cypress/e2e/${{ matrix.ghost-version }}/scenarios/*.cy.js"
+
+      - uses: actions/upload-artifact@v3
+        with:
+          name: "${{ matrix.ghost-version }}-screenshots"
+          path: src/cypressTests/cypress/screenshots/${{ needs.get-date.outputs.date }}/${{ matrix.ghost-version }}
+
+  vrt-report:
+    runs-on: ubuntu-latest
+    needs: [get-date, cypress]
+
+    permissions:
+      pages: write
+      id-token: write
+
+    environment:
+      name: github-pages-deployment
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Download all workflow run artifacts
+      uses: actions/download-artifact@v3
+
+    - name: Use Node.js for generating report
+      uses: actions/setup-node@v3
+      with:
+        node-version: "18.x"
+        cache: "npm"
+    - run: npm ci
+    - run: npm run report -- v3.41.1-screenshots v4.44.0-screenshots
+
+    - name: Setup Pages
+      uses: actions/configure-pages@v3
+    - name: Upload pages artifact
+      uses: actions/upload-pages-artifact@v1
+      with:
+        path: 'VRTReports'
+    - name: Deploy to GitHub Pages
+      id: deployment
+      uses: actions/deploy-pages@v2

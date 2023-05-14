@@ -24,7 +24,7 @@ const saveDescription = async function (driver, description) {
 
 const checkNewIntegration = async function (driver, nameInt) {
     let newIntegration = await driver.$('div.apps-grid-cell');
-    expect(await newIntegration.getText() == nameInt);
+    expect(await newIntegration.getText() == nameInt).to.be.true;
 }
 
 module.exports = {

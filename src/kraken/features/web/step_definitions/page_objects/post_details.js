@@ -41,7 +41,7 @@ const fillPostName = async function (driver, title) {
 
 const checkNewPostEdited = async function (driver, title) {
     let editedPost = await driver.$("li[class$='gh-list-row gh-posts-list-item']");
-    expect(await editedPost.getText() == title);
+    expect(await editedPost.getText() == title).to.be.true;
 }
 
 /**
@@ -120,7 +120,7 @@ const addImage = async function (driver, image_path) {
 
 const checkPostUpdated = async function (driver) {
     let updatedMessage = await driver.$("span[class$='gh-notification-title']");
-    expect(await updatedMessage.getText() == "Updated");
+    expect(await updatedMessage.getText() == "Updated").to.be.true;
 }
 
 const selectPostToDelete = async function (driver, title) {

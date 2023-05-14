@@ -1,4 +1,4 @@
-const { assert, expect } = require("chai");
+const { expect } = require("chai");
 
 const changeWebsiteSettings = async (driver, new_name) => {
     let expandTitleButton = await driver.$("div[class$='gh-setting-first']").$("div[class$='gh-setting-action']").$("button[class$='gh-btn']")
@@ -37,7 +37,7 @@ const makeSitePrivate = async (driver) => {
 
 const checkPrivateSite = async (driver) => {
     let title = await driver.$("header").$("h1")
-    assert(await title.getText() === 'This site is private', 'The site is not private')
+    expect(await title.getText() === 'This site is private', 'The site is not private').to.be.true;
 }
 
 const uploadBanner = async (driver, image_path) =>  {
@@ -47,7 +47,7 @@ const uploadBanner = async (driver, image_path) =>  {
 
 const checkBanner = async (driver) => {
     let classBanner = await driver.$('div.outer.site-header-background.responsive-header-img');
-    expect (classBanner).to.exist;
+    expect(classBanner).to.exist;
 }
 
 module.exports = {

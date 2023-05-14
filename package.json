@@ -1,15 +1,21 @@
 {
   "name": "ghost-e2e",
   "version": "1.0.0",
-  "description": "End-to-end tests during automated testing in Ghost CMS v3.41.1",
+  "description": "End-to-end tests during automated testing in Ghost CMS",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "cd src/cypressTests && npx cypress run --browser chrome",
+    "report": "node src/reportScript/script.js"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "Code Automators",
+  "license": "MIT",
   "dependencies": {
+    "canvas": "^2.11.2",
     "chai": "^4.3.7",
-    "kraken-node": "^1.0.24"
+    "cypress": "^12.12.0",
+    "kraken-node": "^1.0.24",
+    "readline-sync": "^1.4.10",
+    "resemblejs": "^4.1.0",
+    "valid-path": "^2.1.0"
   }
 }

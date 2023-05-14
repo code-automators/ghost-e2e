@@ -9,7 +9,7 @@ const fillNewPage = async function (driver, page_title) {
 
 const checkIfPageUpdated = async function (driver) {
     let updatedMessage = await driver.$("span[class$='gh-notification-title']")
-    expect(await updatedMessage.getText() == "Updated")
+    expect(await updatedMessage.getText() == "Updated").to.be.true;
 }
 
 module.exports = {
