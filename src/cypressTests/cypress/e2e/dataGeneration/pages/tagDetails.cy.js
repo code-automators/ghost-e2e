@@ -8,7 +8,7 @@ class TagDetails {
         }
     }
 
-    createNewTag(tagName, slug, imagePath, description = "This is a test tag, tested with Cypress :)") {
+    createNewTag(tagName, slug, description = "This is a test tag, tested with Cypress :)", imagePath = undefined) {
         cy.get("#tag-name").clear().type(tagName, { force: true });
         cy.wait(500);
         cy.get("#tag-slug").clear().type(slug, { force: true })
@@ -17,8 +17,10 @@ class TagDetails {
         cy.wait(500);
         cy.get("input[name$='accent-color']").clear().type('000000', { force: true });
         cy.wait(500);
-        cy.get("input[class$='x-file--input']").selectFile(imagePath, { force: true })
-        cy.wait(500);
+        if (imagePath != undefined) {
+            cy.get("input[class$='x-file--input']").selectFile(imagePath, { force: true })
+            cy.wait(500);
+        }
         cy.contains("Save").click();
         cy.wait(3000);
     }

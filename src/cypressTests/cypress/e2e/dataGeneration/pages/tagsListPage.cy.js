@@ -22,6 +22,10 @@ class TagsListPage {
         cy.contains(tagName).click();
         return new TagDetails();
     }
+
+    getCreatedTag(tagName) {
+        return cy.contains(tagName);
+    }
 }
 
 export { TagsListPage };
