@@ -23,7 +23,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        ghost-version: ["v3.41.1", "v4.44.0"]
+        ghost-version: ["v3.41.1", "v4.44.0", "dataGeneration"]
     steps:
       - uses: actions/checkout@v3
       - name: Use Node.js
