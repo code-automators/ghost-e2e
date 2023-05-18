@@ -1,6 +1,6 @@
 import { SignInPage } from "./../pages/signinPage.cy";
 import config from "./../assets/config.json";
-import data from "./../assets/aprioriData/tags.json";
+import data from "./../aprioriData/tags.json";
 import { faker } from '@faker-js/faker';
 
 describe("Tag Scenarios", () => {

@@ -1,6 +1,6 @@
 import { SignInPage } from "./../pages/signinPage.cy";
 import config from "./../assets/config.json";
-import data from "./../assets/aprioriData/login.json";
+import data from "./../aprioriData/login.json";
 import { faker } from '@faker-js/faker';
 
 describe("Login Scenarios", () => {
@@ -13,10 +13,10 @@ describe("Login Scenarios", () => {
     it("[Pseudo Random] Scenario 2: Login with invalid credentials", () => {
         let signinPage = new SignInPage();
         cy.request(`https://my.api.mockaroo.com/validLogin.json?key=${config.mockarooKey}`)
-        .then((response) => {
-            signinPage.login(response.body.email, response.body.password);
-            signinPage.checkForNonExistentUser().should("contain", "There is no user with that email address.")
-        })
+            .then((response) => {
+                signinPage.login(response.body.email, response.body.password);
+                signinPage.checkForNonExistentUser().should("contain", "There is no user with that email address.")
+            })
     });
 
     it("[Random] Scenario 3: Login with invalid credentials", () => {
@@ -34,10 +34,10 @@ describe("Login Scenarios", () => {
     it("[Pseudo Random] Scenario 5: Login with valid email but invalid password", () => {
         let signinPage = new SignInPage();
         cy.request(`https://my.api.mockaroo.com/validLogin.json?key=${config.mockarooKey}`)
-        .then((response) => {
-            signinPage.login(config.user, response.body.password);
-            signinPage.checkForNonExistentUser().should("contain", "There is no user with that email address.")
-        })
+            .then((response) => {
+                signinPage.login(config.user, response.body.password);
+                signinPage.checkForNonExistentUser().should("contain", "There is no user with that email address.")
+            })
     });
 
     it("[Random] Scenario 6: Login with valid email but invalid password", () => {
@@ -55,11 +55,11 @@ describe("Login Scenarios", () => {
     it("[Pseudo Random] Scenario 8: Login with invalid multiplied credentials", () => {
         let signinPage = new SignInPage();
         cy.request(`https://my.api.mockaroo.com/invalidLogin.json?key=${config.mockarooKey}`)
-        .then((response) => {
-            console.log(response.body);
-            signinPage.login(response.body.email, response.body.password);
-            signinPage.checkForErrorData().should("contain", "Please fill out the form to sign in.")
-        })
+            .then((response) => {
+                console.log(response.body);
+                signinPage.login(response.body.email, response.body.password);
+                signinPage.checkForErrorData().should("contain", "Please fill out the form to sign in.")
+            })
     });
 
     it("[Random] Scenario 9: Login with invalid multiplied credentials", () => {
