@@ -4,7 +4,7 @@ import data from "./aprioriData/tags.json";
 import { faker } from '@faker-js/faker';
 
 describe("Tag Scenarios", () => {
-    it("[A Priori] Scenario 4: Create a valid tag", () => {
+    it("[A Priori] Scenario 10: Create a valid tag", () => {
         // Given user is logged in
         let signinPage = new SignInPage();
         let homePage = signinPage.login(config.user, config.password);
@@ -17,7 +17,7 @@ describe("Tag Scenarios", () => {
         tagsListPage.getCreatedTag(data.scenario4.tagName).should('exist');
     });
 
-    it("[Pseudo Random] Scenario 4: Create a valid tag", () => {
+    it("[Pseudo Random] Scenario 11: Create a valid tag", () => {
         // Given user is logged in
         let signinPage = new SignInPage();
         let homePage = signinPage.login(config.user, config.password);
@@ -33,7 +33,7 @@ describe("Tag Scenarios", () => {
             })
     });
 
-    it("[Random] Scenario 4: Create a valid tag", () => {
+    it("[Random] Scenario 12: Create a valid tag", () => {
         // Given user is logged in
         let signinPage = new SignInPage();
         let homePage = signinPage.login(config.user, config.password);
@@ -47,7 +47,7 @@ describe("Tag Scenarios", () => {
         tagsListPage.getCreatedTag(randomTag).should('exist');
     });
 
-    it("[A Priori] Scenario 5: Attempt to create an invalid tag", () => {
+    it("[A Priori] Scenario 13: Attempt to create an invalid tag", () => {
         // Given user is logged in
         let signinPage = new SignInPage();
         let homePage = signinPage.login(config.user, config.password);
@@ -60,7 +60,7 @@ describe("Tag Scenarios", () => {
         newTag.checkTagDescriptionError().should('contain', "Description cannot be longer than 500 characters.");
     });
 
-    it("[Pseudo Random] Scenario 5: Attempt to create an invalid tag", () => {
+    it("[Pseudo Random] Scenario 14: Attempt to create an invalid tag", () => {
         // Given user is logged in
         let signinPage = new SignInPage();
         let homePage = signinPage.login(config.user, config.password);
@@ -76,7 +76,7 @@ describe("Tag Scenarios", () => {
             })
     });
 
-    it("[Random] Scenario 5: Attempt to create an invalid tag", () => {
+    it("[Random] Scenario 15: Attempt to create an invalid tag", () => {
         // Given user is logged in
         let signinPage = new SignInPage();
         let homePage = signinPage.login(config.user, config.password);
