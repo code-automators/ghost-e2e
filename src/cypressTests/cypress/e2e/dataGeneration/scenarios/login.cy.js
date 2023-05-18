@@ -1,6 +1,6 @@
 import { SignInPage } from "./../pages/signinPage.cy";
 import config from "./../assets/config.json";
-import data from "./aprioriData/login.json";
+import data from "./../assets/aprioriData/login.json";
 import { faker } from '@faker-js/faker';
 
 describe("Login Scenarios", () => {
