@@ -1,0 +1,106 @@
+import { SignInPage } from "./../pages/signinPage.cy";
+import { HomePage } from "./../pages/homePage.cy";
+import config from "./../assets/config.json";
+import data from "./../aprioriData/profile.json";
+import { faker } from '@faker-js/faker';
+
+let currentTest = null;
+
+function saveCurrentTestCredentials(scenario, newPassword) {
+    currentTest.currentScenario = scenario;
+    currentTest.newPassword = newPassword;
+}
+
+describe("Profile Scenarios", () => {
+
+    before(() => {
+        currentTest = {
+            currentScenario: "Edit profile with valid info",
+            email: config.user,
+            password: config.password,
+            newPassword: config.password
+        }
+    })
+
+    it("[A priori] Scenario 16: Edit profile with valid info", () => {
+        // Given user is logged in
+        let signinPage = new SignInPage();
+        let homePage = signinPage.login(config.user, config.password);
+        // When the user wants to change the slug and social media info
+        let profilePage = homePage.goToProfile();
+        // And the user changes their profile
+        profilePage.changeSlugAndSocialMedia(
+            data.scenario16.slug,
+            data.scenario16.website,
+            data.scenario16.facebook,
+            data.scenario16.twitter
+        );
+
+        profilePage.changeCredentials(
+            data.scenario16.newEmail,
+            data.scenario16.newPassword,
+            config.password
+        )
+        profilePage.getPasswordUpdated().should("exist")
+        saveCurrentTestCredentials("Edit profile with valid info", data.scenario16.newPassword);
+    });
+
+    it("[Pseudo Random] Scenario 17: Edit profile with valid info", () => {
+        // Given user is logged in
+        let signinPage = new SignInPage();
+        let homePage = signinPage.login(config.user, config.password);
+        // When the user wants to change the slug and social media info
+        let profilePage = homePage.goToProfile();
+        // And the user changes their profile
+        cy.request(`https://my.api.mockaroo.com/validProfile.json?key=${config.mockarooKey}`)
+            .then((response) => {
+                profilePage.changeSlugAndSocialMedia(
+                    response.body.slug,
+                    response.body.website,
+                    response.body.facebook,
+                    response.body.twitter
+                );
+                profilePage.changeCredentials(
+                    response.body.newEmail,
+                    response.body.newPassword,
+                    config.password
+                )
+                profilePage.getPasswordUpdated().should("exist")
+                saveCurrentTestCredentials("Edit profile with valid info", response.body.newPassword);
+            })
+    });
+
+    it("[Random] Scenario 18: Edit profile with valid info", () => {
+        // Given user is logged in
+        let signinPage = new SignInPage();
+        let homePage = signinPage.login(config.user, config.password);
+        // When the user wants to change the slug and social media info
+        let profilePage = homePage.goToProfile();
+        // And the user changes their profile
+        profilePage.changeSlugAndSocialMedia(
+            faker.lorem.slug(),
+            faker.internet.url(),
+            faker.internet.displayName(),
+            faker.internet.displayName()
+        );
+
+        let scenarioEmail = faker.internet.email();
+        let scenarioPassword = faker.internet.password();
+        profilePage.changeCredentials(
+            scenarioEmail,
+            scenarioPassword,
+            config.password
+        )
+        profilePage.getPasswordUpdated().should("exist")
+        saveCurrentTestCredentials("Edit profile with valid info", scenarioPassword);
+    });
+
+
+    afterEach(() => {
+        if (currentTest.currentScenario.includes("Edit profile with valid info")) {
+            let homePage = new HomePage();
+            let profilePage = homePage.goToProfile();
+            profilePage.changeCredentials(config.user, config.password, currentTest.newPassword)
+        }
+    })
+});

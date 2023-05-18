@@ -27,7 +27,7 @@ describe("Login Scenarios", () => {
 
     it("[A Priori] Scenario 4: Login with valid email but invalid password", () => {
         let signinPage = new SignInPage();
-        signinPage.login(config.user, data.scenario2.password);
+        signinPage.login(config.user, data.scenario4.password);
         signinPage.checkForIncorrectPassword().should("contain", "Your password is incorrect.")
     });
 
@@ -48,7 +48,7 @@ describe("Login Scenarios", () => {
 
     it("[A Priori] Scenario 7: Login with invalid multiplied credentials", () => {
         let signinPage = new SignInPage();
-        signinPage.login(data.scenario3.email, data.scenario3.password);
+        signinPage.login(data.scenario7.email, data.scenario7.password);
         signinPage.checkForErrorData().should("contain", "Please fill out the form to sign in.")
     });
 

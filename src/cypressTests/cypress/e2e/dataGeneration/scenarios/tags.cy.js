@@ -12,9 +12,9 @@ describe("Tag Scenarios", () => {
         let tagsListPage = homePage.goToTagsList();
         // And the user goes to create tag and fills out the details
         let newTag = tagsListPage.goToCreateTag();
-        newTag.createNewTag(data.scenario4.tagName, data.scenario4.tagSlug, data.scenario4.description);
+        newTag.createNewTag(data.scenario10.tagName, data.scenario10.tagSlug, data.scenario10.description);
         tagsListPage = homePage.goToTagsList();
-        tagsListPage.getCreatedTag(data.scenario4.tagName).should('exist');
+        tagsListPage.getCreatedTag(data.scenario10.tagName).should('exist');
     });
 
     it("[Pseudo Random] Scenario 11: Create a valid tag", () => {
@@ -55,7 +55,7 @@ describe("Tag Scenarios", () => {
         let tagsListPage = homePage.goToTagsList();
         // And the user goes to create tag and fills out the details
         let newTag = tagsListPage.goToCreateTag();
-        newTag.createNewTag(data.scenario5.tagName, data.scenario5.tagSlug, data.scenario5.description);
+        newTag.createNewTag(data.scenario13.tagName, data.scenario13.tagSlug, data.scenario13.description);
         newTag.checkTagNameError().should('contain', "Tag names cannot be longer than 191 characters.");
         newTag.checkTagDescriptionError().should('contain', "Description cannot be longer than 500 characters.");
     });
