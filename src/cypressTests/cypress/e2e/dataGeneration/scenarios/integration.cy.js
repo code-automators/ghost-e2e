@@ -1,6 +1,6 @@
 import { SignInPage } from "./../pages/signinPage.cy";
 import config from "./../assets/config.json";
-import data from "./../assets/aprioriData/integration.json";
+import data from "./../aprioriData/integration.json";
 import faker from "@faker-js/faker";
 
 describe("Integration Scenarios", () => { 
@@ -33,7 +33,7 @@ describe("Integration Scenarios", () => {
             })
     });
 
-    it("[Pseudo Random] Scenario 36: Add integration with valid data", () => {
+    it("[Random] Scenario 36: Add integration with valid data", () => {
         // Given user is logged in
         let signinPage = new SignInPage();
         let homePage = signinPage.login(config.user, config.password);

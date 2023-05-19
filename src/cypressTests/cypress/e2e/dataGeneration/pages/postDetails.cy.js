@@ -90,6 +90,16 @@ class PostDetails {
     }
     return `tag-${result}`;
   }
+
+  editPostTime(time) {
+    cy.get("button[title$='Settings']").click();
+    cy.get("div.gh-date-time-picker-time > input[type=text]").clear().type(time);
+    cy.get("h4").click();
+  }
+
+  checkPostTimeError(){
+    return cy.contains('Must be in format: "15:00"');
+}
 }
 
 export { PostDetails };
