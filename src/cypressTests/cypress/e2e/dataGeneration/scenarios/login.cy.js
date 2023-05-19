@@ -1,6 +1,6 @@
 import { SignInPage } from "./../pages/signinPage.cy";
 import config from "./../assets/config.json";
-import data from "./../assets/aprioriData/login.json";
+import data from "./../aprioriData/login.json";
 import { faker } from '@faker-js/faker';
 
 describe("Login Scenarios", () => {
@@ -10,50 +10,59 @@ describe("Login Scenarios", () => {
         signinPage.checkForNonExistentUser().should("contain", "There is no user with that email address.")
     });
 
-    it("[Pseudo Random] Scenario 1: Login with invalid credentials", () => {
+    it("[Pseudo Random] Scenario 2: Login with invalid credentials", () => {
         let signinPage = new SignInPage();
-        cy.request(`https://my.api.mockaroo.com/login.json?key=${config.mockarooKey}`)
-        .then((response) => {
-            signinPage.login(response.body.email, response.body.password);
-            signinPage.checkForNonExistentUser().should("contain", "There is no user with that email address.")
-        })
+        cy.request(`https://my.api.mockaroo.com/validLogin.json?key=${config.mockarooKey}`)
+            .then((response) => {
+                signinPage.login(response.body.email, response.body.password);
+                signinPage.checkForNonExistentUser().should("contain", "There is no user with that email address.")
+            })
     });
 
-    it("[Random] Scenario 1: Login with invalid credentials", () => {
+    it("[Random] Scenario 3: Login with invalid credentials", () => {
         let signinPage = new SignInPage();
         signinPage.login(faker.internet.email(), faker.internet.password());
         signinPage.checkForNonExistentUser().should("contain", "There is no user with that email address.")
     });
 
-    it("[A Priori] Scenario 2: Login with valid email but invalid password", () => {
+    it("[A Priori] Scenario 4: Login with valid email but invalid password", () => {
         let signinPage = new SignInPage();
-        signinPage.login(config.user, data.scenario2.password);
+        signinPage.login(config.user, data.scenario4.password);
         signinPage.checkForIncorrectPassword().should("contain", "Your password is incorrect.")
     });
 
-    it("[Random] Scenario 2: Login with valid email but invalid password", () => {
+    it("[Pseudo Random] Scenario 5: Login with valid email but invalid password", () => {
+        let signinPage = new SignInPage();
+        cy.request(`https://my.api.mockaroo.com/validLogin.json?key=${config.mockarooKey}`)
+            .then((response) => {
+                signinPage.login(config.user, response.body.password);
+                signinPage.checkForNonExistentUser().should("contain", "There is no user with that email address.")
+            })
+    });
+
+    it("[Random] Scenario 6: Login with valid email but invalid password", () => {
         let signinPage = new SignInPage();
         signinPage.login(config.user, faker.internet.password());
         signinPage.checkForIncorrectPassword().should("contain", "Your password is incorrect.")
     });
 
-    it("[A Priori] Scenario 3: Login with invalid multiplied credentials", () => {
+    it("[A Priori] Scenario 7: Login with invalid multiplied credentials", () => {
         let signinPage = new SignInPage();
-        signinPage.login(data.scenario3.email.repeat(25), data.scenario3.password);
+        signinPage.login(data.scenario7.email, data.scenario7.password);
         signinPage.checkForErrorData().should("contain", "Please fill out the form to sign in.")
     });
 
-    it("[Pseudo Random] Scenario 3: Login with invalid multiplied credentials", () => {
+    it("[Pseudo Random] Scenario 8: Login with invalid multiplied credentials", () => {
         let signinPage = new SignInPage();
-        cy.request(`https://my.api.mockaroo.com/login.json?key=${config.mockarooKey}`)
-        .then((response) => {
-            console.log(response.body);
-            signinPage.login(response.body.email.repeat(25), response.body.password);
-            signinPage.checkForErrorData().should("contain", "Please fill out the form to sign in.")
-        })
+        cy.request(`https://my.api.mockaroo.com/invalidLogin.json?key=${config.mockarooKey}`)
+            .then((response) => {
+                console.log(response.body);
+                signinPage.login(response.body.email, response.body.password);
+                signinPage.checkForErrorData().should("contain", "Please fill out the form to sign in.")
+            })
     });
 
-    it("[Random] Scenario 3: Login with invalid multiplied credentials", () => {
+    it("[Random] Scenario 9: Login with invalid multiplied credentials", () => {
         let signinPage = new SignInPage();
         signinPage.login(faker.internet.email().repeat(25), faker.internet.password());
         signinPage.checkForErrorData().should("contain", "Please fill out the form to sign in.")
