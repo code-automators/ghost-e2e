@@ -8,7 +8,7 @@ class SettingsPage {
         }
     }
 
-    changeSettings(site_name, site_description, site_language){
+    changeSettings(site_name, site_description, site_language, save = true) {
         cy.get("div[class$='gh-setting-first']").find("div[class$='gh-setting-action']").find("button[class$='gh-btn']").click()
         cy.get("div[class$='gh-setting-first']").find("input[class$='ember-text-field gh-input ember-view']").each(($el) => {
             cy.wrap($el).clear()
@@ -16,15 +16,20 @@ class SettingsPage {
         cy.get("div[class$='gh-setting-first']").find("input[class$='ember-text-field gh-input ember-view']").eq(0).type(site_name)
         cy.get("div[class$='gh-setting-first']").find("input[class$='ember-text-field gh-input ember-view']").eq(1).type(site_description)
 
-        cy.get("div[class$='gh-setting-first']").find("div[class$='gh-setting-action']").find("button[class$='gh-btn']").click()
+        if (save) {
+            cy.get("div[class$='gh-setting-first']").find("div[class$='gh-setting-action']").find("button[class$='gh-btn']").click()
+        }
         cy.wait(1000)
 
         cy.get("div[class$='gh-setting-last']").find("div[class$='gh-setting-action']").find("button[class$='gh-btn']").contains("Expand").click()
         cy.get("div[class$='gh-setting-last']").find("input[class$='ember-text-field gh-input ember-view']").clear().type(site_language, { force: true })
         cy.wait(500)
 
-        cy.contains("Save settings").click()
-        cy.wait(1000)
+        if (save) {
+            cy.contains("Save settings").click()
+            cy.wait(1000)
+        }
+
     }
 
     changeSettingsAndMakePrivate(site_name) {
@@ -66,9 +71,17 @@ class SettingsPage {
     }
 
     uploadBanner(bannerPath) {
-        cy.get("input[class$='x-file--input']").last().selectFile(bannerPath, {force: true});
+        cy.get("input[class$='x-file--input']").last().selectFile(bannerPath, { force: true });
         cy.wait(1000);
         cy.contains("Save settings").click();
+    }
+
+    getTitleError() {
+        return cy.contains("Title is too long")
+    }
+
+    getDescriptionError() {
+        return cy.contains("Description is too long")
     }
 
 }
