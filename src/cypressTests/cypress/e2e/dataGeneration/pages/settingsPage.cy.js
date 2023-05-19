@@ -22,7 +22,7 @@ class SettingsPage {
         cy.wait(1000)
 
         cy.get("div[class$='gh-setting-last']").find("div[class$='gh-setting-action']").find("button[class$='gh-btn']").contains("Expand").click()
-        cy.get("div[class$='gh-setting-last']").find("input[class$='ember-text-field gh-input ember-view']").clear().type(site_language, { force: true })
+        cy.get("div[class$='gh-setting-last']").find("input[class$='ember-text-field gh-input ember-view']").clear({ force: true }).type(site_language, { force: true })
         cy.wait(500)
 
         if (save) {
@@ -57,6 +57,15 @@ class SettingsPage {
         cy.get("span[class$='input-toggle-component']").click()
         cy.wait(500)
 
+        cy.contains("Save settings").click()
+        cy.wait(1000)
+    }
+
+    togglePrivateAndChangePassword(password) {
+        cy.get("span[class$='input-toggle-component']").click()
+        cy.wait(500)
+        cy.get("input[name$='general[password]']").clear().type(password, { force: true })
+        cy.wait(500)
         cy.contains("Save settings").click()
         cy.wait(1000)
     }

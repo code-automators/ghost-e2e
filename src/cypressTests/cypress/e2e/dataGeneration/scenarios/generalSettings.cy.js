@@ -1,4 +1,5 @@
 import { SignInPage } from "./../pages/signinPage.cy";
+import { HomePage } from "../pages/homePage.cy";
 import config from "./../assets/config.json";
 import data from "./../aprioriData/generalSettings.json";
 import { faker } from '@faker-js/faker';
@@ -87,5 +88,26 @@ describe("General Settings Scenarios", () => {
         settingsPage.changeSettings(faker.lorem.paragraphs(3), faker.lorem.paragraphs(8), faker.lorem.paragraphs(3), false);
         settingsPage.getTitleError().should("exist");
         settingsPage.getDescriptionError().should("exist");
+    })
+
+    it("[Random] Scenario 120: Make the website private and change password", () => {
+        // Given user is logged in
+        let signinPage = new SignInPage();
+        let homePage = signinPage.login(config.user, config.password);
+        // When the user wants to change the blog's settings
+        let settingsPage = homePage.goToGeneralSettings();
+        // And the user changes the settings and makes the blog private
+        let scenarioPassword = faker.internet.password();
+        settingsPage.togglePrivateAndChangePassword(scenarioPassword);
+        // Then when the user goes to the main page, it should be private
+        let mainPage = homePage.goToMainPageSite();
+        mainPage.checkIfSiteIsPrivate().should('contain', 'This site is private');
+        mainPage.loginPrivateSite(scenarioPassword);
+    })
+
+    after(() => {
+        let homePage = new HomePage();
+        let settingsPage = homePage.goToGeneralSettings();
+        settingsPage.togglePrivate();
     })
 })
