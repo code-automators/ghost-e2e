@@ -36,7 +36,7 @@ describe("Login Scenarios", () => {
         cy.request(`https://my.api.mockaroo.com/validLogin.json?key=${config.mockarooKey}`)
             .then((response) => {
                 signinPage.login(config.user, response.body.password);
-                signinPage.checkForNonExistentUser().should("contain", "There is no user with that email address.")
+                signinPage.checkForIncorrectPassword().should("contain", "Your password is incorrect.")
             })
     });
 
@@ -66,5 +66,11 @@ describe("Login Scenarios", () => {
         let signinPage = new SignInPage();
         signinPage.login(faker.internet.email().repeat(25), faker.internet.password());
         signinPage.checkForErrorData().should("contain", "Please fill out the form to sign in.")
+    });
+
+    it("[A Priori] Scenario 118: Login with valid credentials", () => {
+        let signinPage = new SignInPage();
+        let homePage = signinPage.login(data.scenario118.email, data.scenario118.password);
+        homePage.getUrl().should('eq', `${config.host}ghost/#/site`)
     });
 });
