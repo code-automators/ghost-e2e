@@ -9,6 +9,10 @@ class MainPageSite {
         }
     }
 
+    getPageItem(itemContent) {
+        return cy.contains(itemContent)
+    }
+
     getNavbarMenu() {
         cy.wait(1000);
         return cy.get(".site-nav-content", { timeout: 4000 });

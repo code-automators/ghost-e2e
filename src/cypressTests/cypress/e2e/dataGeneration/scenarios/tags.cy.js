@@ -25,7 +25,7 @@ describe("Tag Scenarios", () => {
         let tagsListPage = homePage.goToTagsList();
         // And the user goes to create tag and fills out the details
         let newTag = tagsListPage.goToCreateTag();
-        cy.request(`https://my.api.mockaroo.com/tags.json?key=${config.mockarooKey}`)
+        cy.request(`https://my.api.mockaroo.com/validTags.json?key=${config.mockarooKey}`)
             .then((response) => {
                 newTag.createNewTag(response.body.tagName, response.body.tagSlug, response.body.description);
                 tagsListPage = homePage.goToTagsList();
@@ -68,9 +68,9 @@ describe("Tag Scenarios", () => {
         let tagsListPage = homePage.goToTagsList();
         // And the user goes to create tag and fills out the details
         let newTag = tagsListPage.goToCreateTag();
-        cy.request(`https://my.api.mockaroo.com/tags.json?key=${config.mockarooKey}`)
+        cy.request(`https://my.api.mockaroo.com/invalidTags.json?key=${config.mockarooKey}`)
             .then((response) => {
-                newTag.createNewTag(response.body.tagName.repeat(50), response.body.tagSlug, response.body.description.repeat(5));
+                newTag.createNewTag(response.body.tagName, response.body.tagSlug, response.body.description);
                 newTag.checkTagNameError().should('contain', "Tag names cannot be longer than 191 characters.");
                 newTag.checkTagDescriptionError().should('contain', "Description cannot be longer than 500 characters.");
             })
