@@ -178,6 +178,24 @@ describe("Profile Scenarios", () => {
     });
 
 
+    it("[Random] Scenario 119: Try changing passwords with different ones", () => {
+        // Given user is logged in
+        let signinPage = new SignInPage();
+        let homePage = signinPage.login(config.user, config.password);
+        // When the user wants to change the slug and social media info
+        let profilePage = homePage.goToProfile();
+        // And the user changes their profile
+        let scenarioPassword = faker.internet.password();
+        profilePage.changePasswordOnly(
+            scenarioPassword,
+            faker.internet.password(),
+            config.password
+        )
+        profilePage.getInvalidPasswordConfirmation().should("exist")
+        saveCurrentTestCredentials("Try changing passwords with different ones", scenarioPassword);
+    });
+
+
     afterEach(() => {
         if (currentTest.currentScenario.includes("Edit profile with valid info")) {
             let homePage = new HomePage();
