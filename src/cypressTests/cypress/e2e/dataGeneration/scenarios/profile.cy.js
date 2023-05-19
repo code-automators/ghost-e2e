@@ -35,12 +35,13 @@ describe("Profile Scenarios", () => {
             data.scenario16.facebook,
             data.scenario16.twitter
         );
-
+        // And the user changes their credentials
         profilePage.changeCredentials(
             data.scenario16.newEmail,
             data.scenario16.newPassword,
             config.password
         )
+        // Then the user should see the password updated message
         profilePage.getPasswordUpdated().should("exist")
         saveCurrentTestCredentials("Edit profile with valid info", data.scenario16.newPassword);
     });
@@ -60,11 +61,13 @@ describe("Profile Scenarios", () => {
                     response.body.facebook,
                     response.body.twitter
                 );
+                // And the user changes their credentials
                 profilePage.changeCredentials(
                     response.body.newEmail,
                     response.body.newPassword,
                     config.password
                 )
+                // Then the user should see the password updated message
                 profilePage.getPasswordUpdated().should("exist")
                 saveCurrentTestCredentials("Edit profile with valid info", response.body.newPassword);
             })
@@ -83,7 +86,7 @@ describe("Profile Scenarios", () => {
             faker.internet.displayName(),
             faker.internet.displayName()
         );
-
+        // And the user changes their credentials
         let scenarioEmail = faker.internet.email();
         let scenarioPassword = faker.internet.password();
         profilePage.changeCredentials(
@@ -91,6 +94,7 @@ describe("Profile Scenarios", () => {
             scenarioPassword,
             config.password
         )
+        // Then the user should see the password updated message
         profilePage.getPasswordUpdated().should("exist")
         saveCurrentTestCredentials("Edit profile with valid info", scenarioPassword);
     });
@@ -99,7 +103,7 @@ describe("Profile Scenarios", () => {
         // Given user is logged in
         let signinPage = new SignInPage();
         let homePage = signinPage.login(config.user, config.password);
-        // When the user wants to change the slug and social media info
+        // When the user wants to change the slug and social media info with invalid info
         let profilePage = homePage.goToProfile();
         // And the user changes their profile
         profilePage.changeSlugAndSocialMedia(
@@ -108,13 +112,14 @@ describe("Profile Scenarios", () => {
             data.scenario19.facebook,
             data.scenario19.twitter
         );
-
+        // And the user changes their credentials
         profilePage.changeCredentials(
             data.scenario19.newEmail,
             data.scenario19.newPassword,
             config.password,
             false
         )
+        // Then the user should see the raised errors
         profilePage.getInvalidEmail().should('exist')
         profilePage.getInvalidSocialMedia().should('exist')
         profilePage.getInvalidPassword().should('exist')
@@ -125,7 +130,7 @@ describe("Profile Scenarios", () => {
         // Given user is logged in
         let signinPage = new SignInPage();
         let homePage = signinPage.login(config.user, config.password);
-        // When the user wants to change the slug and social media info
+        // When the user wants to change the slug and social media info with invalid info
         let profilePage = homePage.goToProfile();
         // And the user changes their profile
         cy.request(`https://my.api.mockaroo.com/invalidProfile.json?key=${config.mockarooKey}`)
@@ -136,12 +141,14 @@ describe("Profile Scenarios", () => {
                     response.body.facebook,
                     response.body.twitter
                 );
+                // And the user changes their credentials
                 profilePage.changeCredentials(
                     response.body.newEmail,
                     response.body.newPassword,
                     config.password,
                     false
                 )
+                // Then the user should see the raised errors
                 profilePage.getInvalidEmail().should('exist')
                 profilePage.getInvalidSocialMedia().should('exist')
                 profilePage.getInvalidPassword().should('exist')
@@ -153,7 +160,7 @@ describe("Profile Scenarios", () => {
         // Given user is logged in
         let signinPage = new SignInPage();
         let homePage = signinPage.login(config.user, config.password);
-        // When the user wants to change the slug and social media info
+        // When the user wants to change the slug and social media info with invalid info
         let profilePage = homePage.goToProfile();
         // And the user changes their profile
         profilePage.changeSlugAndSocialMedia(
@@ -162,7 +169,7 @@ describe("Profile Scenarios", () => {
             faker.string.symbol(20),
             faker.lorem.paragraph(5).concat(faker.string.symbol(5))
         );
-
+        // And the user changes their credentials
         let scenarioEmail = faker.lorem.paragraph(2);
         let scenarioPassword = faker.internet.password({length:5});
         profilePage.changeCredentials(
@@ -171,6 +178,7 @@ describe("Profile Scenarios", () => {
             config.password,
             false
         )
+        // Then the user should see the raised errors
         profilePage.getInvalidEmail().should('exist')
         profilePage.getInvalidSocialMedia().should('exist')
         profilePage.getInvalidPassword().should('exist')
@@ -178,11 +186,11 @@ describe("Profile Scenarios", () => {
     });
 
 
-    it("[Random] Scenario 119: Try changing passwords with different ones", () => {
+    it("[Random] Scenario 119: Try changing passwords with different ones but confirmation is wront", () => {
         // Given user is logged in
         let signinPage = new SignInPage();
         let homePage = signinPage.login(config.user, config.password);
-        // When the user wants to change the slug and social media info
+        // When the user wants to change passwords with different ones but confirmation is wrong
         let profilePage = homePage.goToProfile();
         // And the user changes their profile
         let scenarioPassword = faker.internet.password();
@@ -191,6 +199,7 @@ describe("Profile Scenarios", () => {
             faker.internet.password(),
             config.password
         )
+        // Then the user should see the raised errors
         profilePage.getInvalidPasswordConfirmation().should("exist")
         saveCurrentTestCredentials("Try changing passwords with different ones", scenarioPassword);
     });
