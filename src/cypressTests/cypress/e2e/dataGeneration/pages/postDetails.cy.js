@@ -120,6 +120,18 @@ class PostDetails {
   publishAndSend(){
     cy.contains('Publish and send').click();
   }
+
+  editPostExcerpt(excerpt) {
+    cy.get("button[title$='Settings']").click();
+    cy.get("textarea#custom-excerpt")
+      .clear()
+      .type(excerpt);
+    cy.get("h4").click();
+  }
+
+  checkPostExcerptError() {
+    return cy.contains('Excerpt cannot be longer than 300 characters.');
+  }
 }
 
 export { PostDetails };

@@ -142,7 +142,7 @@ describe("Posts Scenarios", () => {
     });
   });
 
-  it("[A Priori] Scenario 87: Create valid Post", () => {
+  it("[Random] Scenario 87: Create valid Post", () => {
     // Given user is logged in
     let signinPage = new SignInPage();
     let homePage = signinPage.login(config.user, config.password);
@@ -158,5 +158,56 @@ describe("Posts Scenarios", () => {
     homePage.goToPostList();
     // Then the edited post is displayed in the post list with the new title
     postsPage.getListPosts().should("contain", postName);
+  });
+
+  it("[A Priori] Scenario 91: Edit Post with Excerpt of more than 301 characters", () => {
+    // Given user is logged in
+    let signinPage = new SignInPage();
+    let homePage = signinPage.login(config.user, config.password);
+    //when the user wants to edit a post
+    let postsPage = homePage.goToPostList();
+    // And the user select random post
+    let postDetails = postsPage.selectRandomPost();
+    // And the user edit post with excerpt
+    postDetails.editPostExcerpt(data.scenario91.excerpt);
+    // Then the edited post is displayed in the post a message error
+    postDetails
+      .checkPostExcerptError()
+      .should("contain", 'Excerpt cannot be longer than 300 characters.');
+  });
+
+  it("[Pseudo Random] Scenario 92: Edit Post with Excerpt of more than 301 characters", () => {
+    // Given user is logged in
+    let signinPage = new SignInPage();
+    let homePage = signinPage.login(config.user, config.password);
+    //when the user wants to edit a post
+    let postsPage = homePage.goToPostList();
+    // And the user select random post
+    let postDetails = postsPage.selectRandomPost();
+    cy.request(
+      `https://my.api.mockaroo.com/invalidPosts.json?key=${config.mockarooKey}`
+    ).then((response) => {
+      // And the user edit post with excerpt
+      postDetails.editPostExcerpt(response.body.excerpt);
+      // Then the edited post is displayed in the post a message error
+      postDetails
+        .checkPostExcerptError()
+        .should("contain", 'Excerpt cannot be longer than 300 characters.');
+    });
+  });
+  it("[Random] Scenario 93: Edit Post with Excerpt of more than 301 characters", () => {
+    // Given user is logged in
+    let signinPage = new SignInPage();
+    let homePage = signinPage.login(config.user, config.password);
+    //when the user wants to edit a post
+    let postsPage = homePage.goToPostList();
+    // And the user select random post
+    let postDetails = postsPage.selectRandomPost();
+    // And the user edit post with excerpt
+    postDetails.editPostExcerpt(faker.lorem.paragraphs(2));
+    // Then the edited post is displayed in the post a message error
+    postDetails
+      .checkPostExcerptError()
+      .should("contain", 'Excerpt cannot be longer than 300 characters.');
   });
 });
