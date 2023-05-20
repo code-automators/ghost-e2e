@@ -164,7 +164,7 @@ describe("Profile Scenarios", () => {
         );
 
         let scenarioEmail = faker.lorem.paragraph(2);
-        let scenarioPassword = faker.internet.password({length:5});
+        let scenarioPassword = faker.internet.password({ length: 5 });
         profilePage.changeCredentials(
             scenarioEmail,
             scenarioPassword,
