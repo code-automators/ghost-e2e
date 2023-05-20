@@ -12,10 +12,10 @@ class PageDetails {
     createNewImagedPage(page_name, image_path) {
         cy.get("textarea[placeholder$='Page Title']").clear().type(page_name);
         cy.get("div[data-placeholder$='Begin writing your page...']").clear()
-        .type("This is a test page, tested with Cypress :)");
+            .type("This is a test page, tested with Cypress :)");
 
         cy.get("button[title$='Settings']").click();
-        cy.get("input[class$='x-file--input']").selectFile(image_path, {force: true})
+        cy.get("input[class$='x-file--input']").selectFile(image_path, { force: true })
         cy.get("button[aria-label$='Close']").click()
 
         cy.get("div.gh-publishmenu-trigger").click();
@@ -39,7 +39,7 @@ class PageDetails {
     uploadNewImage(image_path) {
         cy.get("button[title$='Settings']").click();
         cy.wait(2000);
-        cy.get("input[class$='x-file--input']").selectFile(image_path, {force: true});
+        cy.get("input[class$='x-file--input']").selectFile(image_path, { force: true });
         cy.wait(500);
         cy.get("button[aria-label$='Close']").click()
         cy.get("div.gh-publishmenu-trigger").click();

@@ -27,11 +27,11 @@ class SignInPage {
     return cy.contains("Your password is incorrect.")
   }
 
-  checkForErrorData(){
+  checkForErrorData() {
     return cy.contains("Please fill out the form to sign in.")
   }
 
-  checkForNonExistentUser(){
+  checkForNonExistentUser() {
     return cy.contains("There is no user with that email address.")
   }
 }

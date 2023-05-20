@@ -66,11 +66,11 @@ class TagDetails {
         return cy.get(".response")
     }
 
-    checkTagNameError(){
+    checkTagNameError() {
         return cy.contains("Tag names cannot be longer than 191 characters.")
     }
 
-    checkTagDescriptionError(){
+    checkTagDescriptionError() {
         return cy.contains("Description cannot be longer than 500 characters.")
     }
 }

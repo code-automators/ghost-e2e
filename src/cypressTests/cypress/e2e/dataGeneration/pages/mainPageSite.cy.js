@@ -9,7 +9,7 @@ class MainPageSite {
         }
     }
 
-    loginPrivateSite(password){
+    loginPrivateSite(password) {
         cy.get("input[name='password']").clear().type(password + "{enter}", { force: true })
     }
 
