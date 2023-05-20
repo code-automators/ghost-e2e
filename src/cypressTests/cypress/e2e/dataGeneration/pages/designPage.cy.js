@@ -17,7 +17,7 @@ class DesignPage {
                 cy.get("button.gh-blognav-add").first().click();
                 cy.contains("Save").click();
             });
-        
+
         cy.wait(3000);
         return new DesignPage();
     }

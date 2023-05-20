@@ -10,6 +10,7 @@ class CodeInjectionPage {
     insertRandomParagraphOnHeader() {
         let randomParagraph = this.generateRandomParagraph(20)
         cy.get('#ghost-head > .CodeMirror > .CodeMirror-scroll > .CodeMirror-sizer > [style="position: relative; top: 0px;"] > .CodeMirror-lines')
+            .type('{meta+a}{backspace}')
             .type(`<p>${randomParagraph}</p>`);
         cy.contains('Save').click();
         return randomParagraph
