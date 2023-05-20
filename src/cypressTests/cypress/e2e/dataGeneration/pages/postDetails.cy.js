@@ -132,6 +132,22 @@ class PostDetails {
   checkPostExcerptError() {
     return cy.contains('Excerpt cannot be longer than 300 characters.');
   }
+  editMetadataURL(url) {
+    cy.get("button[title$='Settings']").click();
+    cy.wait(200);
+    cy.scrollTo('bottom');
+    cy.contains('Meta data').click();
+    cy.get("input[class$='post-setting-canonicalUrl ember-text-field gh-input ember-view']").clear().type(url);
+    cy.get('label').contains('Meta title').click();
+  }
+
+  checkMetadataURLError() {
+    return cy.contains('Please enter a valid URL');
+  }
+
+  checkPostTimeError() {
+    return cy.contains('Must be in format: "15:00"');
+  }
 }
 
 export { PostDetails };
