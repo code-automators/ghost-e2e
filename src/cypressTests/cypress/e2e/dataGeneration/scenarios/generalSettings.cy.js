@@ -2,10 +2,10 @@ import { SignInPage } from "./../pages/signinPage.cy";
 import { HomePage } from "../pages/homePage.cy";
 import config from "./../assets/config.json";
 import data from "./../aprioriData/generalSettings.json";
-import { faker } from '@faker-js/faker';
+import { faker } from "@faker-js/faker";
 
 describe("General Settings Scenarios", () => {
-    it("[A Priori] Scenario 22: Edit valid general settings (publication info)", () => {
+  it("[A Priori] Scenario 22: Edit valid general settings (publication info)", () => {
         // Given user is logged in
         let signinPage = new SignInPage();
         let homePage = signinPage.login(config.user, config.password);
@@ -111,9 +111,61 @@ describe("General Settings Scenarios", () => {
         mainPage.loginPrivateSite(scenarioPassword);
     })
 
-    after(() => {
+  it("[A Priori] Scenario 100: Edit general settings metadata (Meta description exceeds 1000 characters)", () => {
+    // Given user is logged in
+    let signinPage = new SignInPage();
+    let homePage = signinPage.login(config.user, config.password);
+    // When the user wants to change the blog's settings
+    let settingsPage = homePage.goToGeneralSettings();
+    // And the user changes the meta data
+    settingsPage.addMetaData(
+      data.scenario100.metaTitle,
+      data.scenario100.metaDescription
+    );
+    // Then the changes should be reflected in the main page
+    settingsPage
+      .checkMetadataValidation()
+      .should("exist");
+  });
+
+  it("[Pseudo Random] Scenario 101: Edit general settings metadata (Meta description exceeds 1000 characters)", () => {
+    // Given user is logged in
+    let signinPage = new SignInPage();
+    let homePage = signinPage.login(config.user, config.password);
+    // When the user wants to change the blog's settings
+    let settingsPage = homePage.goToGeneralSettings();
+
+    cy.request(
+      `https://my.api.mockaroo.com/metadataSettings.json?key=${config.mockarooKey}`
+    ).then((response) => {
+      // And the user changes the meta data
+      settingsPage.addMetaData(
+        response.body.title,
+        response.body.description
+      );
+      // Then the changes should be reflected in the main page
+      settingsPage.checkMetadataValidation().should("exist");
+    });
+  });
+
+  it("[Random] Scenario 100: Edit general settings metadata (Meta description exceeds 1000 characters)", () => {
+    // Given user is logged in
+    let signinPage = new SignInPage();
+    let homePage = signinPage.login(config.user, config.password);
+    // When the user wants to change the blog's settings
+    let settingsPage = homePage.goToGeneralSettings();
+    // And the user changes the meta data
+    settingsPage.addMetaData(
+      faker.lorem.text(),
+      faker.lorem.text({ length: 1000 })
+    );
+    // Then the changes should be reflected in the main page
+    settingsPage.checkMetadataValidation().should("exist");
+  });
+
+  after(() => {
         let homePage = new HomePage();
         let settingsPage = homePage.goToGeneralSettings();
         settingsPage.togglePrivate();
     })
-})
+});
