@@ -14,6 +14,7 @@ describe("General Settings Scenarios", () => {
         // And the user changes the blog settings
         settingsPage.changeSettings(data.scenario22.siteName, data.scenario22.siteDescription, data.scenario22.siteLanguage);
         let mainPage = homePage.goToMainPageSite();
+        // Then the changes should be reflected in the main page
         mainPage.getPageItem(data.scenario22.siteName).should("exist");
         mainPage.getPageItem(data.scenario22.siteDescription).should("exist");
     })
@@ -30,6 +31,7 @@ describe("General Settings Scenarios", () => {
             .then((response) => {
                 settingsPage.changeSettings(response.body.siteName, response.body.siteDescription, response.body.siteLanguage);
                 let mainPage = homePage.goToMainPageSite();
+                // Then the changes should be reflected in the main page
                 mainPage.getPageItem(response.body.siteName).should("exist");
                 mainPage.getPageItem(response.body.siteDescription).should("exist");
             })
@@ -46,6 +48,7 @@ describe("General Settings Scenarios", () => {
         let siteDescription = faker.company.catchPhrase();
         settingsPage.changeSettings(siteName, siteDescription, faker.helpers.arrayElement(['en', 'es', 'fr', 'de', 'it', 'pt', 'ru', 'ja', 'zh', 'ko']));
         let mainPage = homePage.goToMainPageSite();
+        // Then the changes should be reflected in the main page
         mainPage.getPageItem(siteName).should("exist");
         mainPage.getPageItem(siteDescription).should("exist");
     })
@@ -58,6 +61,7 @@ describe("General Settings Scenarios", () => {
         let settingsPage = homePage.goToGeneralSettings();
         // And the user changes the blog settings
         settingsPage.changeSettings(data.scenario25.siteName, data.scenario25.siteDescription, data.scenario25.siteLanguage, false);
+        // Then the changes should raise errors
         settingsPage.getTitleError().should("exist");
         settingsPage.getDescriptionError().should("exist");
     })
@@ -73,6 +77,7 @@ describe("General Settings Scenarios", () => {
         cy.request(`https://my.api.mockaroo.com/invalidSettingsPublicationInfo.json?key=${config.mockarooKey}`)
             .then((response) => {
                 settingsPage.changeSettings(response.body.siteName, response.body.siteDescription, response.body.siteLanguage, false);
+                // Then the changes should raise errors
                 settingsPage.getTitleError().should("exist");
                 settingsPage.getDescriptionError().should("exist");
             })
@@ -86,6 +91,7 @@ describe("General Settings Scenarios", () => {
         let settingsPage = homePage.goToGeneralSettings();
         // And the user changes the blog settings
         settingsPage.changeSettings(faker.lorem.paragraphs(3), faker.lorem.paragraphs(8), faker.lorem.paragraphs(3), false);
+        // Then the changes should raise errors
         settingsPage.getTitleError().should("exist");
         settingsPage.getDescriptionError().should("exist");
     })
