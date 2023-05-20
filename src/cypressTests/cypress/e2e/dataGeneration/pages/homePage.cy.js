@@ -9,6 +9,7 @@ import { AuthorPageSite } from "./authorPageSite.cy";
 import { IntegrationListPage } from "./integrationListPage.cy";
 import { DesignPage } from "./designPage.cy";
 import { CodeInjectionPage } from "./codeInjectionPage.cy";
+import { MembersPage } from "./membersPage.cy";
 
 class HomePage {
   HomePage() {
@@ -92,6 +93,12 @@ class HomePage {
     let host = window.location.origin;
     cy.visit(`${host}/author/${authorSlug}`);
     return new AuthorPageSite();
+  }
+
+  goToMembersPage() {
+    let host = window.location.origin;
+    cy.visit(host + "/ghost/#/members");
+    return new MembersPage();
   }
 
   logout() {
