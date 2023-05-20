@@ -40,7 +40,7 @@ describe("Integration Scenarios", () => {
         //when the user wants to create a custom integration
         let integrationPage = homePage.goToIntegrationsList();
         //And the user add the custom integration
-        let nameIntegration = faker.commerce.productName();
+        let nameIntegration = faker.lorem.text();
         let newIntegration = integrationPage.addIntegration(nameIntegration, faker.lorem.paragraph());
         homePage.goToIntegrationsList();
         // the new custom integration is displayed in the list
