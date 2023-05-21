@@ -252,4 +252,89 @@ describe("General Settings Scenarios", () => {
     // Then an error message should be shown
     settingsPage.checkFacebookUrlError().should('exist');
   });
+
+  // it("[A Priori] Scenario 103: Edit general settings with a valid Twitter link", () => {
+  //   // Given user is logged in
+  //   let signinPage = new SignInPage();
+  //   let homePage = signinPage.login(config.user, config.password);
+  //   // When the user wants to change the general settings
+  //   let settingsPage = homePage.goToGeneralSettings();
+  //   // And the user changes the URL of their Facebook Page
+  //   settingsPage.changeFacebookLink(data.scenario103.facebookLink);
+  //   // Then the main page Facebook icon should navigate to the previous defined URL
+  //   let mainPage = homePage.goToMainPageSite();
+  //   mainPage.clickFacebookIcon();
+  //   mainPage.checkIsCurrentUrl(data.scenario103.facebookLink);
+  // });
+
+  // it("[Pseudo Random] Scenario 104: Edit general settings with a valid Twitter link", () => {
+  //   // Given user is logged in
+  //   let signinPage = new SignInPage();
+  //   let homePage = signinPage.login(config.user, config.password);
+  //   // When the user wants to change the general settings
+  //   let settingsPage = homePage.goToGeneralSettings();
+  //   // And the user changes the URL of their Facebook Page
+  //   cy.request(`https://my.api.mockaroo.com/validSocialAccountsURLs.json?key=${config.mockarooKey}`)
+  //     .then((response) => {
+  //       settingsPage.changeFacebookLink(response.body.facebook);
+  //       // Then the main page Facebook icon should navigate to the previous defined URL
+  //       let mainPage = homePage.goToMainPageSite();
+  //       mainPage.clickFacebookIcon();
+  //       mainPage.checkIsCurrentUrl(response.body.facebook);
+  //     });
+  // });
+
+  // it("[Random] Scenario 105: Edit general settings with a valid Twitter link", () => {
+  //   // Given user is logged in
+  //   let signinPage = new SignInPage();
+  //   let homePage = signinPage.login(config.user, config.password);
+  //   // When the user wants to change the general settings
+  //   let settingsPage = homePage.goToGeneralSettings();
+  //   // And the user changes the URL of their Facebook Page
+  //   let fakeFacebookUrl = faker.internet.url('facebook.com');
+  //   settingsPage.changeFacebookLink(fakeFacebookUrl);
+  //   // Then the main page Facebook icon should navigate to the previous defined URL
+  //   let mainPage = homePage.goToMainPageSite();
+  //   mainPage.clickFacebookIcon();
+  //   mainPage.checkIsCurrentUrl(fakeFacebookUrl);
+  // });
+
+  it("[A Priori] Scenario 112: Edit general settings with an invalid Twitter link", () => {
+    // Given user is logged in
+    let signinPage = new SignInPage();
+    let homePage = signinPage.login(config.user, config.password);
+    // When the user wants to change the general settings
+    let settingsPage = homePage.goToGeneralSettings();
+    // And the user changes the URL of their Twitter profile
+    settingsPage.changeTwitterLink(data.scenario112.exampleLink);
+    // Then an error message should be shown
+    settingsPage.checkTwitterUrlError().should('exist');
+  });
+
+  it("[Pseudo Random] Scenario 113: Edit general settings with an invalid Twitter link", () => {
+    // Given user is logged in
+    let signinPage = new SignInPage();
+    let homePage = signinPage.login(config.user, config.password);
+    // When the user wants to change the general settings
+    let settingsPage = homePage.goToGeneralSettings();
+    // And the user changes the URL of their Twitter profile
+    cy.request(`https://my.api.mockaroo.com/generalURLs.json?key=${config.mockarooKey}`)
+      .then((response) => {
+        settingsPage.changeTwitterLink(response.body.url);
+        // Then an error message should be shown
+        settingsPage.checkTwitterUrlError().should('exist');
+      });
+  });
+
+  it("[Random] Scenario 114: Edit general settings with an invalid Twitter link", () => {
+    // Given user is logged in
+    let signinPage = new SignInPage();
+    let homePage = signinPage.login(config.user, config.password);
+    // When the user wants to change the general settings
+    let settingsPage = homePage.goToGeneralSettings();
+    // And the user changes the URL of their Twitter profile
+    settingsPage.changeTwitterLink(faker.internet.url());
+    // Then an error message should be shown
+    settingsPage.checkTwitterUrlError().should('exist');
+  });
 });

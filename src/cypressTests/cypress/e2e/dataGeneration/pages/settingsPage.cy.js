@@ -109,8 +109,20 @@ class SettingsPage {
         cy.wait(1000);
     }
 
+    changeTwitterLink(url) {
+        cy.get(':nth-child(8) > .gh-setting-first > .gh-setting-action > .gh-btn').click();
+        cy.get("input[class$='ember-text-field gh-input ember-view']").eq(1).clear().type(url, { force: true });
+        cy.wait(1000);
+        cy.get("button.gh-btn.gh-btn-blue.gh-btn-icon").click();
+        cy.wait(1000);
+    }
+
     checkFacebookUrlError() {
         return cy.get('p.response').contains('The URL must be in a format like https://www.facebook.com/yourPage');
+    }
+
+    checkTwitterUrlError() {
+        return cy.get('p.response').contains('Your Username is not a valid Twitter Username');
     }
 
     checkMetadataValidation() {
