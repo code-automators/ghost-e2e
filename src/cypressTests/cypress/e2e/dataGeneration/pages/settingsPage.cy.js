@@ -93,6 +93,21 @@ class SettingsPage {
         return cy.contains("Description is too long")
     }
 
+    addMetaData(metaTitle, metaDescription) {
+        cy.get("div[class$='gh-setting-first flex-column']").find("div[class$='flex flex-row justify-between w-100']").find("div[class$='gh-setting-action']").find("button[class$='gh-btn']").click();
+        cy.get("input#metaTitle").clear().type(metaTitle, {force: true});
+        cy.get("textarea#metaDescription").clear().type(metaDescription, {force: true});
+        cy.wait(1000);
+        cy.get("button.gh-btn.gh-btn-blue.gh-btn-icon").click();
+    }
+
+    checkMetadataValidation() {
+        Cypress.on('uncaught:exception', (err, runnable) => {
+            return false
+        });
+        return cy.get('div.gh-alert-content');
+    }
+
 }
 
 export { SettingsPage };
