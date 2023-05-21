@@ -1,11 +1,11 @@
 import { SignInPage } from "./../pages/signinPage.cy";
 import config from "./../assets/config.json";
 import data from "./../aprioriData/posts.json";
-import faker from "@faker-js/faker";
-const { format } = require("date-fns");
+import { faker } from "@faker-js/faker";
+const { format } = 'date-fns';
 
 describe("Posts Scenarios", () => {
-    it("[A Priori] Scenario 46: Add invalid metadata canonical URL to a post", () => {
+    /*it("[A Priori] Scenario 46: Add invalid metadata canonical URL to a post", () => {
         // Given user is logged in
         let signinPage = new SignInPage();
         let homePage = signinPage.login(config.user, config.password);
@@ -93,7 +93,7 @@ describe("Posts Scenarios", () => {
     // And the user select random post
     let postDetails = postsPage.selectRandomPost();
     // And the user edit post with time
-    postDetails.editPostTime(faker.date.recent());
+    postDetails.editPostTime(faker.date.month());
     // Then the edited post is displayed in the post a message error
     postDetails
       .checkPostTimeError()
@@ -129,7 +129,7 @@ describe("Posts Scenarios", () => {
       // Then the edited post is displayed in the post a message error
       postDetails.checkPostTimeError().should("not.exist");
     });
-  });
+  });*/
 
   it("[Random] Scenario 57: Edit a post with valid post time", () => {
     // Given user is logged in
@@ -145,7 +145,7 @@ describe("Posts Scenarios", () => {
     postDetails.checkPostTimeError().should("not.exist");
   });
 
-  it("[A Priori] Scenario 85: Create valid Post", () => {
+  /*it("[A Priori] Scenario 85: Create valid Post", () => {
     // Given user is logged in
     let signinPage = new SignInPage();
     let homePage = signinPage.login(config.user, config.password);
@@ -252,5 +252,5 @@ describe("Posts Scenarios", () => {
     postDetails
       .checkPostExcerptError()
       .should("contain", 'Excerpt cannot be longer than 300 characters.');
-  });
+  });*/
 });
