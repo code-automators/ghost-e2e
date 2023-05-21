@@ -18,12 +18,33 @@ jobs:
     outputs:
       date: ${{ steps.date.outputs.time }}
 
-  cypress:
+  cypress-data-testing:
     needs: get-date
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        ghost-version: ["v3.41.1", "v4.44.0", "dataGeneration"]
+        ghost-version: ["dataGeneration"]
+    steps:
+      - uses: actions/checkout@v3
+      - name: Use Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: "18.x"
+          cache: "npm"
+      - run: npm ci
+      - run: npm test -- --spec "cypress/e2e/${{ matrix.ghost-version }}/scenarios/*.cy.js"
+
+      - uses: actions/upload-artifact@v3
+        with:
+          name: "${{ matrix.ghost-version }}-screenshots"
+          path: src/cypressTests/cypress/screenshots/${{ needs.get-date.outputs.date }}/${{ matrix.ghost-version }}
+
+  cypress:
+    needs: cypress-data-testing
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        ghost-version: ["v3.41.1", "v4.44.0"]
     steps:
       - uses: actions/checkout@v3
       - name: Use Node.js
@@ -41,7 +62,7 @@ jobs:
 
   vrt-report:
     runs-on: ubuntu-latest
-    needs: [get-date, cypress]
+    needs: cypress
 
     permissions:
       pages: write

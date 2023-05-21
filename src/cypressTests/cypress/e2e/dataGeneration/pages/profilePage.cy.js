@@ -29,12 +29,21 @@ class ProfilePage {
         cy.wait(500)
         cy.get("#user-password-new").clear().type(newPassword, { force: true });
         cy.wait(500)
-        cy.get("#user-new-password-verification").clear().type(newPassword)
+        cy.get("#user-new-password-verification").clear().type(newPassword, { force: true });
         cy.wait(500)
         cy.contains("Change Password").click()
         cy.wait(2000);
+    }
 
-
+    changePasswordOnly(newPassword, passwordConfirmation, oldPassword) {
+        cy.get("#user-password-old").clear().type(oldPassword, { force: true });
+        cy.wait(500)
+        cy.get("#user-password-new").clear().type(newPassword, { force: true });
+        cy.wait(500)
+        cy.get("#user-new-password-verification").clear().type(passwordConfirmation, { force: true });
+        cy.wait(500)
+        cy.contains("Change Password").click()
+        cy.wait(2000);
     }
 
     getPasswordUpdated() {
@@ -54,6 +63,10 @@ class ProfilePage {
 
     getInvalidPassword() {
         return cy.contains("Password must be at least 10 characters long")
+    }
+
+    getInvalidPasswordConfirmation() {
+        return cy.contains("Your new passwords do not match")
     }
 }
 
