@@ -129,6 +129,7 @@ class SettingsPage {
         Cypress.on('uncaught:exception', (err, runnable) => {
             return false
         });
+        cy.wait(2000);
         return cy.get('div.gh-alert-content');
     }
 }
