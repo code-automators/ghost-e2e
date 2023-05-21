@@ -117,7 +117,7 @@ class PostDetails {
     return cy.contains('Must be in format: "15:00"');
   }
 
-  publishAndSend(){
+  publishAndSend() {
     cy.contains('Publish').click();
   }
 
@@ -125,13 +125,14 @@ class PostDetails {
     cy.get("button[title$='Settings']").click();
     cy.get("textarea#custom-excerpt")
       .clear()
-      .type(excerpt);
+      .type(excerpt, { delay: 1 });
     cy.get("h4").click();
   }
 
   checkPostExcerptError() {
     return cy.contains('Excerpt cannot be longer than 300 characters.');
   }
+
   editMetadataURL(url) {
     cy.get("button[title$='Settings']").click();
     cy.wait(200);
