@@ -10,7 +10,7 @@ describe("Members Scenarios", () => {
         let homePage = signinPage.login(config.user, config.password);
         //when the user wants to create a new member
         let staffPage = homePage.goToStaffPage();
-        //And the user add the invalid name and email 
+        //And the user add the invalid name and email
         let newUser = staffPage.invitePeople(data.scenario64.email);
         // Then the create user is displayed in the message error
         staffPage.checkInvalidEmailError().should('contain', 'Invalid Email.');
@@ -25,7 +25,7 @@ describe("Members Scenarios", () => {
 
         cy.request(`https://my.api.mockaroo.com/invalidStaff.json?key=${config.mockarooKey}`)
             .then((response) => {
-                //And the user add the invalid name and email 
+                //And the user add the invalid name and email
                 let newUser = staffPage.invitePeople(response.body.email);
                 // Then the create user is displayed in the message error
                 staffPage.checkInvalidEmailError().should('contain', 'Invalid Email.');
@@ -38,8 +38,8 @@ describe("Members Scenarios", () => {
         let homePage = signinPage.login(config.user, config.password);
         //when the user wants to create a new member
         let staffPage = homePage.goToStaffPage();
-        //And the user add the invalid name and email 
-        let newUser = staffPage.invitePeople(faker.phone.phoneNumber());
+        //And the user add the invalid name and email
+        let newUser = staffPage.invitePeople(faker.phone.number());
         // Then the create user is displayed in the message error
         staffPage.checkInvalidEmailError().should('contain', 'Invalid Email.');
     });
@@ -50,7 +50,7 @@ describe("Members Scenarios", () => {
         let homePage = signinPage.login(config.user, config.password);
         //when the user wants to create a new member
         let staffPage = homePage.goToStaffPage();
-        //And the user add the invalid name and email 
+        //And the user add the invalid name and email
         let newUser = staffPage.invitePeople(data.scenario67.email);
         // Then the create user is not displayed in the message error
         staffPage.checkInvalidEmailError().should('not.exist');

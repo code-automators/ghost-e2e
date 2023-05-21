@@ -41,7 +41,7 @@ describe("Integration Scenarios", () => {
         let integrationPage = homePage.goToIntegrationsList();
         //And the user add the custom integration
         let nameIntegration = faker.lorem.text();
-        let newIntegration = integrationPage.addIntegration(nameIntegration, faker.lorem.paragraph());
+        let newIntegration = integrationPage.addIntegration(nameIntegration, faker.lorem.sentence());
         homePage.goToIntegrationsList();
         // the new custom integration is displayed in the list
         newIntegration.getListIntegrations().should('contain', nameIntegration);
