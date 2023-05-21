@@ -41,6 +41,20 @@ class MainPageSite {
             .then(href => { cy.visit(href); });
     }
 
+    clickTwitterIcon() {
+        cy.origin('https://twitter.com', () => {
+            cy.on('uncaught:exception', (_) => {
+                // We expected this error, so let's ignore it and let the test continue
+                return false;
+            })
+        });
+
+        cy.get('.social-link-tw')
+            .first()
+            .invoke('attr', 'href')
+            .then(href => { cy.visit(href); });
+    }
+
     checkIsCurrentUrl(url) {
         const correctedUrl = url.replace('www.', '');
         cy.url().then((currentUrl) => {

@@ -253,51 +253,52 @@ describe("General Settings Scenarios", () => {
     settingsPage.checkFacebookUrlError().should('exist');
   });
 
-  // it("[A Priori] Scenario 103: Edit general settings with a valid Twitter link", () => {
-  //   // Given user is logged in
-  //   let signinPage = new SignInPage();
-  //   let homePage = signinPage.login(config.user, config.password);
-  //   // When the user wants to change the general settings
-  //   let settingsPage = homePage.goToGeneralSettings();
-  //   // And the user changes the URL of their Facebook Page
-  //   settingsPage.changeFacebookLink(data.scenario103.facebookLink);
-  //   // Then the main page Facebook icon should navigate to the previous defined URL
-  //   let mainPage = homePage.goToMainPageSite();
-  //   mainPage.clickFacebookIcon();
-  //   mainPage.checkIsCurrentUrl(data.scenario103.facebookLink);
-  // });
+  it("[A Priori] Scenario 109: Edit general settings with a valid Twitter link", () => {
+    // Given user is logged in
+    let signinPage = new SignInPage();
+    let homePage = signinPage.login(config.user, config.password);
+    // When the user wants to change the general settings
+    let settingsPage = homePage.goToGeneralSettings();
+    // And the user changes the URL of their Twitter profile
+    settingsPage.changeTwitterLink(data.scenario109.twitterLink);
+    // Then the main page Twitter icon should navigate to the previous defined URL
+    let mainPage = homePage.goToMainPageSite();
+    mainPage.clickTwitterIcon();
+    mainPage.checkIsCurrentUrl(data.scenario109.twitterLink);
+  });
 
-  // it("[Pseudo Random] Scenario 104: Edit general settings with a valid Twitter link", () => {
-  //   // Given user is logged in
-  //   let signinPage = new SignInPage();
-  //   let homePage = signinPage.login(config.user, config.password);
-  //   // When the user wants to change the general settings
-  //   let settingsPage = homePage.goToGeneralSettings();
-  //   // And the user changes the URL of their Facebook Page
-  //   cy.request(`https://my.api.mockaroo.com/validSocialAccountsURLs.json?key=${config.mockarooKey}`)
-  //     .then((response) => {
-  //       settingsPage.changeFacebookLink(response.body.facebook);
-  //       // Then the main page Facebook icon should navigate to the previous defined URL
-  //       let mainPage = homePage.goToMainPageSite();
-  //       mainPage.clickFacebookIcon();
-  //       mainPage.checkIsCurrentUrl(response.body.facebook);
-  //     });
-  // });
+  it("[Pseudo Random] Scenario 110: Edit general settings with a valid Twitter link", () => {
+    // Given user is logged in
+    let signinPage = new SignInPage();
+    let homePage = signinPage.login(config.user, config.password);
+    // When the user wants to change the general settings
+    let settingsPage = homePage.goToGeneralSettings();
+    // And the user changes the URL of their Twitter profile
+    cy.request(`https://my.api.mockaroo.com/validSocialAccountsURLs.json?key=${config.mockarooKey}`)
+      .then((response) => {
+        settingsPage.changeTwitterLink(response.body.twitter);
+        // Then the main page Twitter icon should navigate to the previous defined URL
+        let mainPage = homePage.goToMainPageSite();
+        mainPage.clickTwitterIcon();
+        mainPage.checkIsCurrentUrl(response.body.twitter);
+      });
+  });
 
-  // it("[Random] Scenario 105: Edit general settings with a valid Twitter link", () => {
-  //   // Given user is logged in
-  //   let signinPage = new SignInPage();
-  //   let homePage = signinPage.login(config.user, config.password);
-  //   // When the user wants to change the general settings
-  //   let settingsPage = homePage.goToGeneralSettings();
-  //   // And the user changes the URL of their Facebook Page
-  //   let fakeFacebookUrl = faker.internet.url('facebook.com');
-  //   settingsPage.changeFacebookLink(fakeFacebookUrl);
-  //   // Then the main page Facebook icon should navigate to the previous defined URL
-  //   let mainPage = homePage.goToMainPageSite();
-  //   mainPage.clickFacebookIcon();
-  //   mainPage.checkIsCurrentUrl(fakeFacebookUrl);
-  // });
+  it("[Random] Scenario 111: Edit general settings with a valid Twitter link", () => {
+    // Given user is logged in
+    let signinPage = new SignInPage();
+    let homePage = signinPage.login(config.user, config.password);
+    // When the user wants to change the general settings
+    let settingsPage = homePage.goToGeneralSettings();
+    // And the user changes the URL of their Twitter profile
+    const username = faker.internet.userName();
+    const fakeTwitterUrl = `https://twitter.com/${username}`;
+    settingsPage.changeTwitterLink(fakeTwitterUrl);
+    // Then the main page Twitter icon should navigate to the previous defined URL
+    let mainPage = homePage.goToMainPageSite();
+    mainPage.clickTwitterIcon();
+    mainPage.checkIsCurrentUrl(fakeTwitterUrl);
+  });
 
   it("[A Priori] Scenario 112: Edit general settings with an invalid Twitter link", () => {
     // Given user is logged in
