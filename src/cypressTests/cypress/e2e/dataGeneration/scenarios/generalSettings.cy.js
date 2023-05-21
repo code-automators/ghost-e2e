@@ -185,7 +185,8 @@ describe("General Settings Scenarios", () => {
     // When the user wants to change the general settings
     let settingsPage = homePage.goToGeneralSettings();
     // And the user changes the URL of their Facebook Page
-    let fakeFacebookUrl = faker.internet.url('facebook.com');
+    const username = faker.internet.userName();
+    const fakeFacebookUrl = `https://facebook.com/${username}`;
     settingsPage.changeFacebookLink(fakeFacebookUrl);
     // Then the main page Facebook icon should navigate to the previous defined URL
     let mainPage = homePage.goToMainPageSite();

@@ -35,7 +35,7 @@ class MainPageSite {
     }
 
     clickFacebookIcon() {
-        cy.wait(8000);
+        cy.wait(6000);
         cy.get("a.social-link-fb")
             .invoke('attr', 'href')
             .then(href => { cy.visit(href); });
@@ -48,13 +48,14 @@ class MainPageSite {
                 return false;
             })
         });
-        cy.wait(8000);
+        cy.wait(6000);
         cy.get("a.social-link-tw")
             .invoke('attr', 'href')
             .then(href => { cy.visit(href); });
     }
 
     checkIsCurrentUrl(url) {
+        cy.wait(6000);
         const correctedUrl = url.replace('www.', '');
         cy.url().then((currentUrl) => {
             const correctedCurrentUrl = currentUrl.replace('www.', '');
