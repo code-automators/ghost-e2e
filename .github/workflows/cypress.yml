@@ -40,7 +40,7 @@ jobs:
           path: src/cypressTests/cypress/screenshots/${{ needs.get-date.outputs.date }}/${{ matrix.ghost-version }}
 
   cypress:
-    needs: cypress-data-testing
+    needs: [get-date, cypress-data-testing]
     runs-on: ubuntu-latest
     strategy:
       matrix:
