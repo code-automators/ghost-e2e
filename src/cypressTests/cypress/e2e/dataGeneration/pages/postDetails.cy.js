@@ -142,6 +142,15 @@ class PostDetails {
     cy.get('label').contains('Meta title').click();
   }
 
+  editMetatitle(title) {
+    cy.get("button[title$='Settings']").click();
+    cy.wait(200);
+    cy.scrollTo('bottom');
+    cy.contains('Meta data').click();
+    cy.get("#meta-title").clear().type(title);
+    cy.get('label').contains('Meta title').click();
+  }
+
   insertParagraphOnHeader(paragraph) {
     cy.get("button[title$='Settings']").click();
     cy.wait(200);
@@ -152,6 +161,12 @@ class PostDetails {
       .type(`<p>${paragraph}</p>{esc}`);
     cy.get("div.gh-publishmenu-trigger").click();
     cy.get("button.gh-btn-blue.gh-publishmenu-button").click();
+  }
+
+  checkMetatitleError() {
+    cy.get('.word-count')
+      .should('have.css', 'color', 'rgb(226, 84, 64)') // Red error indicator
+      .should('not.have.css', 'color', 'rgb(159, 187, 88)'); // Green indicator
   }
 
   checkMetadataURLError() {

@@ -11,11 +11,11 @@ describe("Posts Scenarios", () => {
         let homePage = signinPage.login(config.user, config.password);
         // When the user wants to edit a post
         let postsPage = homePage.goToPostList();
-        // And the user select random post
+        // And the user selects a random post
         let postDetails = postsPage.selectRandomPost();
         // And the user edit post with invalid canonical URL in metadata
         postDetails.editMetadataURL(data.scenario46.url);
-        // Then there is a error message on settings
+        // Then there is an error message on settings
         postDetails.checkMetadataURLError().should('exist');
     });
 
@@ -25,12 +25,12 @@ describe("Posts Scenarios", () => {
         let homePage = signinPage.login(config.user, config.password);
         // When the user wants to edit a post
         let postsPage = homePage.goToPostList();
-        // And the user select random post
+        // And the user selects a random post
         let postDetails = postsPage.selectRandomPost();
         // And the user edit post with invalid canonical URL in metadata
         cy.request(`https://my.api.mockaroo.com/invalid_ur_ls.json?key=${config.mockarooKey}`)
             .then((response) => { postDetails.editMetadataURL(response.body.url); });
-        // Then there is a error message on settings
+        // Then there is an error message on settings
         postDetails.checkMetadataURLError().should('exist');
     });
 
@@ -40,11 +40,11 @@ describe("Posts Scenarios", () => {
         let homePage = signinPage.login(config.user, config.password);
         // When the user wants to edit a post
         let postsPage = homePage.goToPostList();
-        // And the user select random post
+        // And the user selects a random post
         let postDetails = postsPage.selectRandomPost();
         // And the user edit post with invalid canonical URL in metadata
         postDetails.editMetadataURL(faker.internet.email());
-        // Then there is a error message on settings
+        // Then there is an error message on settings
         postDetails.checkMetadataURLError().should('exist');
     });
 
@@ -54,7 +54,7 @@ describe("Posts Scenarios", () => {
         let homePage = signinPage.login(config.user, config.password);
         // When the user wants to edit a post
         let postsPage = homePage.goToPostList();
-        // And the user select random post
+        // And the user selects a random post
         let postDetails = postsPage.selectRandomPost();
         // And the user edit post with canonical URL in metadata
         postDetails.editMetadataURL(data.scenario49.url);
@@ -68,7 +68,7 @@ describe("Posts Scenarios", () => {
         let homePage = signinPage.login(config.user, config.password);
         // When the user wants to edit a post
         let postsPage = homePage.goToPostList();
-        // And the user select random post
+        // And the user selects a random post
         let postDetails = postsPage.selectRandomPost();
         // And the user edit post with canonical URL in metadata
         cy.request(`https://my.api.mockaroo.com/validURLs.json?key=${config.mockarooKey}`)
@@ -83,7 +83,7 @@ describe("Posts Scenarios", () => {
         let homePage = signinPage.login(config.user, config.password);
         // When the user wants to edit a post
         let postsPage = homePage.goToPostList();
-        // And the user select random post
+        // And the user selects a random post
         let postDetails = postsPage.selectRandomPost();
         // And the user edit post with canonical URL in metadata
         postDetails.editMetadataURL(faker.internet.url());
@@ -97,7 +97,7 @@ describe("Posts Scenarios", () => {
         let homePage = signinPage.login(config.user, config.password);
         //when the user wants to edit a post
         let postsPage = homePage.goToPostList();
-        // And the user select random post
+        // And the user selects a random post
         let postDetails = postsPage.selectRandomPost();
         // And the user edit post with time
         postDetails.editPostTime(data.scenario52.time);
@@ -113,7 +113,7 @@ describe("Posts Scenarios", () => {
         let homePage = signinPage.login(config.user, config.password);
         //when the user wants to edit a post
         let postsPage = homePage.goToPostList();
-        // And the user select random post
+        // And the user selects a random post
         let postDetails = postsPage.selectRandomPost();
         // And the user edit post with time
         cy.request(
@@ -133,7 +133,7 @@ describe("Posts Scenarios", () => {
         let homePage = signinPage.login(config.user, config.password);
         //when the user wants to edit a post
         let postsPage = homePage.goToPostList();
-        // And the user select random post
+        // And the user selects a random post
         let postDetails = postsPage.selectRandomPost();
         // And the user edit post with time
         postDetails.editPostTime(faker.date.month());
@@ -149,7 +149,7 @@ describe("Posts Scenarios", () => {
         let homePage = signinPage.login(config.user, config.password);
         //when the user wants to edit a post
         let postsPage = homePage.goToPostList();
-        // And the user select random post
+        // And the user selects a random post
         let postDetails = postsPage.selectRandomPost();
         // And the user edit post with time
         postDetails.editPostTime(data.scenario55.time);
@@ -163,7 +163,7 @@ describe("Posts Scenarios", () => {
         let homePage = signinPage.login(config.user, config.password);
         //when the user wants to edit a post
         let postsPage = homePage.goToPostList();
-        // And the user select random post
+        // And the user selects a random post
         let postDetails = postsPage.selectRandomPost();
         cy.request(
             `https://my.api.mockaroo.com/validPosts.json?key=${config.mockarooKey}`
@@ -180,7 +180,7 @@ describe("Posts Scenarios", () => {
         let homePage = signinPage.login(config.user, config.password);
         //when the user wants to edit a post
         let postsPage = homePage.goToPostList();
-        // And the user select random post
+        // And the user selects a random post
         let postDetails = postsPage.selectRandomPost();
         // And the user edit post with time
         postDetails.editPostTime(format(faker.date.recent(), 'HH:mm'));
@@ -234,7 +234,7 @@ describe("Posts Scenarios", () => {
         let homePage = signinPage.login(config.user, config.password);
         //when the user wants to edit a post
         let postsPage = homePage.goToPostList();
-        //And the user user goes post list and click in New Post
+        // And the user user goes post list and click in New Post
         let newPost = postsPage.goToCreatePost();
         // And the user fills out the form and publishes the post
         let postName = faker.lorem.text();
@@ -360,5 +360,51 @@ describe("Posts Scenarios", () => {
         let mainPage = homePage.goToMainPageSite();
         mainPage.clickPostByTitle("Post with injected code");
         mainPage.getParagraphsByText(randomParagraph).should('exist');
+    });
+
+    it("[A Priori] Scenario 115: Create post with invalid metatitle", () => {
+        // Given user is logged in
+        let signinPage = new SignInPage();
+        let homePage = signinPage.login(config.user, config.password);
+        // When the user wants to edit a post
+        let postsPage = homePage.goToPostList();
+        // And the user selects a random post
+        let postDetails = postsPage.selectRandomPost();
+        // And edits post with an invalid metatitle
+        postDetails.editMetatitle(data.scenario115.title);
+        // Then there is an error message on settings
+        postDetails.checkMetatitleError();
+    });
+
+    it("[Pseudo Random] Scenario 116: Create post with invalid metatitle", () => {
+        // Given user is logged in
+        let signinPage = new SignInPage();
+        let homePage = signinPage.login(config.user, config.password);
+        // When the user wants to edit a post
+        let postsPage = homePage.goToPostList();
+        // And the user select random post
+        let postDetails = postsPage.selectRandomPost();
+        // And edits post with an invalid metatitle
+        cy.request(`https://my.api.mockaroo.com/invalidMetatitles.json?key=${config.mockarooKey}`)
+            .then((response) => {
+                let title = response.body.title.trim();
+                postDetails.editMetatitle(title);
+            });
+        // Then there is an error message on settings
+        postDetails.checkMetatitleError();
+    });
+
+    it("[Random] Scenario 117: Create post with invalid metatitle", () => {
+        // Given user is logged in
+        let signinPage = new SignInPage();
+        let homePage = signinPage.login(config.user, config.password);
+        // When the user wants to edit a post
+        let postsPage = homePage.goToPostList();
+        // And the user select random post
+        let postDetails = postsPage.selectRandomPost();
+        // And edits post with an invalid metatitle
+        postDetails.editMetatitle(faker.lorem.paragraph(3));
+        // Then there is an error message on settings
+        postDetails.checkMetatitleError();
     });
 });
