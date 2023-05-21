@@ -142,6 +142,18 @@ class PostDetails {
     cy.get('label').contains('Meta title').click();
   }
 
+  insertParagraphOnHeader(paragraph) {
+    cy.get("button[title$='Settings']").click();
+    cy.wait(200);
+    cy.scrollTo('bottom');
+    cy.contains('Code injection').click();
+    cy.get('#post-setting-codeinjection-head > .CodeMirror > .CodeMirror-scroll')
+      .type('{meta+a}{backspace}')
+      .type(`<p>${paragraph}</p>{esc}`);
+    cy.get("div.gh-publishmenu-trigger").click();
+    cy.get("button.gh-btn-blue.gh-publishmenu-button").click();
+  }
+
   checkMetadataURLError() {
     return cy.contains('Please enter a valid URL');
   }

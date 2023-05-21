@@ -29,6 +29,10 @@ class MainPageSite {
     getParagraphsByText(text) {
         return cy.contains(text)
     }
+
+    clickPostByTitle(title) {
+        return cy.get('h2').contains(title).click();
+    }
 }
 
 export { MainPageSite };

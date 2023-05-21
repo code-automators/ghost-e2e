@@ -296,4 +296,69 @@ describe("Posts Scenarios", () => {
             .checkPostExcerptError()
             .should("contain", 'Excerpt cannot be longer than 300 characters.');
     });
+
+    it("[A Priori] Scenario 94: Add valid injected code at header from post settings", () => {
+        // Given user is logged in
+        let signinPage = new SignInPage();
+        let homePage = signinPage.login(config.user, config.password);
+        // And a post is created
+        let postList = homePage.goToPostList();
+        let newPostDetails = postList.createPost();
+        newPostDetails.fillNewPost("Post with injected code", config.new_content, config.new_tag_name);
+        // When the user goes to the post list
+        let postsPage = homePage.goToPostList();
+        // And selects the created post
+        let postDetails = postsPage.selectPostByName("Post with injected code");
+        // And inserts a paragraph on page header using code injection
+        postDetails.insertParagraphOnHeader(data.scenario94.paragraph);
+        // Then post at website should contain that header
+        let mainPage = homePage.goToMainPageSite();
+        mainPage.clickPostByTitle("Post with injected code");
+        mainPage.getParagraphsByText(data.scenario94.paragraph).should('exist');
+    });
+
+    it("[Pseudo Random] Scenario 95: Add valid injected code at header from post settings", () => {
+        // Given user is logged in
+        let signinPage = new SignInPage();
+        let homePage = signinPage.login(config.user, config.password);
+        // And a post is created
+        let postList = homePage.goToPostList();
+        let newPostDetails = postList.createPost();
+        newPostDetails.fillNewPost("Post with injected code", config.new_content, config.new_tag_name);
+        // When the user goes to the post list
+        let postsPage = homePage.goToPostList();
+        // And selects the created post
+        let postDetails = postsPage.selectPostByName("Post with injected code");
+        // And inserts a paragraph on page header using code injection
+        cy.request(`https://my.api.mockaroo.com/validParagraphs.json?key=${config.mockarooKey}`)
+            .then((response) => {
+                let paragraph = response.body.paragraph.trim();
+                postDetails.insertParagraphOnHeader(paragraph);
+                // Then post at website should contain that header
+                let mainPage = homePage.goToMainPageSite();
+                mainPage.clickPostByTitle("Post with injected code");
+                mainPage.getParagraphsByText(paragraph).should('exist');
+            });
+    });
+
+    it("[Random] Scenario 96: Add valid injected code at header from post settings", () => {
+        // Given user is logged in
+        let signinPage = new SignInPage();
+        let homePage = signinPage.login(config.user, config.password);
+        // And a post is created
+        let postList = homePage.goToPostList();
+        let newPostDetails = postList.createPost();
+        newPostDetails.fillNewPost("Post with injected code", config.new_content, config.new_tag_name);
+        // When the user goes to the post list
+        let postsPage = homePage.goToPostList();
+        // And selects the created post
+        let postDetails = postsPage.selectPostByName("Post with injected code");
+        // And inserts a paragraph on page header using code injection
+        let randomParagraph = faker.lorem.paragraph();
+        postDetails.insertParagraphOnHeader(randomParagraph);
+        // Then post at website should contain that header
+        let mainPage = homePage.goToMainPageSite();
+        mainPage.clickPostByTitle("Post with injected code");
+        mainPage.getParagraphsByText(randomParagraph).should('exist');
+    });
 });
