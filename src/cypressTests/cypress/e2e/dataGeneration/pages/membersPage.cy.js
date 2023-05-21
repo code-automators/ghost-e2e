@@ -23,6 +23,14 @@ class MembersPage {
   checkEmailError() {
     return cy.contains("Invalid Email.");
   }
+
+  getListMembers(name) {
+    return cy.contains(name);
+  }
+
+  clickLeave() {
+    cy.contains("Leave").click();
+  }
 }
 
 export { MembersPage };

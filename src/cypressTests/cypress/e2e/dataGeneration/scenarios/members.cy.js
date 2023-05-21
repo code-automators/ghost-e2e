@@ -13,7 +13,9 @@ describe("Members Scenarios", () => {
         //And the user add the invalid name and email 
         let newMember = membersPage.addMember(data.scenario58.name, data.scenario58.email);
         // Then the create member is displayed in the message error
-        newMember.checkEmailLongError().should('contain', 'Email cannot be longer than 191 characters.');
+        homePage.goToMembersPage();
+        newMember.clickLeave();
+        newMember.getListMembers(data.scenario58.name).should("not.exist");
     });
 
     it("[Pseudo Random] Scenario 59: Create invalid member", () => {
@@ -27,7 +29,9 @@ describe("Members Scenarios", () => {
                 //And the user add the invalid name and email 
                 let newMember = membersPage.addMember(response.body.name, response.body.email);
                 // Then the create member is displayed in the message error
-                newMember.checkEmailError().should('contain', 'Invalid Email.');
+                homePage.goToMembersPage();
+                newMember.clickLeave();
+                newMember.getListMembers(response.body.name).should("not.exist");
             })
     });
 
@@ -38,9 +42,12 @@ describe("Members Scenarios", () => {
         //when the user wants to create a new member
         let membersPage = homePage.goToMembersPage();
         //And the user add the invalid name and email 
-        let newMember = membersPage.addMember(faker.name.findName(), faker.phone.phoneNumber());
+        let nameMember = faker.name.findName();
+        let newMember = membersPage.addMember(nameMember, faker.phone.phoneNumber());
         // Then the create member is displayed in the message error
-        newMember.checkEmailError().should('contain', 'Invalid Email.');
+        homePage.goToMembersPage();
+        newMember.clickLeave();
+        newMember.getListMembers(nameMember).should("not.exist");
     });
 
     it("[A Priori] Scenario 61: Create a valid member", () => {
@@ -51,8 +58,9 @@ describe("Members Scenarios", () => {
         let membersPage = homePage.goToMembersPage();
         //And the user add the invalid name and email 
         let newMember = membersPage.addMember(data.scenario61.name, data.scenario61.email);
-        // Then the create member is not displayed in the message error
-        newMember.checkEmailLongError().should('not.exist');
+        // Then the create member is displayed in the message error
+        homePage.goToMembersPage();
+        newMember.getListMembers(data.scenario61.name).should("exist");
     });
 
     it("[Pseudo Random] Scenario 62: Create valid member", () => {
@@ -66,8 +74,9 @@ describe("Members Scenarios", () => {
                 console.log(response.body);
                 //And the user add the invalid name and email 
                 let newMember = membersPage.addMember(response.body.name, response.body.email);
-                // Then the create member is not displayed in the message error
-                newMember.checkEmailError().should('not.exist');
+                // Then the create member is displayed in the message error
+                homePage.goToMembersPage();
+                newMember.getListMembers(response.body.name).should("exist");
             })
     });
 
@@ -78,8 +87,10 @@ describe("Members Scenarios", () => {
         //when the user wants to create a new member
         let membersPage = homePage.goToMembersPage();
         //And the user add the invalid name and email 
-        let newMember = membersPage.addMember(faker.name.findName(), faker.internet.email());
-        // Then the create member is not displayed in the message error
-        newMember.checkEmailLongError().should('not.exist');
+        let nameMember = faker.name.findName();
+        let newMember = membersPage.addMember(nameMember, faker.internet.email());
+        // Then the create member is displayed in the message error
+        homePage.goToMembersPage();
+        newMember.getListMembers(nameMember).should("exist");
     });
 })
