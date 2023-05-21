@@ -33,6 +33,21 @@ class MainPageSite {
     clickPostByTitle(title) {
         return cy.get('h2').contains(title).click();
     }
+
+    clickFacebookIcon() {
+        cy.get('.social-link-fb')
+            .first()
+            .invoke('attr', 'href')
+            .then(href => { cy.visit(href); });
+    }
+
+    checkIsCurrentUrl(url) {
+        const correctedUrl = url.replace('www.', '');
+        cy.url().then((currentUrl) => {
+            const correctedCurrentUrl = currentUrl.replace('www.', '');
+            expect(correctedCurrentUrl).to.equal(correctedUrl);
+        });
+    }
 }
 
 export { MainPageSite };

@@ -147,7 +147,7 @@ describe("General Settings Scenarios", () => {
     });
   });
 
-  it("[Random] Scenario 100: Edit general settings metadata (Meta description exceeds 1000 characters)", () => {
+  it("[Random] Scenario 102: Edit general settings metadata (Meta description exceeds 1000 characters)", () => {
     // Given user is logged in
     let signinPage = new SignInPage();
     let homePage = signinPage.login(config.user, config.password);
@@ -166,5 +166,66 @@ describe("General Settings Scenarios", () => {
     let homePage = new HomePage();
     let settingsPage = homePage.goToGeneralSettings();
     settingsPage.togglePrivate();
-  })
+  });
+
+  it("[A Priori] Scenario 103: Edit general settings with a valid Facebook link", () => {
+    // Given user is logged in
+    let signinPage = new SignInPage();
+    let homePage = signinPage.login(config.user, config.password);
+    // When the user wants to change the general settings
+    let settingsPage = homePage.goToGeneralSettings();
+    // And the user changes the URL of their Facebook Page
+    settingsPage.changeFacebookLink(data.scenario103.facebookLink);
+    // Then the main page Facebook icon should navigate to the previous defined URL
+    let mainPage = homePage.goToMainPageSite();
+    mainPage.clickFacebookIcon();
+    mainPage.checkIsCurrentUrl(data.scenario103.facebookLink);
+  });
+
+  it("[Pseudo Random] Scenario 104: Edit general settings with a valid Facebook link", () => {
+    // Given user is logged in
+    let signinPage = new SignInPage();
+    let homePage = signinPage.login(config.user, config.password);
+    // When the user wants to change the general settings
+    let settingsPage = homePage.goToGeneralSettings();
+    // And the user changes the URL of their Facebook Page
+    cy.request(`https://my.api.mockaroo.com/validSocialAccountsURLs.json?key=${config.mockarooKey}`)
+      .then((response) => {
+        settingsPage.changeFacebookLink(response.body.facebook);
+        // Then the main page Facebook icon should navigate to the previous defined URL
+        let mainPage = homePage.goToMainPageSite();
+        mainPage.clickFacebookIcon();
+        mainPage.checkIsCurrentUrl(response.body.facebook);
+      });
+  });
+
+  it("[Random] Scenario 105: Edit general settings with a valid Facebook link", () => {
+    // Given user is logged in
+    let signinPage = new SignInPage();
+    let homePage = signinPage.login(config.user, config.password);
+    // When the user wants to change the general settings
+    let settingsPage = homePage.goToGeneralSettings();
+    // And the user changes the URL of their Facebook Page
+    let fakeFacebookUrl = faker.internet.url('facebook.com');
+    settingsPage.changeFacebookLink(fakeFacebookUrl);
+    // Then the main page Facebook icon should navigate to the previous defined URL
+    let mainPage = homePage.goToMainPageSite();
+    mainPage.clickFacebookIcon();
+    mainPage.checkIsCurrentUrl(fakeFacebookUrl);
+  });
+
+  // it("[Random] Scenario XX: Edit general settings with a valid Facebook link", () => {
+  //   // Given user is logged in
+  //   let signinPage = new SignInPage();
+  //   let homePage = signinPage.login(config.user, config.password);
+  //   // When the user wants to change the general settings
+  //   let settingsPage = homePage.goToGeneralSettings();
+  //   // And the user changes the URL of their Facebook Page
+  //   let randomUrl = faker.internet.url();
+  //   settingsPage.changeFacebookLink(randomUrl);
+  //   // Then the main page Facebook icon should navigate to the previous defined URL
+  //   let mainPage = homePage.goToMainPageSite();
+  //   mainPage.clickFacebookIcon();
+  //   mainPage.checkIsCurrentUrl(randomUrl);
+  // });
 });
