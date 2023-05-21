@@ -1,7 +1,7 @@
 import { SignInPage } from "./../pages/signinPage.cy";
 import config from "./../assets/config.json";
 import data from "./../aprioriData/staff.json";
-import faker from "@faker-js/faker";
+import { faker } from '@faker-js/faker';
 
 describe("Members Scenarios", () => {
     it("[A Priori] Scenario 64: Staff invite people invalid", () => {

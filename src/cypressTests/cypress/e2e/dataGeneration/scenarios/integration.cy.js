@@ -1,7 +1,7 @@
 import { SignInPage } from "./../pages/signinPage.cy";
 import config from "./../assets/config.json";
 import data from "./../aprioriData/integration.json";
-import faker from "@faker-js/faker";
+import { faker } from '@faker-js/faker';
 
 describe("Integration Scenarios", () => {
     it("[A Priori] Scenario 34: Add integration with valid data", () => {
