@@ -5,7 +5,7 @@ import { faker } from "@faker-js/faker";
 import { format } from 'date-fns';
 
 describe("Posts Scenarios", () => {
-    it("[A Priori] Scenario 46: Add invalid metadata canonical URL to a post", () => {
+    it("[A Priori] Scenario 46: Add invalid canonical URL to post metadata", () => {
         // Given user is logged in
         let signinPage = new SignInPage();
         let homePage = signinPage.login(config.user, config.password);
@@ -19,7 +19,7 @@ describe("Posts Scenarios", () => {
         postDetails.checkMetadataURLError().should('exist');
     });
 
-    it("[Pseudo Random] Scenario 47: Add invalid metadata canonical URL to a post", () => {
+    it("[Pseudo Random] Scenario 47: Add invalid canonical URL to post metadata", () => {
         // Given user is logged in
         let signinPage = new SignInPage();
         let homePage = signinPage.login(config.user, config.password);
@@ -34,7 +34,7 @@ describe("Posts Scenarios", () => {
         postDetails.checkMetadataURLError().should('exist');
     });
 
-    it("[Random] Scenario 48: Add invalid metadata canonical URL to a post", () => {
+    it("[Random] Scenario 48: Add invalid canonical URL to post metadata", () => {
         // Given user is logged in
         let signinPage = new SignInPage();
         let homePage = signinPage.login(config.user, config.password);
@@ -48,7 +48,7 @@ describe("Posts Scenarios", () => {
         postDetails.checkMetadataURLError().should('exist');
     });
 
-    it("[A Priori] Scenario 49: Add valid metadata canonical URL to a post", () => {
+    it("[A Priori] Scenario 49: Add valid canonical URL to post metadata", () => {
         // Given user is logged in
         let signinPage = new SignInPage();
         let homePage = signinPage.login(config.user, config.password);
@@ -62,7 +62,7 @@ describe("Posts Scenarios", () => {
         postDetails.checkMetadataURLError().should('not.exist');
     });
 
-    it("[Pseudo Random] Scenario 50: Add valid metadata canonical URL to a post", () => {
+    it("[Pseudo Random] Scenario 50: Add valid canonical URL to post metadata", () => {
         // Given user is logged in
         let signinPage = new SignInPage();
         let homePage = signinPage.login(config.user, config.password);
@@ -77,7 +77,7 @@ describe("Posts Scenarios", () => {
         postDetails.checkMetadataURLError().should('not.exist');
     });
 
-    it("[Random] Scenario 51: Add valid metadata canonical URL to a post", () => {
+    it("[Random] Scenario 51: Add valid canonical URL to post metadata", () => {
         // Given user is logged in
         let signinPage = new SignInPage();
         let homePage = signinPage.login(config.user, config.password);
@@ -290,7 +290,7 @@ describe("Posts Scenarios", () => {
         // And the user select random post
         let postDetails = postsPage.selectRandomPost();
         // And the user edit post with excerpt
-        postDetails.editPostExcerpt(faker.lorem.paragraphs(2));
+        postDetails.editPostExcerpt(faker.lorem.paragraphs(3));
         // Then the edited post is displayed in the post a message error
         postDetails
             .checkPostExcerptError()

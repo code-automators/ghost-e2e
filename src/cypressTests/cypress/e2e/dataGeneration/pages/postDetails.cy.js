@@ -118,7 +118,7 @@ class PostDetails {
   }
 
   publishAndSend(){
-    cy.contains('Publish and send').click();
+    cy.contains('Publish').click();
   }
 
   editPostExcerpt(excerpt) {
