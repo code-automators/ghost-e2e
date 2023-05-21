@@ -15,5 +15,8 @@
     },
     "scenario103": {
         "facebookLink": "https://www.facebook.com/UniandesCol"
+    },
+    "scenario106": {
+        "exampleLink": "https://www.example.com/"
     }
 }

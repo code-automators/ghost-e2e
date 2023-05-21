@@ -109,6 +109,10 @@ class SettingsPage {
         cy.wait(1000);
     }
 
+    checkFacebookUrlError() {
+        return cy.get('p.response').contains('The URL must be in a format like https://www.facebook.com/yourPage');
+    }
+
     checkMetadataValidation() {
         Cypress.on('uncaught:exception', (err, runnable) => {
             return false

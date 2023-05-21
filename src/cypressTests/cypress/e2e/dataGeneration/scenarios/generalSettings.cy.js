@@ -214,18 +214,42 @@ describe("General Settings Scenarios", () => {
     mainPage.checkIsCurrentUrl(fakeFacebookUrl);
   });
 
-  // it("[Random] Scenario XX: Edit general settings with a valid Facebook link", () => {
-  //   // Given user is logged in
-  //   let signinPage = new SignInPage();
-  //   let homePage = signinPage.login(config.user, config.password);
-  //   // When the user wants to change the general settings
-  //   let settingsPage = homePage.goToGeneralSettings();
-  //   // And the user changes the URL of their Facebook Page
-  //   let randomUrl = faker.internet.url();
-  //   settingsPage.changeFacebookLink(randomUrl);
-  //   // Then the main page Facebook icon should navigate to the previous defined URL
-  //   let mainPage = homePage.goToMainPageSite();
-  //   mainPage.clickFacebookIcon();
-  //   mainPage.checkIsCurrentUrl(randomUrl);
-  // });
+  it("[A Priori] Scenario 106: Edit general settings with an invalid Facebook link", () => {
+    // Given user is logged in
+    let signinPage = new SignInPage();
+    let homePage = signinPage.login(config.user, config.password);
+    // When the user wants to change the general settings
+    let settingsPage = homePage.goToGeneralSettings();
+    // And the user changes the URL of their Facebook Page
+    settingsPage.changeFacebookLink(data.scenario106.exampleLink);
+    // Then an error message should be shown
+    settingsPage.checkFacebookUrlError().should('exist');
+  });
+
+  it("[Pseudo Random] Scenario 107: Edit general settings with an invalid Facebook link", () => {
+    // Given user is logged in
+    let signinPage = new SignInPage();
+    let homePage = signinPage.login(config.user, config.password);
+    // When the user wants to change the general settings
+    let settingsPage = homePage.goToGeneralSettings();
+    // And the user changes the URL of their Facebook Page
+    cy.request(`https://my.api.mockaroo.com/generalURLs.json?key=${config.mockarooKey}`)
+      .then((response) => {
+        settingsPage.changeFacebookLink(response.body.url);
+        // Then an error message should be shown
+        settingsPage.checkFacebookUrlError().should('exist');
+      });
+  });
+
+  it("[Random] Scenario 108: Edit general settings with an invalid Facebook link", () => {
+    // Given user is logged in
+    let signinPage = new SignInPage();
+    let homePage = signinPage.login(config.user, config.password);
+    // When the user wants to change the general settings
+    let settingsPage = homePage.goToGeneralSettings();
+    // And the user changes the URL of their Facebook Page
+    settingsPage.changeFacebookLink(faker.internet.url());
+    // Then an error message should be shown
+    settingsPage.checkFacebookUrlError().should('exist');
+  });
 });
