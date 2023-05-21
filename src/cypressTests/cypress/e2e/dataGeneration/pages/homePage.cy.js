@@ -87,6 +87,7 @@ class HomePage {
   goToMainPageSite() {
     let host = window.location.origin;
     cy.visit(host);
+    cy.wait(1000);
     return new MainPageSite();
   }
 
