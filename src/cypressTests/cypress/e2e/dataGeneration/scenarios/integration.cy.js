@@ -3,7 +3,7 @@ import config from "./../assets/config.json";
 import data from "./../aprioriData/integration.json";
 import faker from "@faker-js/faker";
 
-describe("Integration Scenarios", () => { 
+describe("Integration Scenarios", () => {
     it("[A Priori] Scenario 34: Add integration with valid data", () => {
         // Given user is logged in
         let signinPage = new SignInPage();
