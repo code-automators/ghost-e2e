@@ -105,8 +105,7 @@ class SettingsPage {
         cy.get(':nth-child(8) > .gh-setting-first > .gh-setting-action > .gh-btn').click();
         cy.get("input[class$='ember-text-field gh-input ember-view']").first().clear().type(url, { force: true });
         cy.wait(1000);
-        cy.contains("Save settings").click();
-        cy.wait(1000);
+        cy.get("button.gh-btn.gh-btn-blue.gh-btn-icon").click();
         cy.contains('Saved');
     }
 
@@ -114,8 +113,7 @@ class SettingsPage {
         cy.get(':nth-child(8) > .gh-setting-first > .gh-setting-action > .gh-btn').click();
         cy.get("input[class$='ember-text-field gh-input ember-view']").eq(1).clear().type(url, { force: true });
         cy.wait(1000);
-        cy.contains("Save settings").click();
-        cy.wait(1000);
+        cy.get("button.gh-btn.gh-btn-blue.gh-btn-icon").click();
         cy.contains('Saved');
     }
 
@@ -131,7 +129,7 @@ class SettingsPage {
         Cypress.on('uncaught:exception', (err, runnable) => {
             return false
         });
-        return cy.get('div.gh-alert-content');
+        return cy.get('div.gh-alert-content', { timeout: 8000 });
     }
 }
 
