@@ -19,6 +19,16 @@ class ProfilePage {
         cy.wait(500);
     }
 
+    changeBio(bio) {
+        cy.get("textarea#user-bio").clear().type(bio, { force: true });
+        cy.wait(500);
+        cy.contains("Save").click();
+    }
+
+    checkIfBioSaved(success=true) {
+        return cy.contains(success ? "Saved" : "Bio is too long");
+    }
+
     changeCredentials(newEmail, newPassword, oldPassword, save = true) {
         cy.get("input[name='email']").clear().type(newEmail, { force: true });
         if (save) {

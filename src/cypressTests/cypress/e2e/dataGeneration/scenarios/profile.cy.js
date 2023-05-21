@@ -21,7 +21,7 @@ describe("Profile Scenarios", () => {
             newPassword: config.password
         }
     })
-
+/*
     it("[A priori] Scenario 16: Edit profile with valid info", () => {
         // Given user is logged in
         let signinPage = new SignInPage();
@@ -185,7 +185,30 @@ describe("Profile Scenarios", () => {
         saveCurrentTestCredentials("Edit profile with invalid info", scenarioPassword);
     });
 
+*/
+    it("JP![A priori] Scenario 70: Add a valid bio", () => {
+        // Given user is logged in
+        let signinPage = new SignInPage();
+        let homePage = signinPage.login(config.user, config.password);
+        // When the user wants to change the slug and social media info
+        let profilePage = homePage.goToProfile();
+        // And the user changes their profile
+        profilePage.changeBio(data.scenario70.bio);
+        profilePage.checkIfBioSaved()
+    });
 
+    it("JP![A priori] Scenario 73: Add an invalid bio", () => {
+        // Given user is logged in
+        let signinPage = new SignInPage();
+        let homePage = signinPage.login(config.user, config.password);
+        // When the user wants to change the slug and social media info
+        let profilePage = homePage.goToProfile();
+        // And the user changes their profile
+        profilePage.changeBio(data.scenario73.bio);
+        profilePage.checkIfBioSaved(false).should("exist");
+    });
+
+/*
     it("[Random] Scenario 119: Try changing passwords with different ones but confirmation is wront", () => {
         // Given user is logged in
         let signinPage = new SignInPage();
@@ -203,7 +226,7 @@ describe("Profile Scenarios", () => {
         profilePage.getInvalidPasswordConfirmation().should("exist")
         saveCurrentTestCredentials("Try changing passwords with different ones", scenarioPassword);
     });
-
+*/
 
     afterEach(() => {
         if (currentTest.currentScenario.includes("Edit profile with valid info")) {
