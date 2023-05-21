@@ -1,7 +1,7 @@
 import { SignInPage } from "./../pages/signinPage.cy";
 import config from "./../assets/config.json";
 import data from "./../aprioriData/members.json";
-import { faker} from "@faker-js/faker";
+import { faker } from "@faker-js/faker";
 
 describe("Members Scenarios", () => {
     it("[A Priori] Scenario 58: Create invalid member", () => {
@@ -43,7 +43,7 @@ describe("Members Scenarios", () => {
         let membersPage = homePage.goToMembersPage();
         //And the user add the invalid name and email 
         let nameMember = faker.person.fullName();
-        let newMember = membersPage.addMember(nameMember, faker.phone.phoneNumber());
+        let newMember = membersPage.addMember(nameMember, faker.phone.number());
         // Then the create member is displayed in the message error
         homePage.goToMembersPage();
         newMember.clickLeave();

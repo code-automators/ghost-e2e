@@ -237,8 +237,8 @@ describe("Posts Scenarios", () => {
         // And the user user goes post list and click in New Post
         let newPost = postsPage.goToCreatePost();
         // And the user fills out the form and publishes the post
-        let postName = faker.lorem.text();
-        let publishedPost = newPost.createPost(postName, faker.lorem.paragraph());
+        let postName = faker.lorem.word();
+        let publishedPost = newPost.createPost(postName, faker.lorem.sentence());
         // And publish and send to staff members
         newPost.publishAndSend();
         homePage.goToPostList();

@@ -37,7 +37,7 @@ class PostPageList {
   }
 
   getListPosts() {
-    return cy.get("h3[class$='gh-content-entry-title']");
+    return cy.get("h3[class$='gh-content-entry-title']", { timeout: 10000 });
   }
 
   goToCreatePost() {
