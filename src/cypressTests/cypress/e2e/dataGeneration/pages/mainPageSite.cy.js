@@ -35,8 +35,8 @@ class MainPageSite {
     }
 
     clickFacebookIcon() {
-        cy.get("a[class$='social-link social-link-fb']")
-            .first()
+        cy.wait(8000);
+        cy.get("a.social-link-fb")
             .invoke('attr', 'href')
             .then(href => { cy.visit(href); });
     }
@@ -48,9 +48,8 @@ class MainPageSite {
                 return false;
             })
         });
-
-        cy.get("a[class$='social-link social-link-tw']")
-            .first()
+        cy.wait(8000);
+        cy.get("a.social-link-tw")
             .invoke('attr', 'href')
             .then(href => { cy.visit(href); });
     }

@@ -105,16 +105,18 @@ class SettingsPage {
         cy.get(':nth-child(8) > .gh-setting-first > .gh-setting-action > .gh-btn').click();
         cy.get("input[class$='ember-text-field gh-input ember-view']").first().clear().type(url, { force: true });
         cy.wait(1000);
-        cy.get("button.gh-btn.gh-btn-blue.gh-btn-icon").click();
+        cy.contains("Save settings").click();
         cy.wait(1000);
+        cy.contains('Saved');
     }
 
     changeTwitterLink(url) {
         cy.get(':nth-child(8) > .gh-setting-first > .gh-setting-action > .gh-btn').click();
         cy.get("input[class$='ember-text-field gh-input ember-view']").eq(1).clear().type(url, { force: true });
         cy.wait(1000);
-        cy.get("button.gh-btn.gh-btn-blue.gh-btn-icon").click();
+        cy.contains("Save settings").click();
         cy.wait(1000);
+        cy.contains('Saved');
     }
 
     checkFacebookUrlError() {

@@ -93,22 +93,7 @@ describe("General Settings Scenarios", () => {
     // Then the changes should raise errors
     settingsPage.getTitleError().should("exist");
     settingsPage.getDescriptionError().should("exist");
-  })
-
-  it("[Random] Scenario 120: Make the website private and change password", () => {
-    // Given user is logged in
-    let signinPage = new SignInPage();
-    let homePage = signinPage.login(config.user, config.password);
-    // When the user wants to change the blog's settings
-    let settingsPage = homePage.goToGeneralSettings();
-    // And the user changes the settings and makes the blog private
-    let scenarioPassword = faker.internet.password();
-    settingsPage.togglePrivateAndChangePassword(scenarioPassword);
-    // Then when the user goes to the main page, it should be private
-    let mainPage = homePage.goToMainPageSite();
-    mainPage.checkIfSiteIsPrivate().should('contain', 'This site is private');
-    mainPage.loginPrivateSite(scenarioPassword);
-  })
+  });
 
   it("[A Priori] Scenario 100: Edit general settings metadata (Meta description exceeds 1000 characters)", () => {
     // Given user is logged in
@@ -160,12 +145,6 @@ describe("General Settings Scenarios", () => {
     );
     // Then the changes should be reflected in the main page
     settingsPage.checkMetadataValidation().should("exist");
-  });
-
-  after(() => {
-    let homePage = new HomePage();
-    let settingsPage = homePage.goToGeneralSettings();
-    settingsPage.togglePrivate();
   });
 
   it("[A Priori] Scenario 103: Edit general settings with a valid Facebook link", () => {
@@ -337,5 +316,26 @@ describe("General Settings Scenarios", () => {
     settingsPage.changeTwitterLink(faker.internet.url());
     // Then an error message should be shown
     settingsPage.checkTwitterUrlError().should('exist');
+  });
+
+  it("[Random] Scenario 120: Make the website private and change password", () => {
+    // Given user is logged in
+    let signinPage = new SignInPage();
+    let homePage = signinPage.login(config.user, config.password);
+    // When the user wants to change the blog's settings
+    let settingsPage = homePage.goToGeneralSettings();
+    // And the user changes the settings and makes the blog private
+    let scenarioPassword = faker.internet.password();
+    settingsPage.togglePrivateAndChangePassword(scenarioPassword);
+    // Then when the user goes to the main page, it should be private
+    let mainPage = homePage.goToMainPageSite();
+    mainPage.checkIfSiteIsPrivate().should('contain', 'This site is private');
+    mainPage.loginPrivateSite(scenarioPassword);
+  });
+
+  after(() => {
+    let homePage = new HomePage();
+    let settingsPage = homePage.goToGeneralSettings();
+    settingsPage.togglePrivate();
   });
 });
