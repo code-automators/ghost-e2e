@@ -5,7 +5,7 @@ import data from "./../aprioriData/generalSettings.json";
 import { faker } from "@faker-js/faker";
 
 describe("General Settings Scenarios", () => {
-  /*it("[A Priori] Scenario 22: Edit valid general settings (publication info)", () => {
+  it("[A Priori] Scenario 22: Edit valid general settings (publication info)", () => {
     // Given user is logged in
     let signinPage = new SignInPage();
     let homePage = signinPage.login(config.user, config.password);
@@ -130,7 +130,7 @@ describe("General Settings Scenarios", () => {
       // Then the changes should be reflected in the main page
       settingsPage.checkMetadataValidation().should("exist");
     });
-  });*/
+  });
 
   it("[Random] Scenario 102: Edit general settings metadata (Meta description exceeds 1000 characters)", () => {
     // Given user is logged in
@@ -147,7 +147,7 @@ describe("General Settings Scenarios", () => {
     settingsPage.checkMetadataValidation().should("exist");
   });
 
-  /*it("[A Priori] Scenario 103: Edit general settings with a valid Facebook link", () => {
+  it("[A Priori] Scenario 103: Edit general settings with a valid Facebook link", () => {
     // Given user is logged in
     let signinPage = new SignInPage();
     let homePage = signinPage.login(config.user, config.password);
@@ -338,5 +338,5 @@ describe("General Settings Scenarios", () => {
     let homePage = new HomePage();
     let settingsPage = homePage.goToGeneralSettings();
     settingsPage.togglePrivate();
-  });*/
+  });
 });
