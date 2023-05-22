@@ -5,6 +5,20 @@ import { faker } from "@faker-js/faker";
 import { format } from 'date-fns';
 
 describe("Posts Scenarios", () => {
+    it("JP![A Priori] Scenario 43: Add a non existing author to a post", () => {
+        // Given user is logged in
+        let signinPage = new SignInPage();
+        let homePage = signinPage.login(config.user, config.password);
+        // When the user wants to edit a post
+        let postsPage = homePage.goToPostList();
+        // And the user select random post
+        let postDetails = postsPage.selectRandomPost();
+        // And the user edit post with canonical URL in metadata
+        postDetails.addAuthor(data2.scenario37.label);
+        // Then the edited post is displayed in the post a message error
+        postDetails.checkAuthorError().should('exist');
+    });
+
     it("[A Priori] Scenario 46: Add invalid canonical URL to post metadata", () => {
         // Given user is logged in
         let signinPage = new SignInPage();
