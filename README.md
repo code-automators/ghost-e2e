@@ -10,8 +10,8 @@ Realizado por:
 - Luisa Johanna Torres - lj.torresm1@uniandes.edu.co
 - Juan Pablo Correa - jp.correap@uniandes.edu.co
 
-Link al video explicativo: https://youtu.be/4azl89Ijzq8  
-Link a la wiki: https://github.com/code-automators/ghost-e2e/wiki  
+Link al video explicativo: https://youtu.be/4azl89Ijzq8
+Link a la wiki: https://github.com/code-automators/ghost-e2e/wiki
 Link a los issues: https://github.com/code-automators/ghost-issues/issues
 
 ## Funcionalidades bajo pruebas
@@ -128,7 +128,7 @@ Los siguientes escenarios fueron escogidos para ser modificados y utilizados en 
 
 ### Cypress
 
-Desde la raiz del proyecto, puede ejecutar todos los escenarios de prueba, en ambas versiones de Ghost, con:
+Desde la raiz del proyecto, puede ejecutar todos los escenarios de prueba, en ambas versiones y tipos de prueba de Ghost, con:
   ```bash
   npm test -- --spec 'cypress/e2e/*/scenarios/*.cy.js'
   ```
@@ -142,11 +142,15 @@ Si se desea una ejecución con mayor granularidad puede:
     ```bash
     cypress run --spec "cypress/e2e/v<VERSIÓN-DE-GHOST>/scenarios/*cy.js"
     ```
-5. Ejecutar solo un escenario con:
+5. Ejecutar todos los escenarios de prueba de generación de datos con:
+    ```bash
+    cypress run --spec "cypress/e2e/dataGeneration/scenarios/*cy.js"
+    ```
+6. Ejecutar solo un escenario con:
     ```bash
     cypress run --spec "cypress/e2e/v<VERSIÓN-DE-GHOST>/scenarios/Scenario1.cy.js"
     ```
-6. Alternativamente, puede usar `cypress open` y seleccionar este proyecto para seguir las instrucciones de ejecución mediante la GUI.
+7. Alternativamente, puede usar `cypress open` y seleccionar este proyecto para seguir las instrucciones de ejecución mediante la GUI.
 
 ### Kraken
 1. Instalar kraken-node con `npm i kraken-node`.
@@ -159,20 +163,25 @@ Notas:
 - El ejecutable es el script binario de kraken-node ubicado en `node_modules`, el cual fue instalado con el comando de `npm i kraken-node`. Un ejemplo de este comando para correr las pruebas es: `node ".\node_modules\kraken-node\bin\kraken-node" run`
 
 #### Notas de la ejecución
-Estas pruebas se ejecutaron sobre 2 versiones de ghost específicas. La v3.41.1 y la v4.44.0. Para esto, se crearon 2 contenedores de Docker con las siguientes instrucciones:
+Estas pruebas se ejecutaron sobre 2 versiones de ghost específicas. La v3.41.1 y la v4.44.0. Para esto, se crearon 3 contenedores de Docker con las siguientes instrucciones:
 
-Puede ejecutar Ghost con los siguientes comandos (se recomienda no correrlos al tiempo):
+Puede ejecutar Ghost con los siguientes comandos:
 ```bash
-docker run -d -e url=http://<machine-ip>:2368 -p 2368:2368 --name ghost_3.41.1 ghost:3.41.1
+docker run -d -e url=http://<machine-ip>:3411 -p 3411:2368 --name ghost_3.41.1 ghost:3.41.1
 ```
 
 ```bash
-docker run -d -e url=http://<machine-ip>:2368 -p 2368:2368 --name ghost_4.44.0 ghost:4.44.0
+docker run -d -e url=http://<machine-ip>:4440 -p 4440:2368 --name ghost_4.44.0 ghost:4.44.0
+```
+
+```bash
+docker run -d -e url=http://<machine-ip>:3412 -p 3412:2368 --name ghost_3.41.1 ghost:3.41.1_input
 ```
 
 Nosotros también desplegamos una instancia en GCP para tener disponible la versión de Ghost 3.41.1 y 4.44.0 en los siguientes enlaces, y así integrarlo con nuestro pipeline de GitHub Actions que corre automáticamente todas las pruebas de Cypress:
 
 - v3.41.1: http://34.132.112.110:3411/
+- dataGeneration: http://34.132.112.110:3412/
 - v4.44.0 http://34.132.112.110:4440/
 
 Al inicializar Ghost, se debe acceder a la URL correspondiente desde el navegador y completar manualmente los pasos de registro inicial de usuario, con las credenciales en los archivos de configuración JSON del proyecto. Además, la primera vez que se abre el sitio web, aparecerá una alerta de solicitud de actualización de seguridad, esta se debe cerrar para evitar fallas por interfaz en algunas de las pruebas existentes.

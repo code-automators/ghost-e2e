@@ -13,7 +13,23 @@ class CodeInjectionPage {
             .type('{meta+a}{backspace}')
             .type(`<p>${randomParagraph}</p>`);
         cy.contains('Save').click();
-        return randomParagraph
+        return randomParagraph;
+    }
+
+    insertParagraphOnHeader(paragraph) {
+        cy.get('#ghost-head > .CodeMirror > .CodeMirror-scroll')
+            .type('{meta+a}{backspace}')
+            .type(`<p>${paragraph}</p>`);
+        cy.contains('Save').click();
+        cy.wait(2000);
+    }
+
+    insertParagraphOnFooter(paragraph) {
+        cy.get('#ghost-foot > .CodeMirror > .CodeMirror-scroll')
+            .type('{meta+a}{backspace}')
+            .type(`<p>${paragraph}</p>`);
+        cy.contains('Save').click();
+        cy.wait(2000);
     }
 
     generateRandomParagraph(length) {
@@ -23,6 +39,10 @@ class CodeInjectionPage {
             result += characters.charAt(Math.floor(Math.random() * characters.length));
         }
         return `An inserted paragraph ${result}...`;
+    }
+
+    checkErrorByMessage(msg) {
+        return cy.contains(msg);
     }
 }
 

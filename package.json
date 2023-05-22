@@ -10,10 +10,13 @@
   "author": "Code Automators",
   "license": "MIT",
   "dependencies": {
+    "@faker-js/faker": "^8.0.1",
     "canvas": "^2.11.2",
     "chai": "^4.3.7",
     "cypress": "^12.12.0",
+    "date-fns": "^2.30.0",
     "kraken-node": "^1.0.24",
+    "mockaroo": "^0.1.7",
     "readline-sync": "^1.4.10",
     "resemblejs": "^4.1.0",
     "valid-path": "^2.1.0"
