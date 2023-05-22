@@ -8,6 +8,16 @@ class ProfilePage {
         }
     }
 
+    changeBio(bio) {
+        cy.get("textarea#user-bio").clear().type(bio, { force: true });
+        cy.wait(500);
+        cy.contains("Save").click();
+    }
+
+    checkIfBioSaved(success=true) {
+        return cy.contains(success ? "Saved" : "Bio is too long");
+    }
+
     changeSlugAndSocialMedia(slug, website, facebookProfile, twitterProfile) {
         cy.get("input#user-slug").clear().type(slug, { force: true });
         cy.wait(500);

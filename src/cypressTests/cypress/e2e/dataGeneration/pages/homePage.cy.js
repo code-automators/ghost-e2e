@@ -123,6 +123,15 @@ class HomePage {
       }
     });
   }
+
+  goToPage(page) {
+    let host = window.location.origin;
+    cy.visit(`${host}/${page}`, {failOnStatusCode: false});
+  }
+
+  checkInexistentPage() {
+    return cy.contains("404");
+  }
 }
 
 export { HomePage };
