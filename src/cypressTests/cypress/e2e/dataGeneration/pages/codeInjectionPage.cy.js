@@ -9,7 +9,7 @@ class CodeInjectionPage {
 
     insertRandomParagraphOnHeader() {
         let randomParagraph = this.generateRandomParagraph(20)
-        cy.get('#ghost-head > .CodeMirror > .CodeMirror-scroll > .CodeMirror-sizer > [style="position: relative; top: 0px;"] > .CodeMirror-lines')
+        cy.get('#ghost-head > .CodeMirror > .CodeMirror-scroll > .CodeMirror-sizer > [style="position: relative; top: 0px;"] > .CodeMirror-lines', { timeout: 10000 })
             .type('{meta+a}{backspace}')
             .type(`<p>${randomParagraph}</p>`);
         cy.contains('Save').click();
@@ -17,7 +17,7 @@ class CodeInjectionPage {
     }
 
     insertParagraphOnHeader(paragraph) {
-        cy.get('#ghost-head > .CodeMirror > .CodeMirror-scroll')
+        cy.get('#ghost-head > .CodeMirror > .CodeMirror-scroll', { timeout: 10000 })
             .type('{meta+a}{backspace}')
             .type(`<p>${paragraph}</p>`);
         cy.contains('Save').click();
@@ -25,7 +25,7 @@ class CodeInjectionPage {
     }
 
     insertParagraphOnFooter(paragraph) {
-        cy.get('#ghost-foot > .CodeMirror > .CodeMirror-scroll')
+        cy.get('#ghost-foot > .CodeMirror > .CodeMirror-scroll', { timeout: 10000 })
             .type('{meta+a}{backspace}')
             .type(`<p>${paragraph}</p>`);
         cy.contains('Save').click();
