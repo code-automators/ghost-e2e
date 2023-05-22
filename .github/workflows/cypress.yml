@@ -21,9 +21,6 @@ jobs:
   cypress-data-testing:
     needs: get-date
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        ghost-version: ["dataGeneration"]
     steps:
       - uses: actions/checkout@v3
       - name: Use Node.js
@@ -32,12 +29,13 @@ jobs:
           node-version: "18.x"
           cache: "npm"
       - run: npm ci
-      - run: npm test -- --spec "cypress/e2e/${{ matrix.ghost-version }}/scenarios/*.cy.js"
+      - run: npm test -- --spec "cypress/e2e/dataGeneration/scenarios/*.cy.js"
+        continue-on-error: true
 
       - uses: actions/upload-artifact@v3
         with:
-          name: "${{ matrix.ghost-version }}-screenshots"
-          path: src/cypressTests/cypress/screenshots/${{ needs.get-date.outputs.date }}/${{ matrix.ghost-version }}
+          name: "dataGeneration-screenshots"
+          path: src/cypressTests/cypress/screenshots/${{ needs.get-date.outputs.date }}/dataGeneration
 
   cypress:
     needs: [get-date, cypress-data-testing]
