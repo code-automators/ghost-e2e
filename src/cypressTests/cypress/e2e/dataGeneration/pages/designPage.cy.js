@@ -7,7 +7,7 @@ class DesignPage {
         }
     }
 
-    addNavigationOption(label, url) {
+    addNavigationOption(label, url, save = true) {
         cy.get("input[class$='ember-text-field gh-input ember-view']")
             .then(nodes => {
                 cy.get(`input#${nodes[nodes.length - 4].id}`).invoke('val', label);
@@ -17,7 +17,9 @@ class DesignPage {
                 cy.wait(800);
                 cy.get("button.gh-blognav-add").first().click();
                 cy.contains("Save").click();
-                cy.contains("Saved")
+                if (save) {
+                    cy.contains("Saved")
+                }
             });
 
         cy.wait(200);
