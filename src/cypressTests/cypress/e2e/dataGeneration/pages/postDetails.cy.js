@@ -176,6 +176,20 @@ class PostDetails {
   checkPostTimeError() {
     return cy.contains('Must be in format: "15:00"');
   }
+
+  addAuthor(author) {
+    cy.get("button[title$='Settings']").click();
+    cy.wait(200);
+    cy.scrollTo('bottom');
+    cy.get("#author-list").type('{downarrow}' + author);
+    cy.wait(800);
+    // cy.get("input[class$='post-setting-canonicalUrl ember-text-field gh-input ember-view']").clear().type(url);
+    // cy.get('label').contains('Meta title').click();
+  }
+
+  checkAuthorError() {
+    return cy.contains('No results found');
+  }
 }
 
 export { PostDetails };

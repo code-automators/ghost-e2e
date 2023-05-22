@@ -8,6 +8,15 @@ class SettingsPage {
         }
     }
 
+    addMetatitle(metatitle) {
+        cy.get("div[class$='gh-setting-first flex-column']").find("div[class$='flex flex-row justify-between w-100']").find("div[class$='gh-setting-action']").find("button[class$='gh-btn']").click();
+        cy.get("input#metaTitle").clear().type(metatitle, {force: true});
+    }
+
+    getMetatileWordCounter() {
+        return cy.get("span[class$='word-count']").first();
+    }
+
     changeSettings(site_name, site_description, site_language, save = true) {
         cy.get("div[class$='gh-setting-first']").find("div[class$='gh-setting-action']").find("button[class$='gh-btn']").click()
         cy.get("div[class$='gh-setting-first']").find("input[class$='ember-text-field gh-input ember-view']").each(($el) => {
