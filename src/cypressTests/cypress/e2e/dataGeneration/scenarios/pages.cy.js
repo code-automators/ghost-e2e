@@ -1,14 +1,43 @@
 import { SignInPage } from "../pages/signinPage.cy";
 import config from "../assets/config.json";
 import data from "./../aprioriData/pages.json";
+import { faker } from "@faker-js/faker";
 
 
 describe("Page Scenarios", () => {
-    it("JP![A priori] Scenario 76: Look for a page", () => {
+    it("[A priori] Scenario 76: Look for a page", () => {
         // Given user visits the webpage
-        const homePage = new HomePage();
+        //const homePage = new HomePage();
+        let signinPage = new SignInPage();
+        let homePage = signinPage.login(config.user, config.password);
         // When the user look for a page
         homePage.goToPage(data.scenario76.page);
+        // Then the random page should inform it does not exists
+        homePage.checkInexistentPage().should("exist");
+    });
+
+    it("[Pseudo Random] Scenario 77: Look for a page", () => {
+        // Given user visits the webpage
+        //const homePage = new HomePage();
+        let signinPage = new SignInPage();
+        let homePage = signinPage.login(config.user, config.password);
+        cy.request(
+            `https://my.api.mockaroo.com/validPage.json?key=${config.mockarooKey}`
+        ).then((response) => {
+            // When the user look for a page
+            homePage.goToPage(response.body.pageName);
+            // Then the random page should inform it does not exists
+            homePage.checkInexistentPage().should("exist");
+        });
+    });
+
+    it("[Random] Scenario 78: Look for a page", () => {
+        // Given user visits the webpage
+        //const homePage = new HomePage();
+        let signinPage = new SignInPage();
+        let homePage = signinPage.login(config.user, config.password);
+        // When the user look for a page
+        homePage.goToPage(faker.internet.domainName());
         // Then the random page should inform it does not exists
         homePage.checkInexistentPage().should("exist");
     });
