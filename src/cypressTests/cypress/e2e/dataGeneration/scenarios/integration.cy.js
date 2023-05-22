@@ -40,7 +40,7 @@ describe("Integration Scenarios", () => {
         //when the user wants to create a custom integration
         let integrationPage = homePage.goToIntegrationsList();
         //And the user add the custom integration
-        let nameIntegration = faker.lorem.text();
+        let nameIntegration = faker.lorem.word();
         let newIntegration = integrationPage.addIntegration(nameIntegration, faker.lorem.sentence());
         homePage.goToIntegrationsList();
         // the new custom integration is displayed in the list

@@ -11,7 +11,7 @@ describe("Members Scenarios", () => {
         //when the user wants to create a new member
         let staffPage = homePage.goToStaffPage();
         //And the user add the invalid name and email
-        let newUser = staffPage.invitePeople(data.scenario64.email);
+        staffPage.invitePeople(data.scenario64.email);
         // Then the create user is displayed in the message error
         staffPage.checkInvalidEmailError().should('contain', 'Invalid Email.');
     });

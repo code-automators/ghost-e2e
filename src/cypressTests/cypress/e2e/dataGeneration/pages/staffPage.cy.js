@@ -8,7 +8,7 @@ class StaffPage {
   }
 
   invitePeople(email) {
-    cy.contains("Invite people").click();
+    cy.contains("Invite people", { timeout:8000 }).click();
     cy.get("input#new-user-email").first().type(email);
     cy.contains("Send invitation now").click();
   }

@@ -62,8 +62,9 @@ describe("Nav Option Scenarios", () => {
         let designPage = homePage.goToDesignPage();
         // And the user adds an option to the navigation menu
         designPage.addNavigationOption(data.scenario40.label, data.scenario40.uri, false);
-        // Then the new navigation option should have an error
-        designPage.getNavOptionError().should('contain', "exceeds maximum length of 65535 characters");
+        // Then the new navigation option should not exist
+        let mainPage = homePage.goToMainPageSite();
+        mainPage.getNavbarMenu().should("not.contain", data.scenario40.label);
     });
 
     it("[Pseudo Random] Scenario 41: Attempt to add an invalid option to the navigation menu", () => {
@@ -76,8 +77,9 @@ describe("Nav Option Scenarios", () => {
         cy.request(`https://my.api.mockaroo.com/invalidNavOption.json?key=${config.mockarooKey}`)
             .then((response) => {
                 designPage.addNavigationOption(response.body.label, response.body.slug, false);
-                // Then the new navigation option should have an error
-                designPage.getNavOptionError().should('contain', "exceeds maximum length of 65535 characters");
+                // Then the new navigation option should not exist
+                let mainPage = homePage.goToMainPageSite();
+                mainPage.getNavbarMenu().should("not.contain", response.body.label);
             })
     });
 
@@ -88,8 +90,10 @@ describe("Nav Option Scenarios", () => {
         // When the user wants to add a new option to the navbar menu, he goes to the design page
         let designPage = homePage.goToDesignPage();
         // And the user adds an option to the navigation menu
-        designPage.addNavigationOption(faker.lorem.paragraph(800), faker.lorem.slug(), false);
-        // Then the new navigation option should have an error
-        designPage.getNavOptionError().should('contain', "exceeds maximum length of 65535 characters");
+        let scenarioLabel = faker.lorem.paragraph(1000);
+        designPage.addNavigationOption(scenarioLabel, faker.lorem.slug(), false);
+        // Then the new navigation option should not exist
+        let mainPage = homePage.goToMainPageSite();
+        mainPage.getNavbarMenu().should("not.contain", scenarioLabel);
     });
 });

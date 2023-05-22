@@ -166,7 +166,7 @@ describe("Profile Scenarios", () => {
         profilePage.changeSlugAndSocialMedia(
             faker.lorem.slug(),
             faker.lorem.paragraph(4),
-            faker.string.symbol(20),
+            faker.lorem.paragraph(5).concat(faker.string.symbol(5)),
             faker.lorem.paragraph(5).concat(faker.string.symbol(5))
         );
         // And the user changes their credentials
@@ -223,7 +223,7 @@ describe("Profile Scenarios", () => {
         let profilePage = homePage.goToProfile();
         // And the user changes their profile
         profilePage.changeBio(faker.lorem.paragraph());
-        profilePage.checkIfBioSaved()
+        profilePage.checkIfBioSaved();
         saveCurrentTestCredentials("Add a valid bio", config.password);
     });
 

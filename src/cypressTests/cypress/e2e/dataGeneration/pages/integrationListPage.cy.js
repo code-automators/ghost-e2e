@@ -11,8 +11,8 @@ class IntegrationListPage {
         let host = window.location.origin;
         cy.visit(host + "/ghost/#/settings/integrations/new");
         cy.get('input#new-integration-name').first().type(name);
-        cy.get('button.gh-btn.gh-btn-green').click();
-        cy.get('input#integration_description').type(description);
+        cy.get('button.gh-btn.gh-btn-green').click({ force: true, timeout: 10000});
+        cy.get('input#integration_description', { timeout:10000 }).type(description);
         cy.contains('Save').click();
         return new IntegrationListPage();
     }

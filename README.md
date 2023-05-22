@@ -10,9 +10,13 @@ Realizado por:
 - Luisa Johanna Torres - lj.torresm1@uniandes.edu.co
 - Juan Pablo Correa - jp.correap@uniandes.edu.co
 
-Link al video explicativo: https://youtu.be/4azl89Ijzq8
-Link a la wiki: https://github.com/code-automators/ghost-e2e/wiki
+Link al video explicativo: https://youtu.be/4azl89Ijzq8  
+Link a la wiki: https://github.com/code-automators/ghost-e2e/wiki  
 Link a los issues: https://github.com/code-automators/ghost-issues/issues
+
+Notas:
+- La máquina de GCP para los escenarios de generación de datos, debido a presupuesto limitado es de menor capacidad y puede llegar a hacer que algunos escenarios fallen por lentitud o sobrecarga de la máquina. Se recomienda cambiar la configuración de los casos de esta categoría para que se ejecuten en una máquina local.
+- La documentación más a fondo de los escenarios de prueba de generación de datos se encuentra en la wiki del repositorio.
 
 ## Funcionalidades bajo pruebas
 1. Manejo de posts: Esta funcionalidad permite al administrador de Ghost crear, editar y eliminar publicaciones de blog en su sitio web. Desde el panel de administración, se pueden redactar nuevos posts, agregar imágenes y otros medios, programar su publicación y actualizar o eliminar publicaciones existentes.

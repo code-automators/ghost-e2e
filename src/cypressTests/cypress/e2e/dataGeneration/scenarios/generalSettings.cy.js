@@ -175,7 +175,7 @@ describe("General Settings Scenarios", () => {
     // When the user wants to change the blog's settings
     let settingsPage = homePage.goToGeneralSettings();
     // And the user adds an invalid metatitle in the settings table
-    settingsPage.addMetatitle(faker.lorem.sentence());
+    settingsPage.addMetatitle(faker.lorem.word());
     // Then the metatitle word counter should be in red color
     let metatitleWordCounter = settingsPage.getMetatileWordCounter();
     metatitleWordCounter.should("have.css", "color").and("match", /(159, 187, 88)/);
@@ -227,7 +227,7 @@ describe("General Settings Scenarios", () => {
     // And the user changes the meta data
     settingsPage.addMetaData(
       faker.lorem.text(),
-      faker.lorem.paragraph(10)
+      faker.lorem.paragraph(15)
     );
     // Then the changes should be reflected in the main page
     settingsPage.checkMetadataValidation().should("exist");

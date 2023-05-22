@@ -67,8 +67,8 @@ class HomePage {
 
   goToProfile() {
     cy.wait(500);
-    cy.contains("Staff").click();
-    cy.contains("Owner").click();
+    cy.contains("Staff").click({ force:true });
+    cy.contains("Owner").click({ force:true });
     return new ProfilePage();
   }
 

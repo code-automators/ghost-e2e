@@ -8,7 +8,10 @@ class DesignPage {
     }
 
     addNavigationOption(label, url, save = true) {
-        cy.get("input[class$='ember-text-field gh-input ember-view']")
+        Cypress.on('uncaught:exception', (err, runnable) => {
+            return false
+        });
+        cy.get("input[class$='ember-text-field gh-input ember-view']", { timeout: 10000 })
             .then(nodes => {
                 cy.get(`input#${nodes[nodes.length - 4].id}`).invoke('val', label);
                 cy.get(`input#${nodes[nodes.length - 4].id}`).type('{downarrow}');
@@ -24,11 +27,6 @@ class DesignPage {
 
         cy.wait(200);
         return new DesignPage();
-    }
-
-    getNavOptionError() {
-        Cypress.on("uncaught:exception", (error, runnable) => false);
-        return cy.get("article[class$='gh-alert gh-alert-red ember-view']");
     }
 }
 

@@ -11,11 +11,12 @@ class ProfilePage {
     changeBio(bio) {
         cy.get("textarea#user-bio").clear().type(bio, { force: true });
         cy.wait(500);
-        cy.contains("Save").click();
+        cy.contains("Save").click({ force: true });
     }
 
     checkIfBioSaved(success=true) {
-        return cy.contains(success ? "Saved" : "Bio is too long");
+        cy.wait(500);
+        return cy.contains(success ? "Saved" : "Bio is too long", { timeout: 8000 });
     }
 
     changeSlugAndSocialMedia(slug, website, facebookProfile, twitterProfile) {
