@@ -42,7 +42,7 @@ describe("Page Scenarios", () => {
         homePage.checkInexistentPage().should("exist");
     });
 
-    it("JP![A priori] Scenario 82: Create a valid page", () => {
+    it("[A priori] Scenario 82: Create a valid page", () => {
         // Given user is logged in
         let signinPage = new SignInPage();
         let homePage = signinPage.login(config.user, config.password);
@@ -53,5 +53,37 @@ describe("Page Scenarios", () => {
         const publishedPageList = pageDetail.createNewPage(data.scenario82.title);
         // Then the user should be able to see new page
         publishedPageList.getList().should("contain", data.scenario82.title);
+    });
+
+    it("[Pseudo Random] Scenario 83: Create a valid page", () => {
+        // Given user is logged in
+        let signinPage = new SignInPage();
+        let homePage = signinPage.login(config.user, config.password);
+        // When the user look for a page
+        const pageList = homePage.goToPageList();
+        cy.request(
+            `https://my.api.mockaroo.com/validPage.json?key=${config.mockarooKey}`
+        ).then((response) => {
+            // And clics on creating a page
+            const pageDetail = pageList.goToCreatePage();
+            let newPage = response.body.pageName;
+            const publishedPageList = pageDetail.createNewPage(newPage);
+            // Then the user should be able to see new page
+            publishedPageList.getList().should("contain", newPage);
+        });
+    });
+
+    it("[Random] Scenario 84: Create a valid page", () => {
+        // Given user is logged in
+        let signinPage = new SignInPage();
+        let homePage = signinPage.login(config.user, config.password);
+        // When the user look for a page
+        const pageList = homePage.goToPageList();
+        // And clics on creating a page
+        const pageDetail = pageList.goToCreatePage();
+        let newPage = faker.internet.domainName();
+        const publishedPageList = pageDetail.createNewPage(newPage);
+        // Then the user should be able to see new page
+        publishedPageList.getList().should("contain", newPage);
     });
 });
