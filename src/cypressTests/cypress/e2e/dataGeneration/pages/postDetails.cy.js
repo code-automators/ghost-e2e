@@ -169,6 +169,12 @@ class PostDetails {
       .should('not.have.css', 'color', 'rgb(159, 187, 88)'); // Green indicator
   }
 
+  checkMetatitleNoError() {
+    cy.get('.word-count')
+      .should('not.have.css', 'color', 'rgb(226, 84, 64)') // Red error indicator
+      .should('have.css', 'color', 'rgb(159, 187, 88)'); // Green indicator
+  }
+
   checkMetadataURLError() {
     return cy.contains('Please enter a valid URL');
   }

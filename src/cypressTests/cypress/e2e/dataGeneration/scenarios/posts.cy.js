@@ -292,6 +292,52 @@ describe("Posts Scenarios", () => {
         postsPage.getListPosts().should("contain", postName);
     });
 
+    it("[A Priori] Scenario 88: Create post with valid metatitle", () => {
+        // Given user is logged in
+        let signinPage = new SignInPage();
+        let homePage = signinPage.login(config.user, config.password);
+        // When the user wants to edit a post
+        let postsPage = homePage.goToPostList();
+        // And the user selects a random post
+        let postDetails = postsPage.selectRandomPost();
+        // And edits post with an valid metatitle
+        postDetails.editMetatitle(data.scenario88.title);
+        // Then there is no error message on settings
+        postDetails.checkMetatitleNoError();
+    });
+
+    it("[Pseudo Random] Scenario 89: Create post with valid metatitle", () => {
+        // Given user is logged in
+        let signinPage = new SignInPage();
+        let homePage = signinPage.login(config.user, config.password);
+        // When the user wants to edit a post
+        let postsPage = homePage.goToPostList();
+        // And the user select random post
+        let postDetails = postsPage.selectRandomPost();
+        // And edits post with an invalid metatitle
+        cy.request(`https://my.api.mockaroo.com/validMetatitles.json?key=${config.mockarooKey}`)
+            .then((response) => {
+                let title = response.body.metatitle.trim();
+                postDetails.editMetatitle(title);
+            });
+        // Then there is no error message on settings
+        postDetails.checkMetatitleNoError();
+    });
+
+    it("[Random] Scenario 90: Create post with valid metatitle", () => {
+        // Given user is logged in
+        let signinPage = new SignInPage();
+        let homePage = signinPage.login(config.user, config.password);
+        // When the user wants to edit a post
+        let postsPage = homePage.goToPostList();
+        // And the user select random post
+        let postDetails = postsPage.selectRandomPost();
+        // And edits post with an invalid metatitle
+        postDetails.editMetatitle(faker.lorem.word());
+        // Then there is an error message on settings
+        postDetails.checkMetatitleNoError();
+    });
+
     it("[A Priori] Scenario 91: Edit Post with Excerpt of more than 301 characters", () => {
         // Given user is logged in
         let signinPage = new SignInPage();
@@ -327,6 +373,7 @@ describe("Posts Scenarios", () => {
                 .should("contain", 'Excerpt cannot be longer than 300 characters.');
         });
     });
+
     it("[Random] Scenario 93: Edit Post with Excerpt of more than 301 characters", () => {
         // Given user is logged in
         let signinPage = new SignInPage();
