@@ -10,7 +10,7 @@ class SettingsPage {
 
     addMetatitle(metatitle) {
         cy.get("div[class$='gh-setting-first flex-column']").find("div[class$='flex flex-row justify-between w-100']").find("div[class$='gh-setting-action']").find("button[class$='gh-btn']").click();
-        cy.get("input#metaTitle").clear().type(metatitle, {force: true});
+        cy.get("input#metaTitle").clear().type(metatitle, { force: true, delay: 1 });
     }
 
     getMetatileWordCounter() {
