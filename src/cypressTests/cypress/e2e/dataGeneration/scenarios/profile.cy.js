@@ -185,16 +185,17 @@ describe("Profile Scenarios", () => {
         saveCurrentTestCredentials("Edit profile with invalid info", scenarioPassword);
     });
 
-    // it("JP![A priori] Scenario 70: Add a valid bio", () => {
-    //     // Given user is logged in
-    //     let signinPage = new SignInPage();
-    //     let homePage = signinPage.login(config.user, config.password);
-    //     // When the user wants to change the slug and social media info
-    //     let profilePage = homePage.goToProfile();
-    //     // And the user changes their profile
-    //     profilePage.changeBio(data.scenario70.bio);
-    //     profilePage.checkIfBioSaved()
-    // });
+    it("JP![A priori] Scenario 70: Add a valid bio", () => {
+        // Given user is logged in
+        let signinPage = new SignInPage();
+        let homePage = signinPage.login(config.user, config.password);
+        // When the user wants to change the slug and social media info
+        let profilePage = homePage.goToProfile();
+        // And the user changes their profile
+        profilePage.changeBio(data.scenario70.bio);
+        profilePage.checkIfBioSaved()
+        saveCurrentTestCredentials("Add a valid bio", config.password);
+    });
 
     it("JP![Pseudo Random] Scenario 71: Add a valid bio", () => {
         // Given user is logged in
@@ -210,8 +211,21 @@ describe("Profile Scenarios", () => {
                 // And the user changes their profile
                 profilePage.changeBio(bio);
                 profilePage.checkIfBioSaved();
+                saveCurrentTestCredentials("Add a valid bio", config.password);
             });
     });
+
+    it("JP![Random] Scenario 72: Add a valid bio", () => {
+        // Given user is logged in
+        let signinPage = new SignInPage();
+        let homePage = signinPage.login(config.user, config.password);
+        // When the user wants to change the slug and social media info
+        let profilePage = homePage.goToProfile();
+        // And the user changes their profile
+        profilePage.changeBio(faker.lorem.paragraph());
+        profilePage.checkIfBioSaved()
+        saveCurrentTestCredentials("Add a valid bio", config.password);
+   });
 
     // it("JP![A priori] Scenario 73: Add an invalid bio", () => {
     //     // Given user is logged in
@@ -224,7 +238,7 @@ describe("Profile Scenarios", () => {
     //     profilePage.checkIfBioSaved(false).should("exist");
     // });
 
-    it("[Random] Scenario 119: Try changing passwords with different ones but confirmation is wront", () => {
+    it("[Random] Scenario 119: Try changing passwords with different ones but confirmation is wrong", () => {
         // Given user is logged in
         let signinPage = new SignInPage();
         let homePage = signinPage.login(config.user, config.password);
