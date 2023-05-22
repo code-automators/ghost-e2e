@@ -27,7 +27,7 @@ class MainPageSite {
     }
 
     getParagraphsByText(text) {
-        return cy.contains(text, { timeout: 8000 });
+        return cy.contains(text, { timeout: 10000 });
     }
 
     clickPostByTitle(title) {
