@@ -17,6 +17,7 @@ class DesignPage {
                 cy.wait(800);
                 cy.get("button.gh-blognav-add").first().click();
                 cy.contains("Save").click();
+                cy.contains("Saved")
             });
 
         cy.wait(200);

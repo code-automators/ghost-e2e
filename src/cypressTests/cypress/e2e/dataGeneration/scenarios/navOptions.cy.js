@@ -1,10 +1,10 @@
 import { SignInPage } from "../pages/signinPage.cy";
 import data from "../aprioriData/navOptions.json";
 import config from "../assets/config.json";
-
+import { faker } from "@faker-js/faker";
 
 describe("Nav Option Scenarios", () => {
-    it("JP![A Priori] Scenario 37: Add a new option to the navigation menu", () => {
+    it("[A Priori] Scenario 37: Add a new option to the navigation menu", () => {
         // Given user is logged in
         let signinPage = new SignInPage();
         let homePage = signinPage.login(config.user, config.password);
@@ -16,6 +16,40 @@ describe("Nav Option Scenarios", () => {
         let mainPage = homePage.goToMainPageSite();
         // Then the new navigation option should be visible in main page site
         mainPage.getNavbarMenu().should("contain", data.scenario37.label);
+    });
+
+
+    it("[Pseudo Random] Scenario 38: Add a new option to the navigation menu", () => {
+        // Given user is logged in
+        let signinPage = new SignInPage();
+        let homePage = signinPage.login(config.user, config.password);
+        // When the user wants to add a new option to the navbar menu, he goes to the design page
+        let designPage = homePage.goToDesignPage();
+        // And the user adds an option to the navigation menu
+        cy.request(`https://my.api.mockaroo.com/validNavOption.json?key=${config.mockarooKey}`)
+            .then((response) => {
+                designPage.addNavigationOption(response.body.label, response.body.slug);
+                // And the user goes back into the main page site
+                let mainPage = homePage.goToMainPageSite();
+                // Then the new navigation option should be visible in main page site
+                mainPage.getNavbarMenu().should("contain", response.body.label);
+            })
+    });
+
+
+    it("[Random] Scenario 39: Add a new option to the navigation menu", () => {
+        // Given user is logged in
+        let signinPage = new SignInPage();
+        let homePage = signinPage.login(config.user, config.password);
+        // When the user wants to add a new option to the navbar menu, he goes to the design page
+        let designPage = homePage.goToDesignPage();
+        // And the user adds an option to the navigation menu
+        let scenarioLabel = faker.person.firstName();
+        designPage.addNavigationOption(scenarioLabel, faker.lorem.slug());
+        // And the user goes back into the main page site
+        let mainPage = homePage.goToMainPageSite();
+        // Then the new navigation option should be visible in main page site
+        mainPage.getNavbarMenu().should("contain", scenarioLabel);
     });
 
     it("JP![A Priori] Scenario 40: Attempt to add an invalid option to the navigation menu", () => {
