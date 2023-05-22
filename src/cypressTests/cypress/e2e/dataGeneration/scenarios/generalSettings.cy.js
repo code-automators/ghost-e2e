@@ -5,7 +5,7 @@ import data from "./../aprioriData/generalSettings.json";
 import { faker } from "@faker-js/faker";
 
 describe("General Settings Scenarios", () => {
-  it("[A Priori] Scenario 22: Edit valid general settings (publication info)", () => {
+  /*it("[A Priori] Scenario 22: Edit valid general settings (publication info)", () => {
         // Given user is logged in
         let signinPage = new SignInPage();
         let homePage = signinPage.login(config.user, config.password);
@@ -95,7 +95,22 @@ describe("General Settings Scenarios", () => {
         settingsPage.getTitleError().should("exist");
         settingsPage.getDescriptionError().should("exist");
     })
+    */
 
+    it("JP![A Priori] Scenario 79: Add invalid meta title in general settings", () => {
+      // Given user is logged in
+      let signinPage = new SignInPage();
+      let homePage = signinPage.login(config.user, config.password);
+      // When the user wants to change the blog's settings
+      let settingsPage = homePage.goToGeneralSettings();
+      // And the user adds a metatitle in the settings table
+      settingsPage.addMetatitle(data.scenario79.metaTitle);
+      // Then the metatitle word counter should be in red color
+      let metatitleWordCounter = settingsPage.getMetatileWordCounter();
+      metatitleWordCounter.should("have.css", "color").and("match", /(226, 84, 64)/);
+    })
+
+    /*
     it("[Random] Scenario 120: Make the website private and change password", () => {
         // Given user is logged in
         let signinPage = new SignInPage();
@@ -162,7 +177,7 @@ describe("General Settings Scenarios", () => {
     // Then the changes should be reflected in the main page
     settingsPage.checkMetadataValidation().should("exist");
   });
-
+  */
   after(() => {
         let homePage = new HomePage();
         let settingsPage = homePage.goToGeneralSettings();

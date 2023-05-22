@@ -108,6 +108,14 @@ class SettingsPage {
         return cy.get('div.gh-alert-content');
     }
 
+    addMetatitle(metatitle) {
+        cy.get("div[class$='gh-setting-first flex-column']").find("div[class$='flex flex-row justify-between w-100']").find("div[class$='gh-setting-action']").find("button[class$='gh-btn']").click();
+        cy.get("input#metaTitle").clear().type(metatitle, {force: true});
+    }
+
+    getMetatileWordCounter() {
+        return cy.get("span[class$='word-count']").first();
+    }
 }
 
 export { SettingsPage };
