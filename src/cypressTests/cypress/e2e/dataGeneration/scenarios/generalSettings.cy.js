@@ -138,6 +138,49 @@ describe("General Settings Scenarios", () => {
     metatitleWordCounter.should("have.css", "color").and("match", /(226, 84, 64)/);
   });
 
+  it("[A Priori] Scenario 97: Add valid meta title in general settings", () => {
+    // Given user is logged in
+    let signinPage = new SignInPage();
+    let homePage = signinPage.login(config.user, config.password);
+    // When the user wants to change the blog's settings
+    let settingsPage = homePage.goToGeneralSettings();
+    // And the user adds an invalid metatitle in the settings table
+    settingsPage.addMetatitle(data.scenario97.metaTitle);
+    // Then the metatitle word counter should be in red color
+    let metatitleWordCounter = settingsPage.getMetatileWordCounter();
+    metatitleWordCounter.should("have.css", "color").and("match", /(159, 187, 88)/);
+  });
+
+  it("[Pseudo Random] Scenario 98: Add valid meta title in general settings", () => {
+    // Given user is logged in
+    let signinPage = new SignInPage();
+    let homePage = signinPage.login(config.user, config.password);
+    // When the user wants to change the blog's settings
+    let settingsPage = homePage.goToGeneralSettings();
+    // And the user adds an invalid metatitle in the settings table
+    cy.request(`https://my.api.mockaroo.com/validMetatitles.json?key=${config.mockarooKey}`)
+      .then((response) => {
+        let title = response.body.metatitle.trim();
+        settingsPage.addMetatitle(title);
+      });
+    // Then the metatitle word counter should be in red color
+    let metatitleWordCounter = settingsPage.getMetatileWordCounter();
+    metatitleWordCounter.should("have.css", "color").and("match", /(159, 187, 88)/);
+  });
+
+  it("[Random] Scenario 99: Add valid meta title in general settings", () => {
+    // Given user is logged in
+    let signinPage = new SignInPage();
+    let homePage = signinPage.login(config.user, config.password);
+    // When the user wants to change the blog's settings
+    let settingsPage = homePage.goToGeneralSettings();
+    // And the user adds an invalid metatitle in the settings table
+    settingsPage.addMetatitle(faker.lorem.sentence());
+    // Then the metatitle word counter should be in red color
+    let metatitleWordCounter = settingsPage.getMetatileWordCounter();
+    metatitleWordCounter.should("have.css", "color").and("match", /(159, 187, 88)/);
+  });
+
   it("[A Priori] Scenario 100: Edit general settings metadata (Meta description exceeds 1000 characters)", () => {
     // Given user is logged in
     let signinPage = new SignInPage();
